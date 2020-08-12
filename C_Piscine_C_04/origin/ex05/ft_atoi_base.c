@@ -8,14 +8,6 @@ int ft_chk_char(char *str, char c)
     }
     return (0);
 }
-int ft_find_space(char c)
-{
-    return (ft_chk_char(" \n\t\v\f\r", c));
-}
-int ft_find_operator(char c)
-{
-    return (ft_chk_char("+-", c));
-}
 int is_valid_of_base(char *base)
 {
     int i;
@@ -35,6 +27,7 @@ int is_valid_of_base(char *base)
     }
     return i;
 }
+
 int get_radix(char *base, char c)
 {
     int i;
@@ -61,9 +54,9 @@ int ft_atoi_base(char *str, char *base)
         return 0;
     res = 0;
     sign = 1;
-    while (ft_find_space(*str))
+    while (ft_chk_char(" \n\t\v\f\r", *str))
         str++;
-    while (ft_find_operator(*str))
+    while (ft_chk_char("+-", *str))
     {
         if ('-' == *str++)
             sign = sign * -1;
