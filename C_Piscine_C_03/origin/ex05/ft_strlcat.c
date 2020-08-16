@@ -14,14 +14,14 @@ unsigned	int	ft_strlcat(char *dest, char *src, unsigned int size)
 	j = d_len;
 	while (src[s_len])
 		s_len++;
-	while (src[i])
+	while (j + 1< size)
 	{
 		dest[j] = src[i];
 		i++;
 		j++;
-		if (j == size - 1)
-			break ;
 	}
 	dest[j] = '\0';
+	if(size < d_len) 
+		return (s_len + size);
 	return (d_len + s_len);
 }

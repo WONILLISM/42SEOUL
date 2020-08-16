@@ -1,0 +1,103 @@
+include:
+
+	#include <stdio.h>
+	#include <stdarg.h>
+	#include <string.h>
+	#include <stdlib.h>
+
+ex00:
+
+	printf("%d", ft_strlen("tipssoft"));
+	printf("\n");
+	printf("%d", ft_strlen("tips\tsoft"));
+
+ex00-expected:
+
+8
+9
+
+ex01:
+
+	ft_putstr("asdf");
+	printf("\n");
+	ft_putstr("qwerty");
+	printf("\n");
+	ft_putstr("zxcv");
+
+ex01-expected:
+
+asdf
+qwerty
+zxcv
+
+ex02:
+
+	ft_putnbr(123456);
+	printf("\n");
+	ft_putnbr(-987654321);
+	printf("\n");
+	ft_putnbr(0);
+	printf("\n");
+	ft_putnbr(2147483647);
+	printf("\n");
+	ft_putnbr(-2147483648);
+
+ex02-expected:
+
+123456
+-987654321
+0
+2147483647
+-2147483648
+
+ex03:
+
+	printf("%d", ft_atoi("\t\n\v\f\r +256"));
+	printf("\n");
+	printf("%d", ft_atoi("256a99999"));
+
+ex03-expected:
+
+256
+256
+
+ex04:
+
+	ft_putnbr_base(40, "0123456789abcdef");
+	printf("\n");
+	ft_putnbr_base(31, "0123456789abcdef");
+	printf("\n");
+	ft_putnbr_base(15, "01");
+	printf("\n");
+	ft_putnbr_base(-15, "0123456789");
+	printf("\n");
+	ft_putnbr_base(-16, "01");
+	printf("\n");
+	ft_putnbr_base(2147483647, "0123456789abcdef");
+	printf("\n");
+	ft_putnbr_base(-2147483648, "0123456789abcdef");
+
+ex04-expected:
+
+28
+1f
+1111
+-15-10000
+7fffffff-80000000
+
+ex05:
+
+	printf("%d ", ft_atoi_base("42", "0123456789"));
+	printf("%d ", ft_atoi_base("   42", "0123456789"));
+	printf("%d ", ft_atoi_base("  +--++-rcrdmddd+-abc", "mrdoc"));
+	printf("%d ", ft_atoi_base("-10000000000000000000000000000000", "01"));
+	printf("%d ", ft_atoi_base("8888888888888888888888888888888", "a8"));
+	printf("%d ", ft_atoi_base("one", "e"));
+	printf("%d ", ft_atoi_base("blank", ""));
+	printf("\n");
+
+ex05-expected:
+
+42 42 -145062 -2147483648 2147483647 0 0
+
+end:

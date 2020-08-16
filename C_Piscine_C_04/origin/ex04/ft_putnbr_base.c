@@ -1,6 +1,6 @@
 
 #include <unistd.h>
-
+#include <stdio.h>
 int is_valid_of_base(char *base)
 {
     int i;
@@ -29,22 +29,26 @@ void ft_nbr_to_base(int nbr, char *base, int radix)
             ft_nbr_to_base(nbr / radix, base, radix);
             write(1, &base[-(nbr % radix)], 1);
         }
-        nbr = -nbr;
-        write(1, "-", 1);
-        ft_nbr_to_base(nbr / radix, base, radix);
+        else 
+        {
+            nbr = -nbr;
+            write(1, "-", 1);
+            ft_nbr_to_base(nbr / radix, base, radix);
+        }
     }
     else
     {
         if (nbr > radix - 1)
             ft_nbr_to_base(nbr / radix, base, radix);
-        write(1, &base[nbr % radix], 1);
     }
+    write(1, &base[nbr % radix], 1);
 }
 void ft_putnbr_base(int nbr, char *base)
 {
     int radix;
 
     radix = is_valid_of_base(base);
+    printf("%d\n", radix);
     if (!base || radix <= 1)
         return;
     ft_nbr_to_base(nbr, base, radix);

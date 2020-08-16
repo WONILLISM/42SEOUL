@@ -1,5 +1,4 @@
-// ell
-//hello
+
 int		is_same(char *str, char *find_ptr)
 {
 	while (*find_ptr && *find_ptr == *str)
@@ -18,6 +17,8 @@ char	*ft_strstr(char *str, char *to_find)
 	char *find_ptr;
 
 	find_ptr = to_find;
+	if (!*to_find)
+		return str;
 	while (*str)
 	{
 		if (*str == *to_find)
@@ -28,6 +29,6 @@ char	*ft_strstr(char *str, char *to_find)
 		}
 		str++;
 	}
-	ret = (void *)0;
+	ret = 0;
 	return (ret);
 }
