@@ -8,6 +8,10 @@ argument followed by a newline.
 
 If the number of arguments is less than 1, the program displays a newline.
 
+문자열을 인수로 취하고 마지막 인수 다음에 개행을 표시하는 프로그램을 작성하십시오.
+
+인수 수가 1보다 작 으면 프로그램은 개행을 표시합니다.
+
 Examples:
 
 $> ./aff_last_param "zaz" "mange" "des" "chats" | cat -e

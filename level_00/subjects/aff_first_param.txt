@@ -8,6 +8,11 @@ argument followed by a \n.
 
 If the number of arguments is less than 1, the program displays \n.
 
+문자열을 인수로 취하고 첫 번째를 표시하는 프로그램을 작성하십시오.
+인수 뒤에 \ n이 나옵니다.
+
+인수 수가 1보다 작 으면 프로그램은 \ n을 표시합니다.
+
 Example:
 
 $> ./aff_first_param vincent mit "l'ane" dans un pre et "s'en" vint | cat -e
