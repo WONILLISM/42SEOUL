@@ -6,6 +6,8 @@ Allowed functions: write
 Write a program that displays all digits in descending order, followed by a
 newline.
 
+모든 자릿수를 내림차순으로 표시 한 다음 줄 바꿈이 오는 프로그램을 작성하십시오.
+
 Example:
 $> ./ft_countdown | cat -e
 9876543210$
