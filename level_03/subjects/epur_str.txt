@@ -1,0 +1,33 @@
+Assignment name  : epur_str
+Expected files   : epur_str.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes a string, and displays this string with exactly one
+space between words, with no spaces or tabs either at the beginning or the end,
+followed by a \n.
+
+A "word" is defined as a part of a string delimited either by spaces/tabs, or
+by the start/end of the string.
+
+If the number of arguments is not 1, or if there are no words to display, the
+program displays \n.
+
+
+문자열을 사용하는 프로그램을 작성하고 단어 사이에 정확히 하나의 공백으로이 문자열을 표시하고 시작 또는 끝 부분에 공백이나 탭없이 \ n을 표시합니다.
+
+"단어"는 공백 / 탭 또는 문자열의 시작 / 끝으로 구분 된 문자열의 일부로 정의됩니다.
+
+인수 수가 1이 아니거나 표시 할 단어가없는 경우 프로그램은 \ n을 표시합니다.
+
+Example:
+
+$> ./epur_str "vous voyez c'est facile d'afficher la meme chose" | cat -e
+vous voyez c'est facile d'afficher la meme chose$
+$> ./epur_str " seulement          la c'est      plus dur " | cat -e
+seulement la c'est plus dur$
+$> ./epur_str "comme c'est cocasse" "vous avez entendu, Mathilde ?" | cat -e
+$
+$> ./epur_str "" | cat -e
+$
+$>
