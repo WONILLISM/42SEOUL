@@ -1,0 +1,48 @@
+Assignment name  : brainfuck
+Expected files   : *.c, *.h
+Allowed functions: write, malloc, free
+--------------------------------------------------------------------------------
+
+Write a Brainfuck interpreter program.
+The source code will be given as first parameter.
+The code will always be valid, with no more than 4096 operations.
+Brainfuck is a minimalist language. It consists of an array of bytes
+(in our case, let's say 2048 bytes) initialized to zero,
+and a pointer to its first byte.
+
+Every operator consists of a single character :
+- '>' increment the pointer ;
+- '<' decrement the pointer ;
+- '+' increment the pointed byte ;
+- '-' decrement the pointed byte ;
+- '.' print the pointed byte on standard output ;
+- '[' go to the matching ']' if the pointed byte is 0 (while start) ;
+- ']' go to the matching '[' if the pointed byte is not 0 (while end).
+
+Any other character is a comment.
+
+Brainfuck 인터프리터 프로그램을 작성하십시오.
+소스 코드는 첫 번째 매개 변수로 제공됩니다.
+코드는 4096 개 이하의 작업으로 항상 유효합니다.
+Brainfuck은 미니멀 한 언어입니다. 0으로 초기화 된 바이트 배열 (우리의 경우 2048 바이트)과 첫 번째 바이트에 대한 포인터로 구성됩니다.
+
+모든 연산자는 단일 문자로 구성됩니다.
+- '>'포인터를 증가시킵니다.
+- '<'포인터 감소;
+- '+'포인트 바이트 증가;
+- '-'는 지정된 바이트를 감소시킵니다.
+- '.' 표준 출력에 지정된 바이트를 인쇄합니다.
+-가리키는 바이트가 0이면 '['일치하는 ']'로 이동 (시작하는 동안);
+- ']'는 지정된 바이트가 0이 아니면 (종료시) 일치하는 '['로 이동합니다.
+
+다른 모든 문자는 주석입니다.
+
+Examples:
+
+$>./brainfuck "++++++++++[>+++++++>++++++++++>+++>+<<<<-]
+>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>." | cat -e
+Hello World!$
+$>./brainfuck "+++++[>++++[>++++H>+++++i<<-]>>>++\n<<<<-]>>--------.>+++++.>." | cat -e
+Hi$
+$>./brainfuck | cat -e
+$

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 15:13:49 by jaleman           #+#    #+#             */
-/*   Updated: 2017/03/31 15:14:03 by jaleman          ###   ########.fr       */
+/*   Updated: 2020/09/17 09:53:37 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
+#include <stdio.h>
 char		**ft_split(char *str)
 {
 	int		i;
@@ -39,4 +39,18 @@ char		**ft_split(char *str)
 	}
 	split[k] = NULL;
 	return (split);
+}
+int     main(void)
+{
+	// char *str = " abcd. dfdf. aaa$!@#";
+	// char *str = "";
+	char *str = "111\t111";
+
+	char **ans;
+	ans = ft_split(str);
+	if (ans){
+		for (int i = 0; ans[i]; i++)
+			printf("%s\n", ans[i]);
+	}
+	return (0);
 }
