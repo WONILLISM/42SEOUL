@@ -1,12 +1,8 @@
 # Libft  
 
-+++
-
 ## :blue_book: Evaluation Log(평가 로그)
 
 + 
-
-+++
 
 ## :blue_book: List of Func(함수 목록)
 
