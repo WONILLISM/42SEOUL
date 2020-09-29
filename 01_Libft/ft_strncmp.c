@@ -8,7 +8,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while (i < n && (s1[i] || s2[i]))
 	{
 		if (s1[i] != s2[i])
-			return ((int)s1[i] - (int)s1[j]);
+			return ((int)s1[i] - (int)s1[i]);
 		i++;
 	}
 	return (0);
