@@ -18,15 +18,3 @@ size_t  ft_strlcpy(char * dst, const char *src, size_t size)
 		dst[idx] = '\0';
 	return (src_len);
 }
-
-
-char *ft_strncpy(char *dst, const char *src, size_t n)
-{
-	if ((dst == NULL && src == NULL) || !n)
-		return (0);
-    while ((n--) && *src)
-        *dst++ = *src++;
-    while (n--)
-        *dst++ = '\0';
-    return (dst);
-}
