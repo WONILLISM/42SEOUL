@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 16:53:06 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/05 20:05:39 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/05 20:48:48 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,6 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(ret, count * size);
 	return (ret);
 }
+/*
+** libft.h 함수 선언 추가
+*/
