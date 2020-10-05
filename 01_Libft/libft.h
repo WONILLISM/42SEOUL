@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:18:39 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/05 17:18:43 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/05 20:05:25 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	*ft_memmove(void *dst, const void *src, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 
 int		ft_isalpha(int c);
