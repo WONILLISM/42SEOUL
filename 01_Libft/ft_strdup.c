@@ -6,20 +6,29 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:24:27 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/05 17:24:28 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/05 21:23:45 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *src)
 {
-	size_t	len;
-	char	*dup;
+	char	*dest;
+	int		len;
+	int		i;
 
-	len = ft_strlen(s);
-	if (!(dup = (char *)malloc(sizeof(char) * len + 1)))
-		return ((char *)0);
-	ft_strlcpy(dup, s, len + 1);
-	return dup;
+	len = 0;
+	i = 0;
+	while (src[len])
+		len++;
+	if (!(dest = (char *)malloc(sizeof(char) * len)))
+		return (0);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
