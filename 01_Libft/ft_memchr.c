@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:20:58 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/05 17:21:17 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/05 20:17:57 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned	char	*ptr = (unsigned char *)s;
+	unsigned	char	*ptr;
 
+	ptr = (unsigned char *)s;
 	while (n--)
 	{
 		if (*ptr != ((unsigned char)c))
@@ -25,3 +26,6 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (0);
 }
+/*
+** line 17 ~ 19 : 변수 선언 초기화 과정 분리
+*/
