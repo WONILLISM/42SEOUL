@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:19:58 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/05 19:56:32 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/05 20:01:59 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,6 @@ long	ft_atoi(const char *str)
 	}
 	return (sign * res);
 }
+/*
+**	line 30 : ft_isdigit(*str) 조건 추가
+*/
