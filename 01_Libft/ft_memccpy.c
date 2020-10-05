@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:20:50 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/05 17:20:50 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/05 20:11:22 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	flag = 0;
 	while (i < n && ((unsigned char *)src)[i] && !flag)
 	{
-		flag = ((unsigned char *)src)[i] == ((unsigned char)c) ? 1: 0;
+		flag = ((unsigned char *)src)[i] == ((unsigned char)c) ? 1 : 0;
 		i++;
 	}
 	if (flag)
@@ -35,3 +35,6 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 		return (0);
 	}
 }
+/*
+** line 24 : 삼항연산자 결과값 주위 공백 (norm check)
+*/
