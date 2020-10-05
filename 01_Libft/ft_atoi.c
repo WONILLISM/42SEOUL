@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:19:58 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/05 17:19:59 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/05 19:56:32 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ long	ft_atoi(const char *str)
 			sign = -1;
 		str++;
 	}
-	while (*str)
+	while (*str && ft_isdigit(*str))
 	{
 		res = res * 10 + (*str - '0');
 		str++;
