@@ -6,13 +6,13 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:24:27 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/06 16:34:49 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/06 19:48:13 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(const char *src)
 {
 	char	*dest;
 	int		len;
