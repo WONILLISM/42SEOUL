@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:27:46 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/06 16:35:06 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 18:09:01 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_toupper(int c)
 {
-	if ((char)c >= 'a' && (char)c <= 'z')
+	if (c >= 'a' && c <= 'z')
 		return (c - 'a' + 'A');
 	return (c);
 }

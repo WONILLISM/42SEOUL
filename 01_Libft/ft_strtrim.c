@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/07 19:10:26 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/07 19:12:49 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char		*ft_strtrim(char const *s1, char const *set)
@@ -15,7 +27,11 @@ char		*ft_strtrim(char const *s1, char const *set)
 	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
 	while (s1[end - 1] && ft_strchr(set, s1[end - 1]))
+	{
+		if (end - 1 < 1)
+			break;
 		end--;
+	}
 	if (start > end)
 		return (ft_strdup(""));
 	if (!(res = (char *)malloc(sizeof(char) * (end - start + 1))))

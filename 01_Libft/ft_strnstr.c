@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:27:12 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/06 16:34:56 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 17:08:29 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
+	size_t	llen;
 	size_t	i;
-	size_t	j;
 
 	if (!*little)
 		return ((char *)big);
+	llen = ft_strlen(little);
 	i = 0;
-	while (big[i] && i < len)
+	while (i + llen <= len)
 	{
-		j = 0;
-		while (big[i + j] == little[i] && i + j < len)
-		{
-			j++;
-			if (!little[j])
-				return ((char *)big + i);
-		}
+		if (big[i] == *little && !ft_strncmp(big + i, little, llen))
+			return ((char *)big + i);
 		i++;
 	}
 	return (0);

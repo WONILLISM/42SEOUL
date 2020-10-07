@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:27:31 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/06 16:34:57 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 17:09:10 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t	len;
+	char	*ret;
 
-	len = ft_strlen(s);
-	while (len--)
+	ret = 0;
+	while (*s)
 	{
-		if (s[len] == (char)c)
-			return ((char *)s + len);
+		if (*s == (char)c)
+			ret = (char *)s;
+		s++;
 	}
-	return (0);
+	if (!c)
+		return ((char *)s);
+	return (ret);
 }

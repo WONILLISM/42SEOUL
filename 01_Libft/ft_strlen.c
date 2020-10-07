@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:26:20 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/06 16:34:53 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 17:09:59 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	const	char	*ptr;
+	size_t	i;
 
-	ptr = s;
-	while (*s)
-		s++;
-	return (ptr - s);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

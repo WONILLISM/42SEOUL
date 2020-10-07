@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:24:13 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/06 16:34:45 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 17:57:38 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	unsigned	char	tmp[n];
+	unsigned char	*s;
+	unsigned char	*d;
 
-	ft_memcpy(tmp, src, n);
-	ft_memcpy(dst, tmp, n);
+	if (dst == src || !n)
+		return (dst);
+	s = (unsigned char *)src;
+	d = (unsigned char *)dst;
+	if (dst < src)
+	{
+		while (n--)
+			*d++ = *s++;
+	}
+	else
+	{
+		while (n--)
+			*(d + n) = *(s + n);
+	}
 	return (dst);
 }

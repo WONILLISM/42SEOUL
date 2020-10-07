@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:27:40 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/06 16:44:14 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 18:11:55 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_tolower(int c)
 {
-	if ((char)c >= 'A' && (char)c <= 'Z')
+	if (c >= 'A' && c <= 'Z')
 		return (c - 'A' + 'a');
 	return (c);
 }
