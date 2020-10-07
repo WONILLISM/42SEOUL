@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:24:33 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/07 17:10:19 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 19:52:53 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dlen = d - dst;
 	n = size - dlen;
 	if (n == 0)
-		return (dlen + strlen(s));
+		return (dlen + ft_strlen(s));
 	while (*s != '\0')
 	{
 		if (n != 1)

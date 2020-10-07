@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:25:18 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/07 17:08:49 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 19:25:27 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	d = dst;
 	s = src;
 	n = size;
+	if (!dst && !src)
+		return (0);
 	if (n != 0)
 	{
 		while (--n != 0)

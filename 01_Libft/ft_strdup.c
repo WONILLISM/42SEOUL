@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:24:27 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/06 19:48:13 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/07 19:51:27 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *src)
 	i = 0;
 	while (src[len])
 		len++;
-	if (!(dest = (char *)malloc(sizeof(char) * len)))
+	if (!(dest = (char *)malloc(sizeof(char) * len + 1)))
 		return (0);
 	while (src[i])
 	{
