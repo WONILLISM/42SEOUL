@@ -1,73 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/08 23:51:09 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/09 00:35:04 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int	get_row(char const *s, char c)
+static char		**ft_free_malloc_error(char **ret)
 {
 	size_t	i;
-	size_t	ret;
 
 	i = 0;
-	ret = 0;
-	while (s[i])
+	while (ret[i])
 	{
-		if (s[i] != c && (s[i + 1] == c || !s[i + 1]))
-			ret++;
+		free(ret[i]);
 		i++;
 	}
+	free(ret);
+	return (NULL);
+}
+
+static size_t	ft_get_row(char const *s, char c)
+{
+	size_t	ret;
+	size_t	i;
+
+	ret = 0;
+	i = 0;
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			ret++;
+			while (s[i] && s[i] == c)
+				i++;
+		}
+		else
+			i++;
+	}
+	if (s[i - 1] != c)
+		ret++;
 	return (ret);
 }
-static int	get_split(char const *s, char c, char **ret)
-{
-	char	*flag;
-	size_t	col;
-	size_t	i;
-	size_t	j;
 
-	col = 0;
+static size_t	ft_get_strlen(char const *s, char c)
+{
+	size_t	i;
+
 	i = 0;
-	j = 0;
-	flag = 0;
-	while (*s)
+	while (s[i])
 	{
-		if (*s != c)
-		{
-			if (!flag)
-				flag = (char *)s;
-			col++;
-			if(*(s + 1) == c || !*(s + 1))
-			{
-				if (!(ret[i] = (char *)ft_calloc(col + 1, sizeof(char))))
-					return (0);
-				while (j < col && flag[j])
-				{
-					ret[i][j] = flag[j];
-					j++;
-				}
-				i++;
-				flag = 0;
-				col = 0;
-				j = 0;
-			}
-		}
-		s++;
+		if (s[i] == c)
+			break ;
+		i++;
 	}
-	return (1);
+	return (i);
 }
-char		**ft_split(char const *s, char c)
+
+char			**ft_split(char const *s, char c)
 {
 	char	**ret;
+	size_t	len;
 	size_t	row;
+	size_t	i;
 
-	row = 0;
-	while (*s && *s == c)
-		s++;
-	if (!(row = get_row(s, c)))
-		return ((char **)s);
-	if (row == ft_strlen(s) || !s)
-		return (0);
-	if (!(ret = (char **)ft_calloc(row + 1, sizeof(char))))
-		return (0);
-	if (get_split(s, c, ret))
-		return (ret);
-	else
-		return (0);
+	if (!s)
+		return (NULL);
+	row = ft_get_row(s, c);
+	if (!(ret = (char **)malloc(sizeof(char *) * row + 1)))
+		return (NULL);
+	i = 0;
+	while (i < row)
+	{
+		while (*s && *s == c)
+			s++;
+		len = ft_get_strlen(s, c);
+		if (!(ret[i] = (char *)malloc(sizeof(char) * len + 1)))
+			return (ft_free_malloc_error(ret));
+		ft_strlcpy(ret[i], s, len + 1);
+		i++;
+		if (i < row)
+			s += len;
+	}
+	ret[i] = (NULL);
+	return (ret);
 }
