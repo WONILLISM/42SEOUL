@@ -1,4 +1,6 @@
-#include "libft.h"
+// #include "libft.h"
+#include <string.h>
+#include <stdlib.h>
 
 static int	get_row(char const *s, char c)
 {
@@ -35,7 +37,8 @@ static int	get_split(char const *s, char c, char **ret)
 			{
 				if (!(ret[i] = (char *)malloc(sizeof(char) * col + 1)))
 					return (0);
-				ft_strlcpy(ret[i], flag, col);
+				strncpy(ret[i], flag, col);
+				// ft_strlcpy(ret[i], flag, col);
 				i++;
 				flag = 0;
 				col = 0;
@@ -43,7 +46,6 @@ static int	get_split(char const *s, char c, char **ret)
 		}
 		s++;
 	}
-	ret[i] = NULL;
 	return (1);
 }
 char		**ft_split(char const *s, char c)
@@ -59,7 +61,16 @@ char		**ft_split(char const *s, char c)
 	if (!(ret = (char **)malloc(sizeof(char) * row + 1)))
 		return (0);
 	if (get_split(s, c, ret))
+	{
+		ret[row] = 0;
 		return (ret);
+	}
 	else
 		return (0);
+}
+
+int main(){
+	char *s = "  hello wolrd 42 cursus!! ";
+	char **ret = ft_split(s, ' ');
+	return 0;
 }
