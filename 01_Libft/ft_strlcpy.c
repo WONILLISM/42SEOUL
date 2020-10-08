@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:25:18 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/07 19:25:27 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/09 00:51:10 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	const char	*s;
-	char		*d;
 	size_t		n;
 
-	d = dst;
 	s = src;
 	n = size;
 	if (!dst && !src)
@@ -27,16 +25,21 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	{
 		while (--n != 0)
 		{
-			if ((*d++ = *s++) == '\0')
+			if ((*dst = *s) == '\0')
 				break ;
+			dst++;
+			s++;
 		}
 	}
 	if (n == 0)
 	{
 		if (size != 0)
-			*d = '\0';
-		while (*s++)
-			;
+			*dst = '\0';
+		while (*s)
+			s++;
 	}
 	return (s - src - 1);
 }
+/*
+** 널 문자 확인 후 다음 주소로 넘어가는 경우 처리
+*/
