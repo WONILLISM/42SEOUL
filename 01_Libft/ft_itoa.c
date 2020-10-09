@@ -1,8 +1,8 @@
 #include "libft.h"
 
-static size_t	ft_get_len(int n)
+static int	ft_get_len(int n)
 {
-	size_t	len;
+	int	len;
 
 	len = (n <= 0) ? 1 : 0;
 	while (n)
@@ -15,10 +15,10 @@ static size_t	ft_get_len(int n)
 
 char			*ft_itoa(int n)
 {
-	size_t		len;
+	int			len;
 	int			sign;
 	char		*ret;
-	long int	tmp;
+	long long	tmp;
 
 	sign = n < 0 ? -1 : 1;
 	len = ft_get_len(n);
@@ -26,7 +26,7 @@ char			*ft_itoa(int n)
 		return (NULL);
 	ret[len] = 0;
 	len--;
-	tmp = n < 0 ? -n : n;
+	tmp = n < 0 ? -(long long)n : (long long)n;
 	while (len >= 0)
 	{
 		ret[len] = '0' + tmp % 10;
