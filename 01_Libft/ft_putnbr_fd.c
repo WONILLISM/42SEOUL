@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/09 16:49:01 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/09 21:32:59 by wopark           ###   ########.fr       */
+/*   Created: 2020/10/09 21:25:37 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/09 21:25:50 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	display_nbr(int n, int fd)
 {
-	char			*ret;
-	unsigned int	len;
-	unsigned int	i;
+	if (n >= 10)
+		display_nbr(n / 10, fd);
+	write(fd, &"0123456789"[n % 10], 1);
+}
 
-	if (!s || !f)
-		return (NULL);
-	len = ft_strlen(s);
-	i = 0;
-	if (!(ret = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	while (s[i])
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (fd < 0)
+		return ;
+	if (n == -2147483648)
 	{
-		ret[i] = f(i, s[i]);
-		i++;
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	ret[i] = 0;
-	return (ret);
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	display_nbr(n, fd);
 }
