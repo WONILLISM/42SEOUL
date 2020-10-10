@@ -19,5 +19,5 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		tmp = tmp->next;
 		lst = lst->next;
 	}
-	return (next);
+	return (tmp);
 }
