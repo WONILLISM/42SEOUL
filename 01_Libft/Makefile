@@ -32,19 +32,19 @@ SRCS	= ./ft_memset.c \
 		  ./ft_putstr_fd.c \
 		  ./ft_putendl_fd.c \
 		  ./ft_putnbr_fd.c
-# SRCS_B = ./ft_lstnew.c \
-# 		 ./ft_lstadd_front.c \
-# 		 ./ft_lstsize.c \
-# 		 ./ft_lstlast.c \
-# 		 ./ft_lstadd_back.c \
-# 		 ./ft_lstdelone.c \
-# 		 ./ft_lstclear.c \
-# 		 ./ft_lstiter.c \
-# 		 ./ft_lstmap.c
+SRCS_B = ./ft_lstnew.c \
+		 ./ft_lstadd_front.c \
+		 ./ft_lstsize.c \
+		 ./ft_lstlast.c \
+		 ./ft_lstadd_back.c \
+		 ./ft_lstdelone.c \
+		 ./ft_lstclear.c \
+		 ./ft_lstiter.c \
+		 ./ft_lstmap.c
 
 NAME	= libft.a
 OBJS	= $(SRCS:.c=.o)
-# OBJS_B	= $(SRCS_B:.c=.o)
+OBJS_B	= $(SRCS_B:.c=.o)
 INCS	= .
 RM		= rm -f
 LIBC	= ar rc
