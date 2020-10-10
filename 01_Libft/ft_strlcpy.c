@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:25:18 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/09 14:37:24 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/10 14:55:37 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,3 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	}
 	return (s - src);
 }
-/*
-** 널 문자 확인 후 다음 주소로 넘어가는 경우 처리
-*/
