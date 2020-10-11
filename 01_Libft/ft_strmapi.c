@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 16:49:01 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/09 21:32:59 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/11 00:07:12 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	if (!(ret = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
-	while (s[i])
+	while (i < len)
 	{
 		ret[i] = f(i, s[i]);
 		i++;

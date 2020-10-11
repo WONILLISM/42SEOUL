@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:10:26 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/09 15:35:06 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/10 22:57:01 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char		*ft_strtrim(char const *s1, char const *set)
 	while (s1[end - 1] && ft_strchr(set, s1[end - 1]))
 	{
 		if (end - 1 < 1)
-			break;
+			break ;
 		end--;
 	}
 	if (start > end)

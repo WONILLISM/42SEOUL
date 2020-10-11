@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 14:40:36 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/10 14:54:34 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/10 23:45:28 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (fd < 0)
+	if (fd < 0 || !s)
 		return ;
 	write(fd, s, ft_strlen(s));
 }

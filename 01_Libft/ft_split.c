@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 23:51:09 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/10 14:58:35 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/11 01:05:40 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static size_t	ft_get_row(char const *s, char c)
 
 	ret = 0;
 	i = 0;
+	if (!*s)
+		return (0);
 	while (s[i] && s[i] == c)
 		i++;
 	while (s[i])
@@ -75,7 +77,7 @@ char			**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	row = ft_get_row(s, c);
-	if (!(ret = (char **)malloc(sizeof(char *) * row + 1)))
+	if (!(ret = (char **)malloc(sizeof(char *) * (row + 1))))
 		return (NULL);
 	i = 0;
 	while (i < row)
