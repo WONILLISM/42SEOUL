@@ -1,9 +1,9 @@
-NAME = libft.a
+NAME = libft.a	# 아카이브 파일 이름
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-RM = rm -f
+CC = gcc	# CC : C Compiler
+CFLAGS = -Wall -Wextra -Werror	# C 컴파일러 플래그
+AR = ar rcs		# AR :아카이브 관리 프로그램 // AR 옵션 rcs
+RM = rm -f		# 쉘 명령어
 
 FILES = ft_memset \
 		ft_bzero \
@@ -51,14 +51,14 @@ FILES_B = 	ft_lstnew \
 	  		ft_lstmap
 
 SRCS_DIR = ./
-SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
+SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))		# SRCS_DIR에 있는 확장자가 c이고 파일명이 FILES인 파일
 SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES_B)))
 
 OBJS_DIR = ./
-OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
+OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))		# OBJS_DIR에 있는 확장자가 o이고 파일명이 FILES인 파일
 OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
 
-
+# make 명령어
 .c.o: $(SRCS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
