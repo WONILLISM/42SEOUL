@@ -28,5 +28,4 @@ This project will not only allow you to add a very convenient function to your c
    + 여러분의 read 함수는 표준입력으로 또는 파일로부터 읽어드리기 위해서 컴파일할 때 정의된 BUFFER_SIZE를 사용해야 합니다.
    + get_next_line.h (헤더 파일)에는 적어도 get_next_line 함수의 프로토타입이 있어야 합니다.
 
-
 2.
