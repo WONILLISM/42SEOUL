@@ -3,7 +3,6 @@
 char	*ft_strchr(const char *s, int c)
 {
 	char	*ret;
-
 	ret = 0;
 	while (*s)
 	{
@@ -16,24 +15,19 @@ char	*ft_strchr(const char *s, int c)
 	return (ret);
 }
 
-char	*ft_strndup(const char *src, int n)
+char	*ft_strndup(const char *src, size_t n)
 {
 	char	*dest;
-	int		len;
-	int		i;
-
-	len = 0;
+	size_t	i;
+	if (!(dest = (char *)malloc(sizeof(char) * (n + 1))))
+		return (NULL);
 	i = 0;
-	while (len < n && src[len])
-		len++;
-	if (!(dest = (char *)malloc(sizeof(char) * len + 1)))
-		return (0);
 	while (i < n && src[i])
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
+	dest[i] = 0;
 	return (dest);
 }
 
