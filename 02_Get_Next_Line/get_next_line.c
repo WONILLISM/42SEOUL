@@ -50,23 +50,3 @@ int		get_next_line(int fd, char **line)
 		return (_ERROR);
 	return (proc_remain(line, &store[fd], tmp_ptr));
 }
-
-// int		main(void)
-// {
-// 	char	*line;
-// 	int		ret;
-// 	int		fd;
-
-// 	fd = open("test", O_RDONLY);
-// 	while ((ret = get_next_line(fd, &line)) > 0)
-// 	{
-// 		printf("get_next_line : %s\n", line);
-// 		printf("return value : %d\n\n", ret);
-// 		free(line);
-// 	}
-// 	// ret = get_next_line(fd, &line);
-// 	printf("get_next_line : %s\n", line);
-// 	printf("return value : %d\n", ret);
-// 	free(line);
-// 	return (0);
-// }
