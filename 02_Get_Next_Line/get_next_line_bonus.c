@@ -31,6 +31,8 @@ int get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (_ERROR);
+	if(!store[fd])
+		store[fd] = ft_strndup("",1);
 	while (!(tmp_ptr = ft_strchr(store[fd], '\n')) &&
 	(byte = read(fd, buf, BUFFER_SIZE) > 0))
 	{
