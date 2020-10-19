@@ -4,7 +4,7 @@ GNL_lover/
 42testers-gnl/
 gnl-war-machine-v2019/
 
-test/
+tests/
 ### VisualStudioCode ###
 .vscode/*
 #!.vscode/settings.json
