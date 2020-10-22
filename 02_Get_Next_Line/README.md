@@ -8,28 +8,12 @@ This project will not only allow you to add a very convenient function to your c
 
 ## :blue_book: 평가 로그
 ### 1st try
-= basic_tests ==================================================================
->>>>>>>>>>> 1
->>>>>>>>>>> 2
->>>>>>>>>>> 3
->>>>>>>>>>> 4
->>>>>>>>>>> 5
->>>>>>>>>>> 1
->>>>>>>>>>> 2
->>>>>>>>>>> 3
->>>>>>>>>>> 4
+`basic_tests: GNL OK | bonus_tests: GNL KO`
 
-GNL OK
-Grade: 100
+### 2nd try
+`basic_tests: GNL OK | bonus_tests: GNL KO`
 
-= bonus_tests ==================================================================
->>>>>>>>>>> 1
-FAILED
-
-GNL KO
-Grade: 0
-
-= Final grade: 100 =============================================================
+### 3rd try
 
 
 ## :blue_book: 작성 규칙
