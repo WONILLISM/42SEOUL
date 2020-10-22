@@ -1,10 +1,19 @@
 #include "ft_printf.h"
 
-
-int	printf_parer(const char *format, va_list ap)
+int	printf_parser(const char *format, va_list ap)
 {
+	t_info	info;
+	char	tmp;
+
+	info.n = 0;
 	while (*format)
 	{
+		while (*format != '%' && *format)
+		{
+			info.n += 1;
+			ft_putchar_fd(*format, 1);
+			format += 1;
+		}
 		if (*format == '%')
 		{
 
