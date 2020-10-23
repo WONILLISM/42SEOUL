@@ -22,19 +22,20 @@ static int	proc_remain(char **line, char **store, char *tmp_ptr)
 	return (_EOF);
 }
 
-int get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
-	int byte;
-	char buf[BUFFER_SIZE + 1];
-	char *tmp_ptr;
+	int			byte;
+	char		*buf;
+	char		*tmp_ptr;
 	static char *store[OPEN_MAX];
 
-	if (fd < 0 || !line || BUFFER_SIZE <= 0)
+	if (fd < 0 || !line || BUFFER_SIZE <= 0 || fd > OPEN_MAX ||
+			!(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (_ERROR);
-	if(!store[fd])
-		store[fd] = ft_strndup("",1);
+	if (!store[fd])
+		store[fd] = ft_strndup("", 1);
 	while (!(tmp_ptr = ft_strchr(store[fd], '\n')) &&
-	(byte = read(fd, buf, BUFFER_SIZE) > 0))
+	(byte = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[byte] = 0;
 		if (store[fd])
