@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:18:39 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/10 22:56:03 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/25 16:41:13 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+int					ft_putchar(char c);
 
 
 int					ft_lstsize(t_list *lst);
