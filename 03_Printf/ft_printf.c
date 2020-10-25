@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/25 14:43:51 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/25 18:02:11 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,16 @@ int	printf_parser(const char *format, va_list ap)
 {
 	t_info	info;
 	char	tmp;
+	int		ret;
 
-	info.n = 0;
 	while (*format)
 	{
 		while (*format != '%' && *format)
-		{
-			info.n += 1;
-			ft_putchar_fd(*format, 1);
-			format += 1;
-		}
+			ret += ft_putchar(*format++);
 		if (*format == '%')
 		{
+			format++;
+			ft_memset(&info, 0, sizeof(t_info));
 
 		}
 	}
