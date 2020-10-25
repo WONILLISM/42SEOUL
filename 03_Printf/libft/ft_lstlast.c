@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/23 15:28:06 by wopark           ###   ########.fr       */
+/*   Created: 2020/10/11 14:09:11 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/11 14:11:46 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-typedef	struct	s_info
+t_list	*ft_lstlast(t_list *lst)
 {
-	int		n;
-	int		minus;
-	int		width;
-	int		precision;
-	int		zero;
-	int		plus;
-	int		space;
-	int		hex;
-	int		len;
-}				t_info;
-
-int	ft_printf(const char *, ...);
-
-#endif
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}

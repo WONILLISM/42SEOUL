@@ -1,11 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/22 21:23:53 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	ft_printf(const char *s, ...)
+int	printf_parser(const char *format, va_list ap)
+{
+	t_info	info;
+	char	tmp;
+
+	info.n = 0;
+	while (*format)
+	{
+		while (*format != '%' && *format)
+		{
+			info.n += 1;
+			ft_putchar_fd(*format, 1);
+			format += 1;
+		}
+		if (*format == '%')
+		{
+
+		}
+	}
+}
+
+int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
+<<<<<<< HEAD
 	int		byte;
 
 	va_start(ap, s);
 	va_end(ap);
 	return (byte);
+=======
+	int		ret;
+
+	va_start(ap, format);
+	ret = printf_parser(format, ap);
+	va_end(ap);
+	return (ret);
+>>>>>>> c84c8fd3576cc1989b468cd11002da45856341bb
 }

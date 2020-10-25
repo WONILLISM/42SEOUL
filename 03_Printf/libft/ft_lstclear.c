@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/23 15:28:06 by wopark           ###   ########.fr       */
+/*   Created: 2020/10/11 14:09:00 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/11 14:12:07 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-typedef	struct	s_info
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int		n;
-	int		minus;
-	int		width;
-	int		precision;
-	int		zero;
-	int		plus;
-	int		space;
-	int		hex;
-	int		len;
-}				t_info;
+	t_list	*cur;
+	t_list	*next;
 
-int	ft_printf(const char *, ...);
-
-#endif
+	cur = *lst;
+	while (cur)
+	{
+		next = cur->next;
+		ft_lstdelone(cur, del);
+		cur = next;
+	}
+	*lst = NULL;
+}

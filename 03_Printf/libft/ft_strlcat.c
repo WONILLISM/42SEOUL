@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/23 15:28:06 by wopark           ###   ########.fr       */
+/*   Created: 2020/10/05 17:24:33 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/07 19:52:53 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-typedef	struct	s_info
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int		n;
-	int		minus;
-	int		width;
-	int		precision;
-	int		zero;
-	int		plus;
-	int		space;
-	int		hex;
-	int		len;
-}				t_info;
+	const char	*s;
+	char		*d;
+	size_t		n;
+	size_t		dlen;
 
-int	ft_printf(const char *, ...);
-
-#endif
+	s = src;
+	d = dst;
+	n = size;
+	while (n-- != 0 && *d != '\0')
+		d++;
+	dlen = d - dst;
+	n = size - dlen;
+	if (n == 0)
+		return (dlen + ft_strlen(s));
+	while (*s != '\0')
+	{
+		if (n != 1)
+		{
+			*d++ = *s;
+			n--;
+		}
+		s++;
+	}
+	*d = '\0';
+	return (dlen + (s - src));
+}

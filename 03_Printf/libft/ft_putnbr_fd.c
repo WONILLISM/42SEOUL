@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/23 15:28:06 by wopark           ###   ########.fr       */
+/*   Created: 2020/10/09 21:25:37 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/09 21:25:50 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-typedef	struct	s_info
+void	display_nbr(int n, int fd)
 {
-	int		n;
-	int		minus;
-	int		width;
-	int		precision;
-	int		zero;
-	int		plus;
-	int		space;
-	int		hex;
-	int		len;
-}				t_info;
+	if (n >= 10)
+		display_nbr(n / 10, fd);
+	write(fd, &"0123456789"[n % 10], 1);
+}
 
-int	ft_printf(const char *, ...);
-
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (fd < 0)
+		return ;
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	display_nbr(n, fd);
+}

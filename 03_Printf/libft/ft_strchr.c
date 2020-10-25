@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/23 15:28:06 by wopark           ###   ########.fr       */
+/*   Created: 2020/10/05 17:24:22 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/07 19:16:06 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-typedef	struct	s_info
+char	*ft_strchr(const char *s, int c)
 {
-	int		n;
-	int		minus;
-	int		width;
-	int		precision;
-	int		zero;
-	int		plus;
-	int		space;
-	int		hex;
-	int		len;
-}				t_info;
+	char	*ret;
 
-int	ft_printf(const char *, ...);
-
-#endif
+	ret = 0;
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (!c)
+		return ((char *)s);
+	return (ret);
+}

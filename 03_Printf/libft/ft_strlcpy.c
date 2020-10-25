@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/23 15:28:06 by wopark           ###   ########.fr       */
+/*   Created: 2020/10/05 17:25:18 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/10 14:58:45 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-typedef	struct	s_info
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int		n;
-	int		minus;
-	int		width;
-	int		precision;
-	int		zero;
-	int		plus;
-	int		space;
-	int		hex;
-	int		len;
-}				t_info;
+	const char	*s;
+	size_t		n;
 
-int	ft_printf(const char *, ...);
-
-#endif
+	s = src;
+	n = size;
+	if (!dest && !src)
+		return (0);
+	if (n != 0)
+	{
+		while (--n != 0)
+		{
+			if ((*dest = *s) == '\0')
+				break ;
+			dest++;
+			s++;
+		}
+	}
+	if (n == 0)
+	{
+		if (size != 0)
+			*dest = '\0';
+		while (*s)
+			s++;
+	}
+	return (s - src);
+}

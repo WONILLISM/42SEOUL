@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/23 15:28:06 by wopark           ###   ########.fr       */
+/*   Created: 2020/10/05 17:24:13 by wopark            #+#    #+#             */
+/*   Updated: 2020/10/07 19:15:47 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-typedef	struct	s_info
+void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	int		n;
-	int		minus;
-	int		width;
-	int		precision;
-	int		zero;
-	int		plus;
-	int		space;
-	int		hex;
-	int		len;
-}				t_info;
+	unsigned char	*s;
+	unsigned char	*d;
 
-int	ft_printf(const char *, ...);
-
-#endif
+	if (dst == src || !n)
+		return (dst);
+	s = (unsigned char *)src;
+	d = (unsigned char *)dst;
+	if (dst < src)
+	{
+		while (n--)
+			*d++ = *s++;
+	}
+	else
+	{
+		while (n--)
+			*(d + n) = *(s + n);
+	}
+	return (dst);
+}
