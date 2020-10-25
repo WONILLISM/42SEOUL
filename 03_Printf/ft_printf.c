@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/22 21:23:53 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/25 14:43:51 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,10 @@ int	printf_parser(const char *format, va_list ap)
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-<<<<<<< HEAD
-	int		byte;
-
-	va_start(ap, s);
-	va_end(ap);
-	return (byte);
-=======
 	int		ret;
 
 	va_start(ap, format);
 	ret = printf_parser(format, ap);
 	va_end(ap);
 	return (ret);
->>>>>>> c84c8fd3576cc1989b468cd11002da45856341bb
 }
