@@ -14,6 +14,7 @@ This project will not only allow you to add a very convenient function to your c
 `basic_tests: GNL OK | bonus_tests: GNL KO`
 
 ### 3rd try
+`basic_tests: GNL OK | bonus_tests: GNL KO`
 
 
 ## :blue_book: 작성 규칙
