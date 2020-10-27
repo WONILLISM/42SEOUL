@@ -13,8 +13,11 @@ This project will not only allow you to add a very convenient function to your c
 ### 2nd try (2020-10-21)
 `basic_tests: GNL OK | bonus_tests: GNL KO`
 
-### 3rd try (2020-10-26)
+### 3rd try (2020-10-23)
 `basic_tests: GNL OK | bonus_tests: GNL KO`
+
+### 4th try (2020-10-26)
+`basic_tests: GNL OK | bonus_tests: GNL OK`
 
 
 ## :blue_book: 작성 규칙
