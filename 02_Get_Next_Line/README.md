@@ -7,13 +7,13 @@ This project will not only allow you to add a very convenient function to your c
 파일 디스크립터로부터 읽혀진, newline으로 끝나는 라인을 반환하는 함수를 코드화 하는 것입니다.
 
 ## :blue_book: 평가 로그
-### 1st try
+### 1st try (2020-10-18)
 `basic_tests: GNL OK | bonus_tests: GNL KO`
 
-### 2nd try
+### 2nd try (2020-10-21)
 `basic_tests: GNL OK | bonus_tests: GNL KO`
 
-### 3rd try
+### 3rd try (2020-10-26)
 `basic_tests: GNL OK | bonus_tests: GNL KO`
 
 
