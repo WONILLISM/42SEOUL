@@ -6,28 +6,19 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/28 13:18:49 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/28 20:55:14 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		chk_format_spcf(const char *f, va_list ap, t_info *info)
+void	flags_parser(const char **format, t_info *info)
 {
-	while (*f)
+	while (ft_strchr(FLAG, **format))
 	{
-		if (ft_memchr(CONVERSION, *f, ft_strlen(CONVERSION)))
-		{
+		if ()
 
-		}
-		else if (ft_memchr(FLAG, *f, ft_strlen(FLAG)))
-		{
-
-		}
-		else if (ft_memchr(LEN_MODIFIER, *f, ft_strlen(LEN_MODIFIER)))
-		{
-
-		}
+		format++;
 	}
 }
 
@@ -45,7 +36,11 @@ int		printf_parser(const char *format, va_list ap)
 		{
 			format++;
 			ft_memset(&info, 0, sizeof(t_info));
-			format += chk_format_spcf(format, ap, &info);
+			flags_parser(format, &info);
+			width_parser(format, &info);
+			precision_parser(format, &info);
+			if (!ft_strchr(CONVERSION, *format))
+				return (-1);
 		}
 	}
 	return (0);
