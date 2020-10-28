@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/27 13:37:23 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/28 13:18:49 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,4 @@ int		ft_printf(const char *format, ...)
 	ret = printf_parser(format, ap);
 	va_end(ap);
 	return (ret);
-}
-
-int		main()
-{
-	int a;
-	a = 1111111111;
-	ft_printf("abcd%d", a);
-	return 0;
 }

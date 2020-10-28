@@ -23,6 +23,15 @@ putnbr과 putstr만으로는 충분하지 않기 때문에
 
 ## :blue_book: Mandatory Part(필수 요소)
 
+| Program name     | libftprintf.a                                                |
+| ---------------- | ------------------------------------------------------------ |
+| Turn in files    | *.c, */*.c, *.h, */*.h, Makefile                             |
+| Makefile         | all, clean, fclean, re, bonus                                |
+| External functs. | malloc, free, write, va_start, va_arg, va_copy, va_end       |
+| Libft authorized | yes                                                          |
+| Description      | 실제 printf의 모방 함수인 ft_printf가 포함된 라이브러리를 작성하십시오 |
+
+
 + ft_printf의 프로토타입은 int ft_printf(const char , …); 이어야 합니다.
 + 당신은 libc의 printf 함수를 다시 구현해야 합니다.
 + 실제 printf 함수처럼 버퍼 관리를 수행해서는 안 됩니다.
@@ -30,4 +39,14 @@ putnbr과 putstr만으로는 충분하지 않기 때문에
 + 모든 서식문자에서 ‘-0.*’ 플래그와 최소 필드 너비의 조합을 어떤 조합도 처리할 것입니다.
 + 실제 printf 함수와 비교될 것입니다.
 
+## :blue_book: Bonus Part
 
+Bonus part
+
+
+
+* 만약 필수적으로 해야하는 부분들이 완벽하지 않다면, 보너스에 대해서는 생각조차 안 할 것입니다.
+* 보너스를 모두 구현할 필요는 없습니다.
+* 다음 서식 지정자 중 하나 이상을 구현하십시오 : nfge
+* 다음 플래그 중 하나 이상을 구현하십시오 : l ll h hh
+* 다음 플래그를 모두 구현하십시오 : '# +' (플래그 중 하나는 공백이 맞습니다.)
