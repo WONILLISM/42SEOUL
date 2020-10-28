@@ -6,13 +6,32 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/25 18:02:11 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/27 13:37:23 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	printf_parser(const char *format, va_list ap)
+int		chk_format_spcf(const char *f, va_list ap, t_info *info)
+{
+	while (*f)
+	{
+		if (ft_memchr(CONVERSION, *f, ft_strlen(CONVERSION)))
+		{
+
+		}
+		else if (ft_memchr(FLAG, *f, ft_strlen(FLAG)))
+		{
+
+		}
+		else if (ft_memchr(LEN_MODIFIER, *f, ft_strlen(LEN_MODIFIER)))
+		{
+
+		}
+	}
+}
+
+int		printf_parser(const char *format, va_list ap)
 {
 	t_info	info;
 	char	tmp;
@@ -26,12 +45,13 @@ int	printf_parser(const char *format, va_list ap)
 		{
 			format++;
 			ft_memset(&info, 0, sizeof(t_info));
-
+			format += chk_format_spcf(format, ap, &info);
 		}
 	}
+	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		ret;
@@ -40,4 +60,12 @@ int	ft_printf(const char *format, ...)
 	ret = printf_parser(format, ap);
 	va_end(ap);
 	return (ret);
+}
+
+int		main()
+{
+	int a;
+	a = 1111111111;
+	ft_printf("abcd%d", a);
+	return 0;
 }

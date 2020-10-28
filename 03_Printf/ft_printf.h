@@ -6,15 +6,20 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/23 15:28:06 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/27 13:37:08 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# include <stdio.h>
 # include <stdarg.h>
 # include <unistd.h>
-# include "./libft/libft.h"
+# include "libft/libft.h"
+
+# define FLAG "-+ 0#"
+# define LEN_MODIFIER "hl"
+# define CONVERSION "cspdiuxXn%"
 
 typedef	struct	s_info
 {
@@ -30,5 +35,4 @@ typedef	struct	s_info
 }				t_info;
 
 int	ft_printf(const char *, ...);
-
 #endif
