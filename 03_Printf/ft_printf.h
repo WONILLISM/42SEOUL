@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/28 20:55:18 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/29 20:04:19 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,41 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
+# define _ERROR -1
+
 # define FLAG "-+ 0#"
 # define LEN_MODIFIER "hl"
 # define CONVERSION "cspdiuxXn%"
+# define DEMICAL "0123456789"
+# define UPPER_HEX "0123456789ABCDEF"
+# define LOWER_HEX "0123456789abcdef"
 
 typedef	struct	s_info
 {
 	int		n;
-	int		minus;
+	int		left;
 	int		width;
 	int		precision;
+	int		hash;
 	int		zero;
 	int		plus;
 	int		space;
 	int		hex;
 	int		len;
+	int		sign;
+	int		padding;
 }				t_info;
 
-int	ft_printf(const char *, ...);
+/*
+** ft_printf
+*/
+int		ft_printf(const char *, ...);
+char	*proc_flag(t_info *info, char *res);
+
+/*
+** ft printf Parser
+*/
+void	flags_parser(const char **format, t_info *info);
+void	precision_parser(const char **format, va_list ap, t_info *info);
+void	width_parser(const char **format, va_list ap, t_info *info);
 #endif

@@ -6,15 +6,12 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:18:39 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/25 16:41:13 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/29 14:08:34 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-#include <stdlib.h>
-#include <unistd.h>
 
 typedef	struct		s_list
 {
@@ -45,6 +42,7 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *big, const char *little, size_t len);
 char				*ft_strdup(const char *src);
+char				*ft_strndup(const char *src, size_t n);
 char				*ft_itoa(int n);
 
 size_t				ft_strlen(const char *s);
