@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:58:08 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/29 20:04:15 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/29 21:34:41 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ static char	*process_width(t_info *info, char *res)
 	if (info->zero == 1 && info->precision == 0 && info->left == 0)
 		info->padding = '0';
 	if (info->sign && info->width == len)
-		info->width++;
+		(info->width)++;
+}
+
+static char	*process_precision(t_info *info, char *res)
+{
 
 }
 
