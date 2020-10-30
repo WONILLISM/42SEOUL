@@ -6,25 +6,11 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/29 20:04:13 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/30 18:45:40 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char		*proc_flag(t_info *info, char *res)
-{
-	if (*res == '-')
-	{
-		info->sign = '-';
-		res++;
-	}
-	else if (info->plus == 1)
-		info->sign = '+';
-	else if (info->space == 1)
-		info->sign = ' ';
-	return (res);
-}
 
 static int	proc_result(const char *format, va_list ap, t_info *info)
 {
@@ -50,12 +36,12 @@ int			ft_printf(const char *format, ...)
 		{
 			format++;
 			ft_memset(&info, 0, sizeof(t_info));
-			flags_parser(format, &info);
-			width_parser(format, ap, &info);
-			precision_parser(format, ap, &info);
+			flags_parser(&format, &info);
+			width_parser(&format, ap, &info);
+			precision_parser(&format, ap, &info);
 			if (!ft_strchr(CONVERSION, *format))
 				return (-1);
-
+			ret = proc_result(format, ap, &info);
 		}
 	}
 	va_end(ap);

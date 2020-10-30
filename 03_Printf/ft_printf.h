@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/29 20:04:19 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/30 18:45:39 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,31 @@
 typedef	struct	s_info
 {
 	int		n;
+
 	int		left;
-	int		width;
-	int		precision;
-	int		hash;
-	int		zero;
 	int		plus;
 	int		space;
+	int		zero;
+	int		hash;
+
+	int		width;
+	int		precision;
+
 	int		hex;
-	int		len;
-	int		sign;
-	int		padding;
+
+	char	sign;
+	char	padding;
 }				t_info;
 
+typedef struct	s_container
+{
+	char	*width;
+	char	*precision;
+}				t_container;
+
+
 /*
-** ft_printf
+** ft printf
 */
 int		ft_printf(const char *, ...);
 char	*proc_flag(t_info *info, char *res);
@@ -54,4 +64,10 @@ char	*proc_flag(t_info *info, char *res);
 void	flags_parser(const char **format, t_info *info);
 void	precision_parser(const char **format, va_list ap, t_info *info);
 void	width_parser(const char **format, va_list ap, t_info *info);
+
+/*
+** ft process int
+*/
+int			print_int(t_info *info, char *res);
+int			process_int(va_list ap, t_info *info);
 #endif

@@ -6,11 +6,11 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 14:07:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/29 16:27:24 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/30 15:05:55 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "libft.h"
 
 char	*ft_strndup(const char *src, size_t n)
 {

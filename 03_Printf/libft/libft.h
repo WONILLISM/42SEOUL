@@ -6,12 +6,14 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:18:39 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/29 14:08:34 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/30 14:58:26 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef	struct		s_list
 {
