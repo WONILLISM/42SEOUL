@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:58:08 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/31 19:54:52 by wopark           ###   ########.fr       */
+/*   Updated: 2020/10/31 20:37:20 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,20 @@ static char	*process_width(t_info *info, char *res)
 		while (ret[i])
 			ret[i++] = ' ';
 	}
+	else
+	{
+		i = 0;
+		if (res[0] == '-')
+		{
+			ret[i++] = '-';
+			res++;
+			len--;
+		}
+		if ()
+		while (i < info->width + 1 - len)
+			ret[i++] = '0'
 
+	}
 	return (0);
 }
 
