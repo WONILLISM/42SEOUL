@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:58:08 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/01 19:49:05 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/01 19:53:16 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static char	*process_width(t_info *info, char *c_width char *res)
 		info->width = len;
 	if (info->sign && info->width == len)
 		(info->width)++;
-	if (!(c_width))
+	if (!(c_width = set_container(info->width, info->padding)))
+		return (NULL);
 	return (0);
 }
 
