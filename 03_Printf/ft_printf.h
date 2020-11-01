@@ -58,7 +58,9 @@ typedef struct	s_container
 int		ft_printf(const char *, ...);
 char	*proc_flag(t_info *info, char *res);
 
-
+/*
+** proc container
+*/
 t_container	init_container(void);
 char		*set_container(int size, char padding_info);
 void		free_container(t_container *c);
