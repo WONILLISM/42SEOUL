@@ -6,13 +6,13 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/31 20:37:20 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/01 18:51:03 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	proc_result(const char *format, va_list ap, t_info *info)
+static int	proc_write(const char *format, va_list ap, t_info *info)
 {
 	if (*format == 'd' || *format == 'i')
 		return (process_int(ap, info));
@@ -40,8 +40,9 @@ int			ft_printf(const char *format, ...)
 			width_parser(&format, ap, &info);
 			precision_parser(&format, ap, &info);
 			if (!ft_strchr(CONVERSION, *format))
-				return (-1);
-			ret = proc_result(format, ap, &info);
+				return (_ERROR);
+			if (proc_write(format, ap, &info) == _ERROR)
+				return (_ERROR);
 		}
 	}
 	va_end(ap);

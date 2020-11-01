@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/31 20:37:19 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/01 19:15:38 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ typedef struct	s_container
 */
 int		ft_printf(const char *, ...);
 char	*proc_flag(t_info *info, char *res);
+
+
+t_container	init_container(void);
+char		*set_container(int size, char padding_info);
+void		free_container(t_container *c);
+
+/*
+** proc_sign
+*/
+char	*set_sign(t_info *info, char *res);
 
 /*
 ** ft printf Parser

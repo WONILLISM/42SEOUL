@@ -6,96 +6,66 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:58:08 by wopark            #+#    #+#             */
-/*   Updated: 2020/10/31 20:37:20 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/01 19:49:05 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			print_int(t_info *info, char *res)
-{
-	int	ret;
 
-	info->hex = 0;
-	ret = ft_strlen(res);
-	ft_putstr_fd(res, 1);
-	return (ret);
-}
-
-static char	*process_width(t_info *info, char *res)
+static char	*process_width(t_info *info, char *c_width char *res)
 {
-	char	*ret;
-	int		len;
-	int		i;
+	int	len;
 
 	len = ft_strlen(res);
-	if (info->width <= len)
+	if (info->sign =='\0' && info->width < len)
 		return (res);
-	if (!(ret = (char *)malloc(sizeof(char) * (info->width + 1))))
-		return (NULL);
-	if (info->left)
-	{
-		ft_strlcpy(ret, res, len);
-		i = len;
-		while (ret[i])
-			ret[i++] = ' ';
-	}
-	else
-	{
-		i = 0;
-		if (res[0] == '-')
-		{
-			ret[i++] = '-';
-			res++;
-			len--;
-		}
-		if ()
-		while (i < info->width + 1 - len)
-			ret[i++] = '0'
-
-	}
+	if (info->zero == 1 && info->precision == 0 && info->left == 0)
+		info->padding = '0';
+	if (info->width < len)
+		info->width = len;
+	if (info->sign && info->width == len)
+		(info->width)++;
+	if (!(c_width))
 	return (0);
 }
 
-static char	*process_precision(t_info *info, char *res)
+static char	*process_precision(t_info *info, char *c_prec,char *res)
 {
-	char	*ret;
-	int		len;
-	int		i;
+	int	len;
 
 	len = ft_strlen(res);
-	if (res[0] == '0' && info->precision == 0)
+	if (*res == '0' && info->precision == 0)
 		res = "";
 	if (info->precision <= len)
 		return (res);
-	if (!(ret = (char *)malloc(sizeof(char) * (info->precision + 1))))
+	if (!(c_prec = set_c_prec(info->precision, '0')))
 		return (NULL);
-	i = 0;
-	if (res[0] == '-')
+	ft_strlcpy(c_prec[info->precision - len], res, ft_strlen(res));
+	return (c_prec);
+}
+
+int			print_int(t_info *info, char *res)
+{
+	t_container	*container;
+
+	container = init_container();
+	res = set_sign(info, res);
+	if (!(res = process_precision(info, res)) || !(res = process_width(info, res)))
 	{
-		ret[i++] = '-';
-		res++;
-		len--;
-		info->precision++;
+		free(container);
+		return (_ERROR);
 	}
-	while (i < info->precision - len)
-		ret[i++] = '0';
-	while (*res)
-		ret[i++] = *res++;
-	ret[i] = 0;
-	return (ret);
+	info->n += ft_putstr(res);
+	free_container(container);
+	return (0);
 }
 
 int			process_int(va_list ap, t_info *info)
 {
 	char	*res;
-	int		len;
 
-	len = 0;
-	res = ft_itoa(((int)va_arg(ap, int)));
-	if (!(res = process_precision(info, res)))
-		return _ERROR;
-
+	res = ft_itoa((int)va_arg(ap, int));
 	return (print_int(info, res));
 }
 
