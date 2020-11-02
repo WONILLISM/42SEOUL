@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:42:01 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/01 18:46:21 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/02 21:47:38 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	flags_parser(const char **format, t_info *info)
 		info->hash = (**format == '#') ? 1 : 0;
 		(*format)++;
 	}
+
 }
 
 void	width_parser(const char **format, va_list ap, t_info *info)
 {
-	if (**format != '*' || ft_strchr(DEMICAL, **format))
+	if (**format != '*' && !ft_strchr(DEMICAL, **format))
 		return ;
 	if (**format == '*')
 	{
@@ -69,17 +70,20 @@ void	precision_parser(const char **format, va_list ap, t_info *info)
 		if (**format == '*')
 		{
 			info->precision = va_arg(ap, int);
+			if (info->precision <= 0)
+				info->prec_sign = 1;
 			(*format)++;
 		}
 		else if (ft_strchr(DEMICAL, **format))
 		{
-			info->precision = ft_atoi(*format);
+			if ((info->precision = ft_atoi(*format)) == 0)
+				info->precision = -2;
 			while (ft_strchr(DEMICAL, **format))
 				(*format)++;
 		}
 		else
-			info->precision = 0;
+			info->precision = -2;
 		if (info->precision < 0)
-			info->precision = -1;
+			info->precision = -2;
 	}
 }

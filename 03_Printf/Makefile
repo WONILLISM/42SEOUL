@@ -1,32 +1,42 @@
-NAME = libftprintf.a
+C = clang
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-AR = ar
-RM = rm -f
+NAME		= libftprintf.a
+LIBFT		= libft
+LIBFT_LIB	= libft.a
 
-FILES =
+SRCS		= ./ft_printf.c \
+			  ./ft_printf_parser.c \
+			  ./ft_proc_int.c \
+			  ./proc_container.c \
+			  ./proc_sign.c \
 
+OBJS		= $(SRCS:.c=.o)
+INCS		= .
+RM			= rm -f
+LIBC		= ar rc
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror
 
-SRCS_DIR = ./
-SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
+.c.o :
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I$(INCS)
 
-OBJS_DIR = ./
-OBJS = $(addprefix $(OBJS_DIR), $(addsufix .o, $(FILES)))
+$(NAME) : $(OBJS)
+	make all -C $(LIBFT)/
+	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
+	$(LIBC) $(NAME) $(OBJS)
 
-.c.o: $(SRCS)
-	$(CC) $(FLAGS) -c -o $@ $<
+all : $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $@ $^
+fclean : clean
+	$(RM) $(NAME) $(bonus)
+	make fclean -C $(LIBFT)
 
-all: $(NAME)
-
-clean: 
+clean :
 	$(RM) $(OBJS)
+	make clean -C $(LIBFT)
 
-fclean: clean
-	$(RM) $(NAME)
+re : fclean all
 
-re: clean all
+bonus : all
 
+.PHONY: all clean fclean re bonus .c.o

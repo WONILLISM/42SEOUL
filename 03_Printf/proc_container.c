@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-t_container	init_container(void)
+t_container	*init_container(void)
 {
 	t_container *container;
 
@@ -14,7 +14,7 @@ char		*set_container(int size, char padding_info)
 {
 	char	*container;
 
-	if (!(*container = (char *)malloc(sizeof(char) * (size + 1))))
+	if (!(container = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	ft_memset(container, padding_info, size);
 	container[size] = '\0';
