@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/02 21:48:00 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/03 17:14:04 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,48 @@ static int	proc_write(const char *format, va_list ap, t_info *info)
 
 static void	init_info(t_info *info)
 {
-	info->hash = -1;
-	info->hex = -1;
+
 	info->left = -1;
-	info->n = 0;
-	info->padding = ' ';
-	info->plus = -1;
+	info->width = -1;
 	info->precision = -1;
-	info->prec_sign = -1;
-	info->sign = 0;
+	info->zero = -1;
+	info->plus = -1;
 	info->space = -1;
-	info->width = 0;
-	info->zero = 0;
+	info->hex = -1;
+
+	info->sign = '\0';
+	info->padding = ' ';
+}
+
+void		print_info(t_info *info)
+{
+	printf("\n");
+	printf("n : %d \n", info->n);
+	printf("left : %d \n", info->left);
+	printf("plus : %d \n", info->plus);
+	printf("space : %d \n", info->space);
+	printf("zero : %d \n", info->zero);
+	printf("hash : %d \n", info->hash);
+	printf("width : %d \n", info->width);
+	printf("precision : %d \n", info->precision);
+	printf("prec_sign : %d \n", info->prec_sign);
+	printf("hex : %d \n", info->hex);
+	printf("sign : %c \n", info->sign);
+	printf("padding : %c \n", info->padding);
+	printf("\n");
 }
 
 int			ft_printf(const char *format, ...)
 {
 	t_info	info;
 	va_list	ap;
-	int		ret;
 
 	va_start(ap, format);
-	ret = 0;
+	info.n = 0;
 	while (*format)
 	{
 		while (*format != '%' && *format)
-			ret += ft_putchar(*format++);
+			info.n += ft_putchar(*format++);
 		if (*format == '%')
 		{
 			format++;
@@ -62,5 +78,5 @@ int			ft_printf(const char *format, ...)
 		}
 	}
 	va_end(ap);
-	return (ret);
+	return (info.n);
 }

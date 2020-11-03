@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:42:01 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/02 21:47:38 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/03 17:18:12 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,22 @@ void	width_parser(const char **format, va_list ap, t_info *info)
 
 void	precision_parser(const char **format, va_list ap, t_info *info)
 {
-	if (**format == '.')
+	if (**format != '.')
+		return ;
+	(*format)++;
+	if (**format == '*')
 	{
+		info->precision = va_arg(ap, int);
 		(*format)++;
-		if (**format == '*')
-		{
-			info->precision = va_arg(ap, int);
-			if (info->precision <= 0)
-				info->prec_sign = 1;
-			(*format)++;
-		}
-		else if (ft_strchr(DEMICAL, **format))
-		{
-			if ((info->precision = ft_atoi(*format)) == 0)
-				info->precision = -2;
-			while (ft_strchr(DEMICAL, **format))
-				(*format)++;
-		}
-		else
-			info->precision = -2;
-		if (info->precision < 0)
-			info->precision = -2;
 	}
+	else if (ft_strchr(DEMICAL, **format))
+	{
+		info->precision = ft_atoi(*format);
+		while (ft_strchr(DEMICAL, **format))
+			(*format)++;
+	}
+	else
+		info->precision = 0;
+	if (info->precision < 0)
+		info->precision = -1;
 }

@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/02 21:21:17 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/03 17:08:34 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_container
 	char	*precision;
 }				t_container;
 
+void		print_info(t_info *info);
 
 /*
 ** ft printf
