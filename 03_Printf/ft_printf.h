@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/03 17:08:34 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/04 12:40:17 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef	struct	s_info
 
 	int		width;
 	int		precision;
-	int		prec_sign;
 
 	int		hex;
 
@@ -74,15 +73,20 @@ char	*set_sign(t_info *info, char *res);
 char	*proc_sign(t_info *info, char *container, int len);
 
 /*
-** ft printf Parser
+** printf Parser
 */
 void	flags_parser(const char **format, t_info *info);
 void	precision_parser(const char **format, va_list ap, t_info *info);
 void	width_parser(const char **format, va_list ap, t_info *info);
 
 /*
-** ft process int
+** process int
 */
 int			print_int(t_info *info, char *res);
 int			process_int(va_list ap, t_info *info);
+
+/*
+** process char
+*/
+int			process_char(va_list ap, t_info *info);
 #endif

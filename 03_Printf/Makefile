@@ -5,10 +5,12 @@ LIBFT		= libft
 LIBFT_LIB	= libft.a
 
 SRCS		= ./ft_printf.c \
-			  ./ft_printf_parser.c \
-			  ./ft_proc_int.c \
+			  ./printf_parser.c \
 			  ./proc_container.c \
 			  ./proc_sign.c \
+			  ./proc_int.c \
+			  ./proc_char.c
+
 
 OBJS		= $(SRCS:.c=.o)
 INCS		= .

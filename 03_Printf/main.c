@@ -2,11 +2,7 @@
 
 int		main(void)
 {
-	int d = -12;
-
-	printf("-->|%0*.0d|<--\n", 4, d);
-	ft_printf("-->|%0*.0d|<--\n", 4, d);
-	printf("[%.*d]\n",-1, 0);
-	ft_printf("[%.*d]\n",-1, 0);
+	printf("   printf -> [%5.c]\n", 'a');
+	ft_printf("ft_printf -> [%5.c]\n", 'a');
 	return (0);
 }

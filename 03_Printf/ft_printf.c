@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/03 17:14:04 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/04 12:40:12 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ static int	proc_write(const char *format, va_list ap, t_info *info)
 {
 	if (*format == 'd' || *format == 'i')
 		return (process_int(ap, info));
+	if (*format == 'c')
+		return (process_char(ap, info));
 	else
 		return (-1);
 }
 
 static void	init_info(t_info *info)
 {
-
 	info->left = -1;
 	info->width = -1;
 	info->precision = -1;
@@ -46,7 +47,6 @@ void		print_info(t_info *info)
 	printf("hash : %d \n", info->hash);
 	printf("width : %d \n", info->width);
 	printf("precision : %d \n", info->precision);
-	printf("prec_sign : %d \n", info->prec_sign);
 	printf("hex : %d \n", info->hex);
 	printf("sign : %c \n", info->sign);
 	printf("padding : %c \n", info->padding);

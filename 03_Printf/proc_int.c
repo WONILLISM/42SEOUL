@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_proc_int.c                                      :+:      :+:    :+:   */
+/*   proc_int.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:58:08 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/03 17:13:28 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/04 12:40:14 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static char	*process_width(t_info *info, char *c_width, char *res)
 	len = ft_strlen(res);
 	if (info->sign == '\0' && info->width < len)
 		return (res);
-	// printf("%d %d %d\n", info->zero, info->precision, info->left);
 	if (info->zero == 1 && info->precision == -1 && info->left == 0)
 		info->padding = '0';
 	if (info->width < len)
