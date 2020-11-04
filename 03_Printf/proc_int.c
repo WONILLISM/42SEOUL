@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:58:08 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/04 12:40:14 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/04 18:20:23 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*process_precision(t_info *info, char *c_prec,char *res)
 	return (c_prec);
 }
 
-int			print_int(t_info *info, char *res)
+static int	print_int(t_info *info, char *res)
 {
 	t_container	*container;
 

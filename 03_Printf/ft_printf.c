@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/04 12:40:12 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/04 14:02:47 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	proc_write(const char *format, va_list ap, t_info *info)
 		return (process_int(ap, info));
 	if (*format == 'c')
 		return (process_char(ap, info));
+	if (*format == 's')
+		return (process_string(ap, info));
 	else
 		return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/04 12:40:17 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/04 18:28:57 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,15 @@ void	width_parser(const char **format, va_list ap, t_info *info);
 /*
 ** process int
 */
-int			print_int(t_info *info, char *res);
 int			process_int(va_list ap, t_info *info);
 
 /*
 ** process char
 */
 int			process_char(va_list ap, t_info *info);
+
+/*
+** process string
+*/
+int			process_string(va_list ap, t_info *info);
 #endif

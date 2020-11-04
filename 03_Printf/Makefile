@@ -9,7 +9,8 @@ SRCS		= ./ft_printf.c \
 			  ./proc_container.c \
 			  ./proc_sign.c \
 			  ./proc_int.c \
-			  ./proc_char.c
+			  ./proc_char.c \
+			  ./proc_string.c
 
 
 OBJS		= $(SRCS:.c=.o)

@@ -2,7 +2,7 @@
 
 int		main(void)
 {
-	printf("   printf -> [%5.c]\n", 'a');
-	ft_printf("ft_printf -> [%5.c]\n", 'a');
+	printf("   printf -> [%.4s]\n", "hello");
+	ft_printf("ft_printf -> [%.4s]\n", "hello");
 	return (0);
 }
