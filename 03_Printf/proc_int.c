@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:58:08 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/05 12:19:29 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 14:29:22 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*process_width(t_info *info, char *c_width, char *res)
 	len = ft_strlen(res);
 	if (info->sign == '\0' && info->width < len)
 		return (res);
-	if (info->zero == 1 && info->precision == -1 && info->left == 0)
+	if (info->zero == 1 && info->precision == -1 && info->left == -1)
 		info->padding = '0';
 	if (info->width < len)
 		info->width = len;
@@ -36,7 +36,7 @@ static char	*process_width(t_info *info, char *c_width, char *res)
 	return (proc_sign(info, c_width, len));
 }
 
-static char	*process_precision(t_info *info, char *c_prec,char *res)
+static char	*process_precision(t_info *info, char *c_prec, char *res)
 {
 	int	len;
 
@@ -65,7 +65,7 @@ static int	print_int(t_info *info, char *res)
 	}
 	info->n += ft_putstr(res);
 	free_container(container);
-	return (info->n);
+	return (0);
 }
 
 int			process_int(va_list ap, t_info *info)

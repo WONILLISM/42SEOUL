@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/04 18:28:57 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 13:25:58 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ char	*proc_sign(t_info *info, char *container, int len);
 /*
 ** printf Parser
 */
-void	flags_parser(const char **format, t_info *info);
-void	precision_parser(const char **format, va_list ap, t_info *info);
-void	width_parser(const char **format, va_list ap, t_info *info);
+void		flags_parser(const char **format, t_info *info);
+void		precision_parser(const char **format, va_list ap, t_info *info);
+void		width_parser(const char **format, va_list ap, t_info *info);
 
 /*
 ** process int
@@ -93,4 +93,9 @@ int			process_char(va_list ap, t_info *info);
 ** process string
 */
 int			process_string(va_list ap, t_info *info);
+
+/*
+** process unsigned int
+*/
+int			process_unsigned_int(va_list ap, t_info *info);
 #endif

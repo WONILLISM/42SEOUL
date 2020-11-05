@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/05 13:18:30 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 13:23:44 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	proc_write(const char *format, va_list ap, t_info *info)
 		return (process_char(ap, info));
 	if (*format == 's')
 		return (process_string(ap, info));
+	if (*format == 'u')
+		return (process_unsigned_int(ap, info));
 	else
 		return (-1);
 }
@@ -36,23 +38,6 @@ static void	init_info(t_info *info)
 
 	info->sign = '\0';
 	info->padding = ' ';
-}
-
-void		print_info(t_info *info)
-{
-	printf("\n");
-	printf("n : %d \n", info->n);
-	printf("left : %d \n", info->left);
-	printf("plus : %d \n", info->plus);
-	printf("space : %d \n", info->space);
-	printf("zero : %d \n", info->zero);
-	printf("hash : %d \n", info->hash);
-	printf("width : %d \n", info->width);
-	printf("precision : %d \n", info->precision);
-	printf("hex : %d \n", info->hex);
-	printf("sign : %c \n", info->sign);
-	printf("padding : %c \n", info->padding);
-	printf("\n");
 }
 
 int			ft_printf(const char *format, ...)

@@ -6,11 +6,29 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 18:20:02 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/05 13:17:52 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 13:55:45 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static char	*process_width(t_info *info, char *c_width, char *res)
+{
+	int	len;
+
+	len = ft_strlen(res);
+	if (info->width <= len)
+		return (res);
+	if (info->zero == 1 && info->precision == -1 && info->left == -1)
+		info->padding = '0';
+	if (!(c_width = set_container(info->width, info->padding)))
+		return (NULL);
+	if (info->left == 1)
+		ft_memcpy(c_width, res, len);
+	else
+		ft_memcpy(&c_width[info->width - len], res, len);
+	return (c_width);
+}
 
 static char	*process_precision(t_info *info, char *c_prec, char *res)
 {
@@ -24,22 +42,6 @@ static char	*process_precision(t_info *info, char *c_prec, char *res)
 	ft_memcpy(c_prec, res, info->precision);
 	c_prec[info->precision] = '\0';
 	return (c_prec);
-}
-
-static char	*process_width(t_info *info, char *c_width, char *res)
-{
-	int	len;
-
-	len = ft_strlen(res);
-	if (info->width <= len)
-		return (res);
-	if (!(c_width = set_container(info->width, info->padding)))
-		return (NULL);
-	if (info->left == 1)
-		ft_memcpy(c_width, res, len);
-	else
-		ft_memcpy(&c_width[info->width - len], res, len);
-	return (c_width);
 }
 
 static int	print_string(t_info *info, char *res)
