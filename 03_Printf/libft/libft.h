@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:18:39 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/02 17:49:00 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 14:53:57 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char				*ft_strnstr(const char *big, const char *little, size_t len);
 char				*ft_strdup(const char *src);
 char				*ft_strndup(const char *src, size_t n);
 char				*ft_itoa(int n);
+char				*ft_utoa(unsigned int n);
 
 size_t				ft_strlen(const char *s);
 size_t  			ft_strlcpy(char *dest, const char *src, size_t size);
