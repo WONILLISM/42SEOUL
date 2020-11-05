@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_parser.c                                 :+:      :+:    :+:   */
+/*   printf_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:42:01 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/03 17:49:18 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 14:29:36 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ void	flags_parser(const char **format, t_info *info)
 {
 	while (ft_strchr(FLAG, **format))
 	{
-		info->left = (**format == '-') ? 1 : 0;
-		info->plus = (**format == '+') ? 1 : 0;
-		info->space = (**format == ' ') ? 1 : 0;
-		info->zero = (**format == '0') ? 1 : 0;
-		info->hash = (**format == '#') ? 1 : 0;
+		// printf("\n\n*format: %c \n\n", **format);
+		// printf("######## %d %d %d ######\n", info->zero, info->precision, info->left);
+		(**format == '-') ? info->left = 1 : 0;
+		(**format == '+') ? info->plus = 1 : 0;
+		 (**format == ' ') ?info->space = 1 : 0;
+		(**format == '0') ? info->zero = 1 : 0;
+		(**format == '#') ? info->hash = 1 : 0;
 		(*format)++;
 	}
 
