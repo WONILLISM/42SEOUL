@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:18:39 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/05 18:52:19 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 20:20:31 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 typedef	struct		s_list
 {
@@ -48,6 +49,7 @@ char				*ft_strndup(const char *src, size_t n);
 char				*ft_itoa(int n);
 char				*ft_utoa(unsigned int n);
 char				*ft_itoa_base(unsigned int n, const char *base);
+char				*ft_lltoa_base(long long n, const char *base);
 
 size_t				ft_strlen(const char *s);
 size_t  			ft_strlcpy(char *dest, const char *src, size_t size);

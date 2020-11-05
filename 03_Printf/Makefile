@@ -13,6 +13,7 @@ SRCS		= ./ft_printf.c \
 			  ./proc_string.c \
 			  ./proc_unsigned_int.c \
 			  ./proc_hex.c \
+			  ./proc_pointer.c
 
 
 OBJS		= $(SRCS:.c=.o)

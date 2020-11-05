@@ -33,9 +33,10 @@ FILES = ft_memset \
 		ft_strjoin \
 		ft_strtrim \
 		ft_split \
-		ft_itoa \
-		ft_utoa \
 		ft_itoa_base \
+		ft_itoa \
+		ft_lltoa_base \
+		ft_utoa \
 		ft_strmapi \
 		ft_putchar_fd \
 		ft_putstr_fd \

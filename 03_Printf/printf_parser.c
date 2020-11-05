@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:42:01 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/05 14:29:36 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 21:33:29 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	flags_parser(const char **format, t_info *info)
 		// printf("######## %d %d %d ######\n", info->zero, info->precision, info->left);
 		(**format == '-') ? info->left = 1 : 0;
 		(**format == '+') ? info->plus = 1 : 0;
-		 (**format == ' ') ?info->space = 1 : 0;
+		(**format == ' ') ?info->space = 1 : 0;
 		(**format == '0') ? info->zero = 1 : 0;
 		(**format == '#') ? info->hash = 1 : 0;
 		(*format)++;

@@ -4,7 +4,11 @@ int		main(void)
 {
 	// printf("[%.7x]\n", 2147);
 	// ft_printf("[%x]\n", 123u);
-	printf("[%s]\n", ft_itoa_base(255, "0123456789abcdef"));
+
+	printf("pf[%.p]\n", NULL);
+	ft_printf("ft[%.p]\n", NULL);
+	// printf("pf[%2.9p]\n", 1234);
+	// ft_printf("ft[%2.9p]", 1234);
 	return (0);
 }
 
