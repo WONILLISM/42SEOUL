@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/05 13:25:58 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 18:41:38 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,9 @@ int			process_string(va_list ap, t_info *info);
 ** process unsigned int
 */
 int			process_unsigned_int(va_list ap, t_info *info);
+
+/*
+** process hex
+*/
+int			process_hex(va_list ap, t_info *info, char c);
 #endif

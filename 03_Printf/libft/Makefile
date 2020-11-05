@@ -35,6 +35,7 @@ FILES = ft_memset \
 		ft_split \
 		ft_itoa \
 		ft_utoa \
+		ft_itoa_base \
 		ft_strmapi \
 		ft_putchar_fd \
 		ft_putstr_fd \

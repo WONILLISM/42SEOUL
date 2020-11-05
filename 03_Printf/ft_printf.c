@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/05 13:23:44 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 18:45:19 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	proc_write(const char *format, va_list ap, t_info *info)
 		return (process_string(ap, info));
 	if (*format == 'u')
 		return (process_unsigned_int(ap, info));
+	if (*format == 'x' || *format == 'X')
+		return (process_hex(ap, info, *format));
 	else
 		return (-1);
 }
