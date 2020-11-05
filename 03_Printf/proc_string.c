@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 18:20:02 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/04 18:28:56 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/05 13:17:52 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	print_string(t_info *info, char *res)
 		free(container);
 		return (_ERROR);
 	}
-	info->n = ft_putstr(res);
+	info->n += ft_putstr(res);
 	free_container(container);
 	if (chk)
 		free(res);
