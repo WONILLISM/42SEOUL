@@ -2,13 +2,14 @@
 
 int		main(void)
 {
-	// printf("[%.7x]\n", 2147);
-	// ft_printf("[%x]\n", 123u);
+	printf("-->|%0*.%|<--\n", 2);
+	ft_printf("-->|%0*.%|<--\n", 2);
 
-	printf("pf[%.p]\n", NULL);
-	ft_printf("ft[%.p]\n", NULL);
-	// printf("pf[%2.9p]\n", 1234);
-	// ft_printf("ft[%2.9p]", 1234);
+	printf("-->|%0*.*%|<--\n", 2, -4);
+	ft_printf("-->|%0*.*%|<--\n", 2, -4);
+
+	printf("-->|%0*.*%|<--\n", 2, 1);
+	ft_printf("-->|%0*.*%|<--\n", 2, 1);
 	return (0);
 }
 
