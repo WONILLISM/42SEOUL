@@ -7,6 +7,8 @@ int		main(void)
 	int n, m;
 	printf("%s %d%n hello\n%n",s, d, &n, &m);
 	printf("n : %d  m : %d\n",n,m);
+	ft_printf("%s %d%n hello\n%n",s, d, &n, &m);
+	ft_printf("n : %d  m : %d\n",n,m);
 	return (0);
 }
 

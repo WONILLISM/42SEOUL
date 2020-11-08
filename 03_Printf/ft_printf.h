@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/06 17:08:05 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/08 15:39:06 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,9 @@ int			process_pointer(va_list ap, t_info *info);
 ** process per
 */
 int			process_percent(t_info *info);
+
+/*
+** process n
+*/
+int			process_n(va_list ap, t_info *info);
 #endif
