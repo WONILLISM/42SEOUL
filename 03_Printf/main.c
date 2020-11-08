@@ -2,14 +2,11 @@
 
 int		main(void)
 {
-	printf("-->|%0*.%|<--\n", 2);
-	ft_printf("-->|%0*.%|<--\n", 2);
-
-	printf("-->|%0*.*%|<--\n", 2, -4);
-	ft_printf("-->|%0*.*%|<--\n", 2, -4);
-
-	printf("-->|%0*.*%|<--\n", 2, 1);
-	ft_printf("-->|%0*.*%|<--\n", 2, 1);
+	char *s = "hi";
+	int d = 1234;
+	int n, m;
+	printf("%s %d%n hello\n%n",s, d, &n, &m);
+	printf("n : %d  m : %d\n",n,m);
 	return (0);
 }
 

@@ -14,7 +14,8 @@ SRCS		= ./ft_printf.c \
 			  ./proc_unsigned_int.c \
 			  ./proc_hex.c \
 			  ./proc_pointer.c \
-			  ./proc_percent.c
+			  ./proc_percent.c \
+			  ./proc_n.c
 
 
 OBJS		= $(SRCS:.c=.o)
