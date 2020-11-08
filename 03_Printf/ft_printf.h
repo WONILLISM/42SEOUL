@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:24 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/08 15:39:06 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/08 17:57:10 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef	struct	s_info
 
 	int		width;
 	int		precision;
-
-	int		hex;
 
 	char	sign;
 	char	padding;

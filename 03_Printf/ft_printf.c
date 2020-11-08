@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/08 15:38:35 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/08 17:57:21 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ static int	proc_write(const char *format, va_list ap, t_info *info)
 static void	init_info(t_info *info)
 {
 	info->left = -1;
-	info->width = -1;
-	info->precision = -1;
-	info->zero = -1;
 	info->plus = -1;
 	info->space = -1;
-	info->hex = -1;
+	info->zero = -1;
+	info->hash = -1;
+
+	info->width = -1;
+	info->precision = -1;
 
 	info->sign = '\0';
 	info->padding = ' ';

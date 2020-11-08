@@ -59,12 +59,18 @@ int			process_hex(va_list ap, t_info *info, char c)
 {
 	char	*res;
 	char	*base;
+	char	*tmp;
 
 	if (c == 'x')
 		base = LOWER_HEX;
 	else if (c == 'X')
 		base = UPPER_HEX;
-
 	res = ft_itoa_base((unsigned int)va_arg(ap, unsigned int), base);
+	if (info->hash == 1)
+	{
+		tmp = res;
+		res = (c == 'x') ? ft_strjoin("0x", tmp) : ft_strjoin("0X", tmp);
+		// free(tmp);
+	}
 	return (print_hex(info, res));
 }
