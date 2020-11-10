@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 21:27:40 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/08 14:36:42 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/09 12:03:53 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char			*ft_utoa(unsigned int n)
 		return (NULL);
 	ret[len] = 0;
 	len--;
-	//tmp = n < 0 ? -(long long)n : (long long)n;
+	tmp = n;
 	while (len >= 0)
 	{
 		ret[len] = '0' + tmp % 10;

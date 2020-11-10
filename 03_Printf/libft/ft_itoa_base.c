@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 21:27:40 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/05 19:19:38 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/10 19:13:13 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char		*ft_itoa_base(unsigned int n, const char *base)
 	len += ft_get_len(n, base_len);
 	if (!(ret = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	ret[len] = 0;
+	ret[len] = '\0';
 	while (len >= 0)
 	{
 		len--;
