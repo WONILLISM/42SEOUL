@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:45:35 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/06 17:08:10 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/11 14:22:53 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	*process_width(t_info *info, char *c_width)
 	info->width--;
 	if (info->width < 0)
 		return ("");
-	// printf("\n\nzero : %d  prec : %d  left : %d\n\n", info->zero, info->precision, info->left);
 	if (info->zero == 1 && info->left == -1)
 		info->padding = '0';
 	if (!(c_width = set_container(info->width, info->padding)))
@@ -30,8 +29,6 @@ static int	print_percent(t_info *info, char c)
 	t_container *container;
 	char		*res;
 
-	// if (info->precision > 0)
-	// 	return (_ERROR);
 	container = init_container();
 	if (!(res = process_width(info, container->width)))
 	{
@@ -42,6 +39,7 @@ static int	print_percent(t_info *info, char c)
 		info->n += ft_putchar(c) + ft_putstr(res);
 	else
 		info->n += ft_putstr(res) + ft_putchar(c);
+	free_container(container);
 	return (0);
 }
 
