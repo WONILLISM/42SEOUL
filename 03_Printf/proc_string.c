@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 18:20:02 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/06 17:08:05 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:09:41 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static char	*process_precision(t_info *info, char *c_prec, char *res)
 	int len;
 
 	len = ft_strlen(res);
-	if (info->precision == -1 || (info->precision != 0 && info->precision >= len))
+	if (info->precision == -1 ||
+	(info->precision != 0 && info->precision >= len))
 		return (res);
 	if (!(c_prec = malloc(sizeof(char) * info->precision + 1)))
 		return (NULL);
@@ -47,7 +48,7 @@ static char	*process_precision(t_info *info, char *c_prec, char *res)
 static int	print_string(t_info *info, char *res)
 {
 	t_container	*container;
-	int chk;
+	int			chk;
 
 	chk = 0;
 	if (!res)

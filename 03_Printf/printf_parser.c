@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:42:01 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/11 13:38:36 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/11 14:55:52 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ void	flags_parser(const char **format, t_info *info)
 	{
 		(**format == '-') ? info->left = 1 : 0;
 		(**format == '+') ? info->plus = 1 : 0;
-		(**format == ' ') ?info->space = 1 : 0;
+		(**format == ' ') ? info->space = 1 : 0;
 		(**format == '0') ? info->zero = 1 : 0;
 		(**format == '#') ? info->hash = 2 : 0;
 		(*format)++;
 	}
-
 }
 
 void	width_parser(const char **format, va_list ap, t_info *info)

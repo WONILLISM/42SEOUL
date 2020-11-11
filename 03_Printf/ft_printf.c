@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:23:52 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/11 13:38:35 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/11 14:51:08 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ static void	init_info(t_info *info)
 	info->space = -1;
 	info->zero = -1;
 	info->hash = 0;
-
 	info->width = -1;
 	info->precision = -1;
-
 	info->sign = '\0';
 	info->padding = ' ';
 }

@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 20:42:00 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/06 13:17:18 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:08:25 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*process_precision(t_info *info, char *c_prec, char *res)
 		len = info->precision + 2;
 	else
 		len = res_len + 2;
-	if (!(c_prec = set_container(len,'0')))
+	if (!(c_prec = set_container(len, '0')))
 		return (NULL);
 	ft_memcpy(c_prec, "0x", 2);
 	if (info->precision > (int)ft_strlen(res))
@@ -68,7 +68,7 @@ static int	print_pointer(t_info *info, char *res)
 	return (0);
 }
 
-int		process_pointer(va_list ap, t_info *info)
+int			process_pointer(va_list ap, t_info *info)
 {
 	char *res;
 

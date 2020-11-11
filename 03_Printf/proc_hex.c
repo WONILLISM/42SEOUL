@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 12:58:36 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/11 13:37:14 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:00:06 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ static char	*process_width(t_info *info, char *c_width, char *res, char c)
 		return (res);
 	else if (info->width < len + info->hash)
 		info->width = len + info->hash;
-	// printf("----- %d - %d ----\n", info->zero, info->precision);
 	if (info->left != 1 && info->zero == 1 && info->precision == -1)
 		info->padding = '0';
-	if (!(c_width = set_container(info->width,info->padding)))
+	if (!(c_width = set_container(info->width, info->padding)))
 		return (NULL);
 	if (info->hash == 2)
 		process_hash(info, c_width, c, len);

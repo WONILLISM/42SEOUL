@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   proc_unsigned_int.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/11 15:10:13 by wopark            #+#    #+#             */
+/*   Updated: 2020/11/11 15:11:01 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static char	*process_width(t_info *info, char *c_width, char *res)
 {
-	int len;
+	int	len;
 
-	len  = ft_strlen(res);
+	len = ft_strlen(res);
 	if (info->sign == '\0' && info->width < len)
 		return (res);
 	if (info->zero == 1 && info->precision == -1 && info->left == -1)
@@ -44,7 +56,7 @@ static int	print_unsigned_int(t_info *info, char *res)
 	t_container	*container;
 
 	container = init_container();
-	if (!(res = process_precision(info, container-> precision, res))
+	if (!(res = process_precision(info, container->precision, res))
 	|| !(res = process_width(info, container->width, res)))
 	{
 		free(container);

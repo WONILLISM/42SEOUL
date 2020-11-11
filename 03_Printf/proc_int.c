@@ -6,15 +6,15 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:58:08 by wopark            #+#    #+#             */
-/*   Updated: 2020/11/06 17:08:07 by wopark           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:05:27 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char *process_width(t_info *info, char *c_width, char *res)
+static char	*process_width(t_info *info, char *c_width, char *res)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(res);
 	if (info->sign == '\0' && info->width < len)
