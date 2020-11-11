@@ -1,3 +1,4 @@
+### testers
 libft-unit-test/
 gnlkiller/
 GNL_lover/
@@ -8,6 +9,7 @@ netwhat_cal/
 pft/
 printf_lover_v2/
 42TESTERS-PRINTF/
+./03_Printf/main.c
 
 tests/
 ### VisualStudioCode ###
