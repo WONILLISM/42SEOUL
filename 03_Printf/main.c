@@ -2,7 +2,12 @@
 
 int main()
 {
-	ft_printf("%f", 0.1);
+	int a = 1234;
+	int n,m;
+	printf("[% d]\n", -15);
+	ft_printf("[% d]\n", -15);
+	// ft_printf("%d%n hello%n\n", a, &n, &m);
+	// ft_printf("res : %d  %d\n", n, m);
 	return (0);
 }
 
