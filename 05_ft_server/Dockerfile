@@ -16,22 +16,18 @@ LABEL	maintainer="wopark@student.42seoul.kr"
 RUN		apt-get update && apt-get install -y \
 		nginx \
 		mariadb-server \
-		php-fpm \
 		php-mysql \
-		php-cli \
 		php-mbstring \
 		openssl \
-		vim
+		wget \
+		php7.3-fpm
 
 # COPY
 # 	- Host OS의 파일 또는 디렉토리를 컨테이너 안의 경로를 복사
-COPY	srcs/nginx.conf /etc/nginx/sites-available/localhost
-COPY	srcs/config.inc.php /var
-COPY	srcs/wp-config.php /var
-COPY	srcs/phpMyadmin-4.9.0.1.tar.gz ./
-COPY	srcs/wordpress-5.4.1.tar.gz ./
-COPY	srcs/init.sh ./
-COPY	srcs/theme.tar.gz ./
+COPY	./srcs/run.sh ./
+COPY	./srcs/default ./tmp/
+COPY	./srcs/wp-config.php ./tmp/
+COPY	./srcs/config.inc.php ./tmp/
 
 # EXPOSE
 # 	- 컨테이너가 사용할 포트를 사용자에게 알려줌
@@ -39,6 +35,6 @@ EXPOSE	80 443
 
 # CMD
 # 	- 생성된 컨테이너를 실행할 명령어를 지정
-CMD		bash init.sh
+CMD		bash run.sh
 
 
