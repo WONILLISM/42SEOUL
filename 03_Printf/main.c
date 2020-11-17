@@ -4,8 +4,9 @@ int main()
 {
 	int a = 1234;
 	int n,m;
-	printf("[% d]\n", -15);
-	ft_printf("[% d]\n", -15);
+	printf("[Hello %#04d %s %x]\n", 10, "hello", 15);
+	ft_printf("[%d %s %x]\n", 10, "hello", 15);
+
 	// ft_printf("%d%n hello%n\n", a, &n, &m);
 	// ft_printf("res : %d  %d\n", n, m);
 	return (0);
