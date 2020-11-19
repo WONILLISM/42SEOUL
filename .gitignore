@@ -12,8 +12,8 @@ printf_lover_v2/
 
 ### main , library
 ./03_Printf/main.c
-minilibx_mms_20200219/
-minilibx_opengl_20191021/
+mms/
+opengl/
 
 tests/
 ### VisualStudioCode ###
