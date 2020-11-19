@@ -9,7 +9,11 @@ netwhat_cal/
 pft/
 printf_lover_v2/
 42TESTERS-PRINTF/
+
+### main , library
 ./03_Printf/main.c
+minilibx_mms_20200219/
+minilibx_opengl_20191021/
 
 tests/
 ### VisualStudioCode ###
