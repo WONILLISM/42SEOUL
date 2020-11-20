@@ -1,9 +1,16 @@
 #include "cub3D.h"
 
-int		move_player(key)
+void	init_window(t_player *p, t_window *win, int w, int h)
 {
-	return (0);
+	win->width = w;
+	win->height = h;
+	win->mlx = mlx_init();
+	win->win = mlx_new_window(win->mlx, win->width, win->height, "test");
+
+	mlx_clear_window(win->mlx, win->win);
+	player_init(p, 250, 250, 0xff0000);
 }
+
 int		terminate_window(void)
 {
 	write(1, "window is terminated.\n", 23);
@@ -11,25 +18,24 @@ int		terminate_window(void)
 	return (0);
 }
 
-int		key_parsing(int key, void *param)
+int		key_parsing(t_player *p, t_window *win, int key, void *param)
 {
 	if (key == 53 && param)
 		return (terminate_window());
-	else if ((key >= 123 && key <= 126) && param)
-		return (move_player(key));
-	else
-		return (-1);
+	else if (((key >= 0 && key <= 2) || key == 13) && param)
+		return (player_move(p, key));
+	player_draw(p, win);
+	return (-1);
 }
 
 int		main(void)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	t_window	win;
+	t_player	player;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "test");
-	mlx_pixel_put(mlx_ptr, win_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, 0x00ff0000);
-	mlx_key_hook(win_ptr, key_parsing, win_ptr);
-	mlx_loop(mlx_ptr);
+	init_window(&player, &win, 500, 500);
+	player_draw(&player, &win);
+	mlx_key_hook(win.win, key_parsing, &win);
+	mlx_loop(win.mlx);
 	return (0);
 }
