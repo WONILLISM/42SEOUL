@@ -1,7 +1,8 @@
-# 🐬 cub3D
+# 🐬 CUB3D
 
+## :clapper: SUBJECT
 <details markdown="1">
-<summary>subject</summary>
+<summary> </summary>
 miniLibX를 사용한 나의 첫 RayCaster
 
 요약: 이 프로젝트는 세계적으로 유명한 90년대 게임에서 영감을 얻었는데, 이 게임은 역대 최초의 FPS 였습니다. 그것은 여러분이 ray-casting을 탐험할 수 있게 해줄 것입니다. 여러분의 목표는 미로 안에서 역동적인 뷰를 만드는 것이 될 것이며, 그 안에서 여러분은 길을 찾아야 할 것입니다.
@@ -193,8 +194,14 @@ cub3D
 모든 보너스 포인트를 얻기 위해서는 최소한 14개를 검증해야 하므로, 현명하게 선택하되 시간을 낭비하지 않도록 주의하십시오!
 ```
 
-```
 퍼랭이
 평가 중에 다른 기능을 사용하는 것이 정당하다면, 보너스 파트를 완성하기 위해 그러한 기능들을 사용해도 됩니다. 또한 원하는 화면 파일 형식을 필요에 맞게 수정할 수 있습니다. Be smart!
+
+</details>
+
+## :clapper: PROCESS
+<details markdown="1">
+<summary></summary>
+
 
 </details>
