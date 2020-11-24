@@ -1,7 +1,7 @@
 #include "cub3D_window.h"
 #include "cub3D_player.h"
 
-int g_Map[10][10] = {
+int		g_map[10][10] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	{1, 0, 1, 1, 1, 0, 0, 0, 0, 1},
 	{1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
