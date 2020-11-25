@@ -59,7 +59,6 @@ typedef struct	s_window
 
 	int		width;
 	int		height;
-	// int		**grid_map;
 }				t_window;
 
 #endif
