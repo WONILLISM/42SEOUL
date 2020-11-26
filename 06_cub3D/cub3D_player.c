@@ -17,7 +17,7 @@ void	player_draw(t_window *win)
 	float	y;
 	float	radius;
 	float	angle;
-	float	len;
+	int		len;
 	float	sight;
 
 	radius = 3.0f;
@@ -30,7 +30,7 @@ void	player_draw(t_window *win)
 			x = cos((win->p->dir + sight) * DEG2RAD) * len + win->p->pos_x;
 			y = sin((win->p->dir + sight) * DEG2RAD) * len + win->p->pos_y;
 			mlx_pixel_put(win->mlx_ptr, win->win_ptr, x, y, 0xaaffff00);
-			len += 0.1;
+			len += 1;
 			if ((win->p->dir >= 360) || (win->p->dir <= -360))
 				win->p->dir = 0;
 			if (g_map[((int)y)/50][((int)x)/50])
@@ -46,15 +46,25 @@ void	player_draw(t_window *win)
 
 void	player_move(t_window *win, int key)
 {
+	int	dx;
+	int	dy;
 	if (key == _W)
 	{
-		win->p->pos_x += 5 * cos(win->p->dir * DEG2RAD);
-		win->p->pos_y += 5 * sin(win->p->dir * DEG2RAD);
+		dx = win->p->pos_x + 5 * cos(win->p->dir * DEG2RAD);
+		dy = win->p->pos_y + 5 * sin(win->p->dir * DEG2RAD);
+		if (dx < 0 || dx >= win->width || dy < 0 || dy >= win->height || g_map[dy/50][dx/50])
+			return;
+		win->p->pos_x = dx;
+		win->p->pos_y = dy;
 	}
 	else if (key == _S)
 	{
-		win->p->pos_x -= 5 * cos(win->p->dir * DEG2RAD);
-		win->p->pos_y -= 5 * sin(win->p->dir * DEG2RAD);
+		dx = win->p->pos_x - 5 * cos(win->p->dir * DEG2RAD);
+		dy = win->p->pos_y - 5 * sin(win->p->dir * DEG2RAD);
+		if (dx < 0 || dx >= win->width || dy < 0 || dy >= win->height || g_map[dy/50][dx/50])
+			return;
+		win->p->pos_x = dx;
+		win->p->pos_y = dy;
 	}
 	else if (key == _A)
 		win->p->dir -= 5;

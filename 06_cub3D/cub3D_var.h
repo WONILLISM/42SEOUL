@@ -46,9 +46,9 @@
 
 typedef struct	s_player
 {
-	int	pos_x;
-	int	pos_y;
-	int dir;	// default is 0
+	float	pos_x;
+	float	pos_y;
+	int		dir;	// default is 0
 }				t_player;
 
 typedef struct	s_window
