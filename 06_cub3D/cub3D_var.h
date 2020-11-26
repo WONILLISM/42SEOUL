@@ -61,4 +61,5 @@ typedef struct	s_window
 	int		height;
 }				t_window;
 
+void	*create_square(t_window *win, int w, int h, int fill);
 #endif

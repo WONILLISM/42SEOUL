@@ -26,7 +26,7 @@ int		key_pressed(int key, t_window *win)
 int		main_loop(t_window *win)
 {
 	mlx_clear_window(win->mlx_ptr, win->win_ptr);
-	set_grid(win);
+	set_map(win);
 	player_draw(win);
 	return (0);
 }
@@ -38,7 +38,7 @@ int		main(void)
 
 	win.p = &player;
 	window_init(&win, 500, 500);
-	player_init(&win, 250, 250, 0);
+	player_init(&win, 75, 75, 0);
 	mlx_loop_hook(win.mlx_ptr, main_loop, &win);
 	mlx_hook(win.win_ptr, 2, 0, key_pressed, &win);
 	mlx_loop(win.mlx_ptr);

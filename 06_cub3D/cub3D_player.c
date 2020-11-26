@@ -12,6 +12,7 @@ void	player_init(t_window *win, int x, int y, int dir)
 
 void	player_draw(t_window *win)
 {
+	void	*p_img;
 	float	x;
 	float	y;
 	float	radius;
@@ -28,7 +29,7 @@ void	player_draw(t_window *win)
 		{
 			x = cos((win->p->dir + sight) * DEG2RAD) * len + win->p->pos_x;
 			y = sin((win->p->dir + sight) * DEG2RAD) * len + win->p->pos_y;
-			mlx_pixel_put(win->mlx_ptr, win->win_ptr, x, y, 0x00ffff);
+			mlx_pixel_put(win->mlx_ptr, win->win_ptr, x, y, 0xaaffff00);
 			len += 0.1;
 			if ((win->p->dir >= 360) || (win->p->dir <= -360))
 				win->p->dir = 0;
@@ -39,18 +40,8 @@ void	player_draw(t_window *win)
 		}
 		sight -= 1.0;
 	}
-	while (radius >= 0)
-	{
-		angle = 0.0f;
-		while (angle <= 360)
-		{
-			x = cos(angle * DEG2RAD) * radius + win->p->pos_x;
-			y = sin(angle * DEG2RAD) * radius + win->p->pos_y;
-			mlx_pixel_put(win->mlx_ptr, win->win_ptr, x, y,0xffff00);
-			angle += 0.5;
-		}
-		radius -= 0.5;
-	}
+	p_img = create_square(win, 5, 5, 0xffff00);
+	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, p_img, win->p->pos_x - 2.5, win->p->pos_y - 2.5);
 }
 
 void	player_move(t_window *win, int key)

@@ -4,5 +4,5 @@
 # include "cub3D_var.h"
 
 void	window_init(t_window *win, int w, int h);
-void	set_grid(t_window *win);
+void	set_map(t_window *win);
 #endif
