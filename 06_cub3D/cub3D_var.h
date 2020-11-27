@@ -34,7 +34,8 @@
 
 # define _ESC 53
 /*************** mac OS key code **************/
-
+# define MAP_WIDTH	24
+# define MAP_HEIGHT	24
 # define PI			3.1415926535897
 # define DEG2RAD	PI/180
 # define RAD2DEG	180/PI
@@ -46,9 +47,15 @@
 
 typedef struct	s_player
 {
-	float	pos_x;
-	float	pos_y;
-	int		dir;	// default is 0
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		c_plane_x;
+	double		c_plane_y;
+
+	double		cur_frame;
+	double		prev_frame;
 }				t_player;
 
 typedef struct	s_window
@@ -57,8 +64,8 @@ typedef struct	s_window
 	void	*mlx_ptr;
 	void	*win_ptr;
 
-	int		width;
-	int		height;
+	int		screen_width;
+	int		screen_height;
 }				t_window;
 
 void	*create_square(t_window *win, int w, int h, int fill);

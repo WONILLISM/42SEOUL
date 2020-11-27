@@ -3,7 +3,7 @@
 
 # include "cub3D_var.h"
 
-void	player_init(t_window *win, int x, int y, int dir);
+void	player_init(t_window *win);
 void	player_draw(t_window *win);
 void	player_move(t_window *win, int key);
 #endif

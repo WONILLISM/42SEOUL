@@ -1,12 +1,21 @@
 #include "cub3D_player.h"
 
-extern int	g_map[10][10];
+extern int	g_map[MAP_HEIGHT][MAP_WIDTH];
 
-void	player_init(t_window *win, int x, int y, int dir)
+void	player_init(t_window *win)
 {
-	win->p->pos_x = x;
-	win->p->pos_y = y;
-	win->p->dir = dir;
+	// player 초기 위치 벡터
+	win->p->pos_x = 22;
+	win->p->pos_y = 12;
+	// player 초기 방향 벡터
+	win->p->dir_x = -1;
+	win->p->dir_y = 0;
+	// player 카메라 평면
+	win->p->c_plane_x = 0;
+	win->p->c_plane_y = 0.66f;
+	// 현재 프레임, 이전 프레임
+	win->p->cur_frame = 0;
+	win->p->prev_frame = 0;
 	player_draw(win);
 }
 
