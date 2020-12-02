@@ -1,5 +1,5 @@
-#ifndef _CUB3D_VAR_H_
-# define _CUB3D_VAR_H_
+#ifndef _CUB3D_H_
+# define _CUB3D_H_
 
 /*************** mac OS key code **************/
 # define _A	0
@@ -31,11 +31,9 @@
 # define _MINUS	27
 # define _8	28
 # define _0	29
-
 # define _ESC 53
 /*************** mac OS key code **************/
-# define MAP_WIDTH	24
-# define MAP_HEIGHT	24
+
 # define PI			3.1415926535897
 # define DEG2RAD	PI/180
 # define RAD2DEG	180/PI
@@ -45,42 +43,64 @@
 # include <stdlib.h>
 # include "opengl/mlx.h"
 
+typedef struct  	s_screen{
+	void			*mlx;
+	void			*win;
+	t_img			img;
+	t_pixel			**pixel;
+	t_vec			origin;
+	t_vec			dir;
+	t_vec			plane;
+	double			sin_unit;
+	double			cos_unit;
+	double			distance;
+	t_ray			*ray;
+	int				w;
+	int				h;
+}					t_screen;
+
+typedef struct	s_img
+{
+	int		w;				// 너비(width)
+	int		h;				// 높이(height)
+	int		bit_per_pixel;	// 픽셀의 색상을 표현하는데 사용하는 비트 수
+	int		size_line;		// 이미지 한 줄을 저장하는데 사용하는 바이트 수
+	int		endian;			// 픽셀의 색상 방식
+	void	*ptr;
+	int		*obj_addr;
+}				t_img;
+
+typedef struct	s_player
+{
+	double		px;
+	double		py;
+}				t_player;
+
 typedef struct	s_vec
 {
 	double		x;
 	double		y;
 }				t_vec;
 
-typedef struct	s_window
+typedef struct	s_ray
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_player	p;
-
-	int		screen_width;
-	int		screen_height;
-}				t_window;
-
-typedef struct	s_img
-{
-	int		w;
-	int		h;
-	int		bit_per_pixel;
-	int		size_line;
-	int		endianl;
-	void	*ptr;
-	int		*obj_addr;
-}				t_img;
-typedef struct	s_player
-{
-	t_vec		pos;
 	t_vec		dir;
-	t_vec		cam_plane;
+	double		dist;
+}				t_ray;
 
-}				t_player;
+typedef struct	s_pixel
+{
+	double		dist;
+	int			color;
+}				t_pixel;
 
+typedef struct		s_archive
+{
+	t_player		p;
+	t_screen		screen;
+	t_img			img;
+}					t_archive;
 
-void	*create_square(t_window *win, int w, int h, int fill);
 t_vec	new_vector(double x, double y);
 t_vec	vec_add(t_vec a, t_vec b);
 t_vec	vec_sub(t_vec a, t_vec b);

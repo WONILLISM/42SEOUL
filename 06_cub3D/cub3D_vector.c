@@ -1,4 +1,4 @@
-#include "cub3D_var.h"
+#include "cub3D.h"
 
 t_vec	new_vector(double x, double y)
 {
