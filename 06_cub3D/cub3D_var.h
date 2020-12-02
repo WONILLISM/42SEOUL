@@ -45,28 +45,44 @@
 # include <stdlib.h>
 # include "opengl/mlx.h"
 
-typedef struct	s_player
+typedef struct	s_vec
 {
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		c_plane_x;
-	double		c_plane_y;
-
-	double		cur_frame;
-	double		prev_frame;
-}				t_player;
+	double		x;
+	double		y;
+}				t_vec;
 
 typedef struct	s_window
 {
-	t_player *p;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_player	p;
 
 	int		screen_width;
 	int		screen_height;
 }				t_window;
 
+typedef struct	s_img
+{
+	int		w;
+	int		h;
+	int		bit_per_pixel;
+	int		size_line;
+	int		endianl;
+	void	*ptr;
+	int		*obj_addr;
+}				t_img;
+typedef struct	s_player
+{
+	t_vec		pos;
+	t_vec		dir;
+	t_vec		cam_plane;
+
+}				t_player;
+
+
 void	*create_square(t_window *win, int w, int h, int fill);
+t_vec	new_vector(double x, double y);
+t_vec	vec_add(t_vec a, t_vec b);
+t_vec	vec_sub(t_vec a, t_vec b);
+t_vec	vec_mul(t_vec a, double b);
 #endif
