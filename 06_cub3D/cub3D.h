@@ -43,21 +43,11 @@
 # include <stdlib.h>
 # include "opengl/mlx.h"
 
-typedef struct  	s_screen{
-	void			*mlx;
-	void			*win;
-	t_img			img;
-	t_pixel			**pixel;
-	t_vec			origin;
-	t_vec			dir;
-	t_vec			plane;
-	double			sin_unit;
-	double			cos_unit;
-	double			distance;
-	t_ray			*ray;
-	int				w;
-	int				h;
-}					t_screen;
+typedef struct	s_vec
+{
+	double		x;
+	double		y;
+}				t_vec;
 
 typedef struct	s_img
 {
@@ -76,11 +66,6 @@ typedef struct	s_player
 	double		py;
 }				t_player;
 
-typedef struct	s_vec
-{
-	double		x;
-	double		y;
-}				t_vec;
 
 typedef struct	s_ray
 {
@@ -94,13 +79,31 @@ typedef struct	s_pixel
 	int			color;
 }				t_pixel;
 
+typedef struct  	s_screen{
+	void			*mlx;
+	void			*win;
+	t_img			img;
+	t_pixel			**pixel;
+	t_vec			origin;
+	t_vec			dir;
+	t_vec			plane;
+	double			sin_unit;
+	double			cos_unit;
+	double			distance;
+	t_ray			*ray;
+	int				w;
+	int				h;
+}					t_screen;
+
 typedef struct		s_archive
 {
-	t_player		p;
-	t_screen		screen;
-	t_img			img;
+	t_player		*p;
+	t_screen		*screen;
+	t_img			*player_img;
+	t_img			*wall_img;
 }					t_archive;
 
+t_img	*create_square(t_archive *arcv, int w, int h, int fill);
 t_vec	new_vector(double x, double y);
 t_vec	vec_add(t_vec a, t_vec b);
 t_vec	vec_sub(t_vec a, t_vec b);
