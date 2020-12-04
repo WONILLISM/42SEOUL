@@ -41,13 +41,13 @@ void	set_grid(t_window *win)
 	row_size = win->height / 10;
 	col_size = win->width / 10;
 	i = 0;
+	sq = create_square(win, row_size, col_size, 0xffffff);
 	while (i < 10)
 	{
 		j = 0;
 		while (j < 10)
 		{
 			if (g_map[i][j]){
-				sq = create_square(win, row_size, col_size, 0xffffff);
 				mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, sq, j * col_size, i * row_size);
 			}
 			j++;
