@@ -16,6 +16,7 @@ mms/
 opengl/
 
 tests/
+.DS_Store
 ### VisualStudioCode ###
 .vscode/*
 #!.vscode/settings.json
