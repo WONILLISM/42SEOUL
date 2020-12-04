@@ -1,9 +1,8 @@
-#ifndef _CUB3D_PLAYER_H_
-# define _CUB3D_PLAYER_H_
+#ifndef _CUB3D_WINDOW_H_
+# define _CUB3D_WINDOW_H_
 
 # include "cub3D_var.h"
 
-void	player_init(t_window *win, int x, int y, int dir);
-void	player_draw(t_window *win);
-void	player_move(t_window *win, int key);
+void	window_init(t_window *win, int w, int h);
+void	set_grid(t_window *win);
 #endif
