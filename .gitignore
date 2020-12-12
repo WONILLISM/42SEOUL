@@ -12,7 +12,7 @@ printf_lover_v2/
 
 ### main , library
 ./03_Printf/main.c
-mms/
+mlx_mms/
 opengl/
 
 tests/
