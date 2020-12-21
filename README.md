@@ -26,5 +26,6 @@
   + 프로젝트 외적으로 cadet들의 발전
 
 ## 1. 기능
+[![시연 영상](dongari.png)](https://www.youtube.com/watch?v=qotEE3RVGRM)
 
 ## 2. 보완해야할 점
