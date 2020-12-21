@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct test: View {
+struct MainView: View {
     
     var body: some View {
 //        NavigationView {
@@ -27,14 +27,13 @@ struct test: View {
     //                    ClubScroll(category : club.category)
     //                }
                 }
-                NavBar()
             }
 //        }
     }
 }
 
-struct test_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        test()
+        MainView()
     }
 }

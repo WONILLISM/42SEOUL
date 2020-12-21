@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView{
-            test()
+            MainView()
                 .navigationBarItems(leading: NavigationLink(
                 destination: ProfileHost()){
                     Image("mypage_2")

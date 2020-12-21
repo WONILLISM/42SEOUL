@@ -15,7 +15,7 @@ struct ImageView: View {
         image
             .resizable()
             .scaledToFit()
-            .frame(width: 200, height: 200)
+            .frame(width: 300, height: 500)
             .clipped()
     }
 }
