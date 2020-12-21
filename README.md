@@ -25,9 +25,18 @@
   + 동아리 활성화로 인한 동아리 발전 및 세분화
   + 프로젝트 외적으로 cadet들의 발전
 
-## 1. 기능
+<details>
+<summary> 2020.12.18 updated </summary>
+### 1. 기능
 **동앓이 시연 영상(이미지 클릭)**  
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=qotEE3RVGRM" target="_blank"><img src="http://img.youtube.com/vi/qotEE3RVGRM/1.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
-
-## 2. 보완해야할 점
+  
+[![img01](pdf/2020.12.18/UI_storyboard_v01_01.png)](pdf/2020.12.18/UI_storyboard_v01_01.png)  
+[![img01](pdf/2020.12.18/UI_storyboard_v01_02.png)](pdf/2020.12.18/UI_storyboard_v01_02.png)  
+[![img01](pdf/2020.12.18/UI_storyboard_v01_03.png)](pdf/2020.12.18/UI_storyboard_v01_03.png)  
+[![img01](pdf/2020.12.18/UI_storyboard_v01_04.png)](pdf/2020.12.18/UI_storyboard_v01_04.png)  
+  
+### 2. 보완해야할 점  
+  
+</details>
