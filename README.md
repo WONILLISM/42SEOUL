@@ -26,8 +26,7 @@
   + 프로젝트 외적으로 cadet들의 발전
 
 ## 1. 기능
-<iframe width="640" height="360" src="https://www.youtube.com/embed/6Az2cNU7gUw" frameborder="0" gesture="media" allowfullscreen=""></iframe>
-
+**동앓이 시연 영상(이미지 클릭)**  
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=qotEE3RVGRM" target="_blank"><img src="http://img.youtube.com/vi/qotEE3RVGRM/1.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
