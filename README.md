@@ -26,6 +26,7 @@
   + 프로젝트 외적으로 cadet들의 발전
 
 ## 1. 기능
-[![시연 영상](http://img.youtube.com/vi/qotEE3RVGRM/1.jpg](https://youtu.be/qotEE3RVGRM)
+<iframe width="640" height="360" src="https://youtu.be/qotEE3RVGRM"  
+ frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>   
 
 ## 2. 보완해야할 점
