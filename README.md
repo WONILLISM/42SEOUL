@@ -1,6 +1,9 @@
 # 2020 42_Hackerthon
-
-with jimkwon, sehan, wopark
+> 기간 : 2020.12.16 ~ 2020.12.18  
+> 개발 환경 : MacOS catalina 10.15.4  
+> IDE : Xcode  
+> 언어 : swift  
+> 개발자 : jimkwon, sehan, wopark
 
 ## 42 동아리 어플리케이션 제작
 + idea (서비스명 및 concept)
