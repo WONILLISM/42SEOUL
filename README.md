@@ -26,7 +26,7 @@
   + 프로젝트 외적으로 cadet들의 발전
 
 <details>
-<summary> 2020.12.18 updated </summary>
+<summary> 2020.12.18 updated (Click)</summary>
   
 ### 1. 기능  
 **동앓이 시연 영상(이미지 클릭)**  
