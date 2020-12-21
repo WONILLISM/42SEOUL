@@ -27,8 +27,10 @@
 
 <details>
 <summary> 2020.12.18 updated </summary>
-### 1. 기능
+  
+### 1. 기능  
 **동앓이 시연 영상(이미지 클릭)**  
+  
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=qotEE3RVGRM" target="_blank"><img src="http://img.youtube.com/vi/qotEE3RVGRM/1.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
   
