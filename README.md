@@ -41,4 +41,9 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
   
 ### 2. 보완해야할 점  
   
++ login, profile 페이지를 위한 42 api 연동
++ 클럽 세부사항 
+  + 동아리 가입신청 기능
+  + 동아리 활동사진 확대 기능
++ 동아리 Database 필요
 </details>
