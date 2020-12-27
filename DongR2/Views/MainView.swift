@@ -10,25 +10,15 @@ import SwiftUI
 struct MainView: View {
     
     var body: some View {
-//        NavigationView {
-            VStack
-            {
-                ScrollView(.vertical, showsIndicators: false){
-                   
-                    ClubScroll(category : "모집중")
-    //                ClubScroll(category: clubs.recruiting)
-                    ForEach(categories) {category in
-                        ClubScroll(category: category.name)
-                    }
-    //                List (categories) { category in
-    //                    ClubScroll(category: category)
-    //                }
-    //                List(clubs){club in
-    //                    ClubScroll(category : club.category)
-    //                }
+        VStack
+        {
+            ScrollView(.vertical, showsIndicators: false){
+                ClubScroll(category : "모집중")
+                ForEach(categories) {category in
+                    ClubScroll(category: category.name)
                 }
             }
-//        }
+        }
     }
 }
 

@@ -115,18 +115,18 @@
 			children = (
 				EE86ED4D258B55CB00FC018E /* ContentView.swift */,
 				EE8404CD258B9DFF0054016E /* MainView.swift */,
+				030F5E4A258B5DBA00C4D078 /* ClubScroll.swift */,
+				1D5C431A258BC82400CEE464 /* GetImage.swift */,
+				EE09FDDE258C1FAF00178648 /* ProfileHost.swift */,
+				EE09FDE1258C1FC800178648 /* ProfileSummary.swift */,
+				EE09FDE4258C1FF400178648 /* BadgeToggle.swift */,
+				EE86ED92258B7C8C00FC018E /* ClubList.swift */,
+				EE86ED6D258B743B00FC018E /* SearchRow.swift */,
+				EE86ED9A258B814200FC018E /* ClubDetail.swift */,
 				EE86ED96258B7FAE00FC018E /* ImageView.swift */,
 				EE86ED5D258B6C8300FC018E /* Launch.swift */,
 				030F5E44258B5DAE00C4D078 /* YamCrew.swift */,
-				030F5E4A258B5DBA00C4D078 /* ClubScroll.swift */,
 				030F5E47258B5DB400C4D078 /* ClubImage.swift */,
-				EE86ED6D258B743B00FC018E /* SearchRow.swift */,
-				EE09FDDE258C1FAF00178648 /* ProfileHost.swift */,
-				EE09FDE4258C1FF400178648 /* BadgeToggle.swift */,
-				EE09FDE1258C1FC800178648 /* ProfileSummary.swift */,
-				EE86ED92258B7C8C00FC018E /* ClubList.swift */,
-				EE86ED9A258B814200FC018E /* ClubDetail.swift */,
-				1D5C431A258BC82400CEE464 /* GetImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

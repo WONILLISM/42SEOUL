@@ -10,19 +10,20 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView{
-            MainView()
-                .navigationBarItems(leading: NavigationLink(
-                destination: ProfileHost()){
+            MainView().navigationBarItems(
+                leading: NavigationLink(
+                    destination: ProfileHost()){
                     Image("mypage_2")
                         .resizable()
                         .frame(width: 50, height: 50)
-                }, trailing: NavigationLink(destination: ClubList()){
+                },
+                trailing: NavigationLink(destination: ClubList()){
                     Image("search")
                         .resizable()
                         .frame(width: 50, height: 50)
-                })
+                }
+            )
         }
-//        ClubList()
     }
 }
 
