@@ -3,6 +3,7 @@
 //  dongari
 //
 //  Created by jimkwon on 2020/12/17.
+//  Updated by wopark on 2020/12/28.
 //
 
 import SwiftUI
@@ -10,9 +11,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView{
-            MainView().navigationBarItems(
-                leading: NavigationLink(
-                    destination: ProfileHost()){
+            MainView()
+            .navigationBarItems(
+                leading: NavigationLink(destination: ProfileHost()){
                     Image("mypage_2")
                         .resizable()
                         .frame(width: 50, height: 50)
@@ -22,7 +23,7 @@ struct ContentView: View {
                         .resizable()
                         .frame(width: 50, height: 50)
                 }
-            )
+             )
         }
     }
 }
