@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchList: View {
-//    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var modelData: ModelData
     @State private var searchText = ""
     @State private var isSearching = false
     
@@ -40,7 +40,7 @@ struct SearchList: View {
                     }.padding(.horizontal, 32)
                     .foregroundColor(.gray)
                 )
-                ForEach(clubs.filter({$0.name.contains(searchText) || searchText.isEmpty})){club in
+                ForEach(modelData.clubs.filter({$0.name.contains(searchText) || searchText.isEmpty})){club in
                     NavigationLink(destination: ClubDetail(club: club)){
                         SearchRow(club: club)
                     }
@@ -54,5 +54,6 @@ struct SearchList: View {
 struct SearchList_Previews: PreviewProvider {
     static var previews: some View {
         SearchList()
+            .environmentObject(ModelData())
     }
 }

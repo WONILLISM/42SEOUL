@@ -22,6 +22,8 @@ struct SearchRow: View {
 }
 
 struct SearchRow_Previews: PreviewProvider {
+    static var clubs = ModelData().clubs
+    
     static var previews: some View {
         Group {
             SearchRow(club: clubs[0])

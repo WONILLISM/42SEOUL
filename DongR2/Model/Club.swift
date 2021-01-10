@@ -12,7 +12,13 @@ struct Club: Hashable, Codable, Identifiable {
     var id: Int
     var name: String
     var description: String
-    var category: String
+    
+    var category: Category
+    enum Category: String, CaseIterable, Codable {
+        case Fellowship = "친목"
+        case Hobby = "취미"
+        case Study = "공부"
+    }
     
     private var bgName: String
     var bgImg: Image{

@@ -26,8 +26,8 @@ struct ClubDetail: View {
                     .font(.title)
                     .bold()
                 HStack{
-                    Text(club.category)
-                        .font(.subheadline)
+//                    Text(club.category)
+//                        .font(.subheadline)
                     Spacer()
                     Text("42 동아리")
                         .font(.subheadline)
@@ -50,7 +50,7 @@ struct ClubDetail: View {
 
 struct ClubDetail_Previews: PreviewProvider {
     static var previews: some View {
-        ClubDetail(club: clubs[0])
+        ClubDetail(club: ModelData().clubs[0])
     }
 }
 

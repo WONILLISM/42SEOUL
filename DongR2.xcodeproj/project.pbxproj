@@ -18,6 +18,9 @@
 		EE44FD7B25A60A72009392E6 /* clubData.json in Resources */ = {isa = PBXBuildFile; fileRef = EE44FD7A25A60A72009392E6 /* clubData.json */; };
 		EE44FD8025A60C4E009392E6 /* SearchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE44FD7F25A60C4E009392E6 /* SearchRow.swift */; };
 		EE44FD8425A6109C009392E6 /* SearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE44FD8325A6109C009392E6 /* SearchList.swift */; };
+		EE68C46125AB4CA300F6FBD3 /* MainRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE68C46025AB4CA300F6FBD3 /* MainRow.swift */; };
+		EE68C46425AB4ECA00F6FBD3 /* MainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE68C46325AB4ECA00F6FBD3 /* MainItem.swift */; };
+		EED3979F25A8AE2F007DB9DB /* MainHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED3979E25A8AE2F007DB9DB /* MainHome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		EE44FD7A25A60A72009392E6 /* clubData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clubData.json; sourceTree = "<group>"; };
 		EE44FD7F25A60C4E009392E6 /* SearchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRow.swift; sourceTree = "<group>"; };
 		EE44FD8325A6109C009392E6 /* SearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchList.swift; sourceTree = "<group>"; };
+		EE68C46025AB4CA300F6FBD3 /* MainRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRow.swift; sourceTree = "<group>"; };
+		EE68C46325AB4ECA00F6FBD3 /* MainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItem.swift; sourceTree = "<group>"; };
+		EED3979E25A8AE2F007DB9DB /* MainHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,9 @@
 				EE44FD7325A6087E009392E6 /* ClubMark.swift */,
 				EE44FD7F25A60C4E009392E6 /* SearchRow.swift */,
 				EE44FD8325A6109C009392E6 /* SearchList.swift */,
+				EED3979E25A8AE2F007DB9DB /* MainHome.swift */,
+				EE68C46025AB4CA300F6FBD3 /* MainRow.swift */,
+				EE68C46325AB4ECA00F6FBD3 /* MainItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,12 +195,15 @@
 			files = (
 				EE44FD5D25A60349009392E6 /* ContentView.swift in Sources */,
 				EE44FD6E25A60696009392E6 /* ModelData.swift in Sources */,
+				EED3979F25A8AE2F007DB9DB /* MainHome.swift in Sources */,
+				EE68C46425AB4ECA00F6FBD3 /* MainItem.swift in Sources */,
 				EE44FD6B25A60520009392E6 /* Club.swift in Sources */,
 				EE44FD7125A6084C009392E6 /* ClubDetail.swift in Sources */,
 				EE44FD7425A6087E009392E6 /* ClubMark.swift in Sources */,
 				EE44FD8425A6109C009392E6 /* SearchList.swift in Sources */,
 				EE44FD5B25A60349009392E6 /* DongR2App.swift in Sources */,
 				EE44FD8025A60C4E009392E6 /* SearchRow.swift in Sources */,
+				EE68C46125AB4CA300F6FBD3 /* MainRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

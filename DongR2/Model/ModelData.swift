@@ -8,10 +8,17 @@
 import Foundation
 import Combine
 
-var clubs: [Club] = load("clubData.json")
-//final class ModelData: ObservableObject {
-//    @Published var clubs: [Club] = load("clubData.json")
-//}
+//var clubs: [Club] = load("clubData.json")
+final class ModelData: ObservableObject {
+    @Published var clubs: [Club] = load("clubData.json")
+    
+    var categories: [String: [Club]] {
+        Dictionary(
+            grouping: clubs,
+            by: { $0.category.rawValue }
+        )
+    }
+}
 
 
 func load<T: Decodable>(_ filename: String) -> T {
