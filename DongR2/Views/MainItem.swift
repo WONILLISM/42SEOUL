@@ -13,10 +13,12 @@ struct MainItem: View {
     var body: some View {
         VStack(alignment: .leading) {
             club.markImg
+                .renderingMode(.original)
                 .resizable()
                 .frame(width: 155, height: 155)
                 .cornerRadius(5)
             Text(club.name)
+                .foregroundColor(.primary)
                 .font(.caption)
         }
         .padding(.leading, 15)

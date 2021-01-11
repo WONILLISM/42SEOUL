@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE04B12425ABF52D00D350CE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04B12325ABF52D00D350CE /* Profile.swift */; };
 		EE44FD5B25A60349009392E6 /* DongR2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE44FD5A25A60349009392E6 /* DongR2App.swift */; };
 		EE44FD5D25A60349009392E6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE44FD5C25A60349009392E6 /* ContentView.swift */; };
 		EE44FD5F25A60349009392E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE44FD5E25A60349009392E6 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE04B12325ABF52D00D350CE /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		EE44FD5725A60349009392E6 /* DongR2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DongR2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE44FD5A25A60349009392E6 /* DongR2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DongR2App.swift; sourceTree = "<group>"; };
 		EE44FD5C25A60349009392E6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				EE44FD7F25A60C4E009392E6 /* SearchRow.swift */,
 				EE44FD8325A6109C009392E6 /* SearchList.swift */,
 				EED3979E25A8AE2F007DB9DB /* MainHome.swift */,
+				EE04B12325ABF52D00D350CE /* Profile.swift */,
 				EE68C46025AB4CA300F6FBD3 /* MainRow.swift */,
 				EE68C46325AB4ECA00F6FBD3 /* MainItem.swift */,
 			);
@@ -194,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE44FD5D25A60349009392E6 /* ContentView.swift in Sources */,
+				EE04B12425ABF52D00D350CE /* Profile.swift in Sources */,
 				EE44FD6E25A60696009392E6 /* ModelData.swift in Sources */,
 				EED3979F25A8AE2F007DB9DB /* MainHome.swift in Sources */,
 				EE68C46425AB4ECA00F6FBD3 /* MainItem.swift in Sources */,

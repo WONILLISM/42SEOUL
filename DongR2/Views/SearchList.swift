@@ -14,38 +14,40 @@ struct SearchList: View {
     
     
     var body: some View {
-        VStack {
-            ScrollView {
-                HStack {
-                    TextField("Search ...", text: $searchText)
-                        .padding(.leading, 24)
-                }
-                .padding()
-                .background(Color(.systemGray5))
-                .cornerRadius(6)
-                .padding(.horizontal)
-                .onTapGesture(perform: {
-                    isSearching = true
-                })
-                .overlay(
+        NavigationView {
+            VStack {
+                ScrollView {
                     HStack {
-                        Image(systemName: "magnifyingglass")
-                        Spacer()
-                        
-                        if isSearching {
-                            Button(action: {searchText = ""}, label: {
-                                Image(systemName: "xmark.circle.fill")
-                            })
-                        }
-                    }.padding(.horizontal, 32)
-                    .foregroundColor(.gray)
-                )
-                ForEach(modelData.clubs.filter({$0.name.contains(searchText) || searchText.isEmpty})){club in
-                    NavigationLink(destination: ClubDetail(club: club)){
-                        SearchRow(club: club)
+                        TextField("Search ...", text: $searchText)
+                            .padding(.leading, 24)
                     }
+                    .padding()
+                    .background(Color(.systemGray5))
+                    .cornerRadius(6)
+                    .padding(.horizontal)
+                    .onTapGesture(perform: {
+                        isSearching = true
+                    })
+                    .overlay(
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            Spacer()
+                            
+                            if isSearching {
+                                Button(action: {searchText = ""}, label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                })
+                            }
+                        }.padding(.horizontal, 32)
+                        .foregroundColor(.gray)
+                    )
+                    ForEach(modelData.clubs.filter({$0.name.contains(searchText) || searchText.isEmpty})){club in
+                        NavigationLink(destination: ClubDetail(club: club)){
+                            SearchRow(club: club)
+                        }
+                    }
+                    .navigationTitle("검색")
                 }
-                .navigationTitle("검색")
             }
         }
     }

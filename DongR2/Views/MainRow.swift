@@ -21,7 +21,9 @@ struct MainRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(items) { club in
-                        MainItem(club: club)
+                        NavigationLink(destination: ClubDetail(club: club)){
+                            MainItem(club: club)
+                        }
                     }
                 }
             }

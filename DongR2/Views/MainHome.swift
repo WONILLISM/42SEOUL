@@ -9,11 +9,27 @@ import SwiftUI
 
 struct MainHome: View {
     @EnvironmentObject var modelData: ModelData
+    @State private var showingProfile = false
     
     var body: some View {
-        List {
-            ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
-                MainRow(categoryName: key, items: modelData.categories[key]!)
+        NavigationView {
+            List {
+                ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
+                    MainRow(categoryName: key, items: modelData.categories[key]!)
+                }
+                .listRowInsets(EdgeInsets())
+            }
+            .listStyle(InsetListStyle())
+            .navigationTitle("DongR2")
+            .toolbar {
+                Button(action: { showingProfile.toggle() }) {
+                    Image(systemName: "person.crop.circle")
+                        .accessibilityLabel("User Profile")
+                }
+            }
+            .sheet(isPresented: $showingProfile) {
+                Profile()
+                    .environmentObject(modelData)
             }
         }
     }
