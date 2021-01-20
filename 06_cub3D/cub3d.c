@@ -19,9 +19,10 @@ void	init_keys(t_key *key)
 }
 void	init_player(t_player *p)
 {
-	p->x = 250;
-	p->y = 250;
-	p->dir = 0;
+	p->pos.x = 250;
+	p->pos.y = 250;
+	p->dir.x = 1;
+	p->dir.y = 0;
 }
 
 int		key_pressed(int key, t_key *key_info)
@@ -63,19 +64,33 @@ int		key_released(int key, t_key *key_info)
 void	move_player(t_archive *a)
 {
 	if (a->key.w)
-		a->p.y -= 5;
+		a->p.pos.y -= 5;
 	else if (a->key.s)
-		a->p.y += 5;
+		a->p.pos.y += 5;
 	else if (a->key.a)
-		a->p.x -= 5;
+		a->p.pos.x -= 5;
 	else if (a->key.d)
-		a->p.x += 5;
+		a->p.pos.x += 5;
+}
+
+void	draw_player(t_archive *a)
+{
+	double	sy;
+	double	sx;
+
+	sy = a->p.pos.y - 2;
+	sx = a->p.pos.x - 2;
+	for (int i = sy; i < sy + 4; i++){
+		for (int j = sx; j < sx + 4; j++){
+			mlx_pixel_put(a->m.mlx, a->m.win, j, i, 0xffff00);
+		}
+	}
 }
 
 int		main_loop(t_archive *a)
 {
 	mlx_clear_window(a->m.mlx, a->m.win);
-	mlx_pixel_put(a->m.mlx, a->m.win, a->p.x, a->p.y, 0xffff00);
+	draw_player(a);
 	move_player(a);
 	return (0);
 }

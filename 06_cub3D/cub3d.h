@@ -57,9 +57,8 @@ typedef struct	s_vec
 
 typedef struct	s_player
 {
-    int			x;
-    int			y;
-    int			dir;
+    t_vec	pos;
+	t_vec	dir;
 }				t_player;
 
 typedef struct	s_key
