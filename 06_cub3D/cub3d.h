@@ -43,6 +43,12 @@
 # include <stdlib.h>
 # include "includes/opengl/mlx.h"
 
+typedef struct	s_mlx
+{
+	void	*mlx;
+	void	*win;
+}				t_mlx;
+
 typedef struct	s_player
 {
     int			x;
@@ -62,15 +68,11 @@ typedef struct	s_key
 
 typedef struct	s_archive
 {
-    void		*mlx;
-    void		*win;
+	int			width;
+	int			height;
 
-    int			width;
-    int			height;
-
-    t_player	*p;
-	t_key		*key;
+	t_mlx		m;
+    t_player	p;
+	t_key		key;
 }				t_archive;
-
-
 #endif
