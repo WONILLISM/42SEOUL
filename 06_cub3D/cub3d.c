@@ -6,6 +6,13 @@ void	init_window(t_archive *a)
 	a->height = 700;
 	a->mlx = mlx_init();
 	a->win = mlx_new_window(a->mlx, a->width, a->height, "cub3d");
+
+	a->key->w = 0;
+	a->key->s = 0;
+	a->key->a = 0;
+	a->key->d = 0;
+	a->key->q = 0;
+	a->key->e = 0;
 }
 
 void	init_player(t_player *p)
@@ -66,6 +73,8 @@ void	move_player(t_archive *a)
 int		main_loop(t_archive *a)
 {
 	mlx_clear_window(a->mlx, a->win);
+	printf("%d %d\n", a->p->x, a->p->y);
+	move_player(a);
 	mlx_pixel_put(a->mlx, a->win, a->p->x, a->p->y, 0xffff00);
 	return (0);
 }
