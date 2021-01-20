@@ -49,6 +49,12 @@ typedef struct	s_mlx
 	void	*win;
 }				t_mlx;
 
+typedef struct	s_vec
+{
+	double		x;
+	double		y;
+}				t_vec;
+
 typedef struct	s_player
 {
     int			x;
