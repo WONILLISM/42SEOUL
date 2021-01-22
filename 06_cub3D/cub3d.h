@@ -55,10 +55,22 @@ typedef struct	s_vec
 	double		y;
 }				t_vec;
 
+typedef struct		s_img
+{
+	int				w;
+	int				h;
+	int				bpp;	//bit per pixel
+	int				size_line;	
+	int				endian;	
+	void			*ptr;	
+	unsigned int	*addr;	
+}					t_img;	
+
 typedef struct	s_player
 {
-    t_vec	pos;
-	t_vec	dir;
+    t_vec		pos;
+	t_vec		delta;
+	double		angle;
 }				t_player;
 
 typedef struct	s_key

@@ -1,9 +1,28 @@
 #include "cub3d.h"
 
+int		g_map[16][16] = {
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1},
+	{1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1},
+	{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1},
+	{1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1},
+	{1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+	{1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,1,1,1,0,0,0,0,1,1,1,1,0,1},
+	{1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+};
+
 void	init_window(t_archive *a)
 {
-	a->width = 700;
-	a->height = 700;
+	a->width = 1024	;
+	a->height = 512;
 	a->m.mlx = mlx_init();
 	a->m.win = mlx_new_window(a->m.mlx, a->width, a->height, "cub3d");
 }
@@ -21,8 +40,9 @@ void	init_player(t_player *p)
 {
 	p->pos.x = 250;
 	p->pos.y = 250;
-	p->dir.x = 1;
-	p->dir.y = 0;
+	p->angle = 0.0f;
+	p->delta.x = cos(p->angle);
+	p->delta.y = sin(p->angle);
 }
 
 int		key_pressed(int key, t_key *key_info)
@@ -64,32 +84,120 @@ int		key_released(int key, t_key *key_info)
 void	move_player(t_archive *a)
 {
 	if (a->key.w)
-		a->p.pos.y -= 5;
+	{
+		a->p.pos.x += a->p.delta.x;
+		a->p.pos.y += a->p.delta.y;
+	}
 	else if (a->key.s)
-		a->p.pos.y += 5;
+	{
+		a->p.pos.x += a->p.delta.x;
+		a->p.pos.y += a->p.delta.y;
+	}
 	else if (a->key.a)
-		a->p.pos.x -= 5;
+	{
+		a->p.angle -= 0.1;
+		if (a->p.angle < 0)
+			a->p.angle = 2*PI;
+		a->p.delta.x = cos(a->p.angle)*2;
+		a->p.delta.y = sin(a->p.angle)*2;
+	}
 	else if (a->key.d)
-		a->p.pos.x += 5;
+	{
+		a->p.angle += 0.1;
+		if (a->p.angle > 2*PI)
+			a->p.angle = 0;
+		a->p.delta.x = cos(a->p.angle)*2;
+		a->p.delta.y = sin(a->p.angle)*2;
+	}
+}
+
+t_img	create_square(t_archive *a, int w, int h, int fill)
+{
+	int		i;
+	int		j;
+	t_img	ret;
+
+	ret.ptr = mlx_new_image(a->m.mlx, w, h);
+	ret.addr = (unsigned int *)mlx_get_data_addr(ret.ptr, &ret.bpp, &ret.size_line, &ret.endian);
+
+	i = -1;
+	while (++i < h)
+	{
+		j = -1;
+		while (++j < w)
+			ret.addr[i * w + j] = fill;
+	}
+	return ret;
+}
+
+void	draw_map(t_archive *a)
+{
+	t_img	wall;
+	t_img	ground;
+	int		row_size;
+	int		col_size;
+	int		i;
+	int		j;
+
+	row_size = a->height/16;
+	col_size = (a->width/2)/16;
+	wall = create_square(a, col_size-1, row_size-1, 0xffffff);
+	ground = create_square(a, col_size-1, row_size-1, 0x777777);
+	i = -1;
+	while (++i < 16)
+	{
+		j = -1;
+		while (++j < 16)
+			if (g_map[i][j])
+				mlx_put_image_to_window(a->m.mlx, a->m.win, wall.ptr, j * col_size, i * row_size);
+			else
+				mlx_put_image_to_window(a->m.mlx, a->m.win, ground.ptr, j * col_size, i * row_size);
+	}
+}
+
+void	draw_rays(t_archive *a)
+{
+	int	r, mx, my, mp, dof;
+	double	rx, ry, ra, xo, yo;
+
+	ra = a->p.angle;
+	for (r = 0; r < 1; r++)
+	{
+		dof = 0;
+		float aTan=-1/tan(ra);
+		if (ra>PI)
+		{
+			ry=(((int)(a->p.pos.y)>>6)<<6) - 0.0001;
+			rx=(a->p.pos.y-ry)*aTan + a->p.pos.x;
+			yo=-32;
+			xo=-aTan; 
+		}
+		if (ra<PI)
+		{
+			ry=(((int)(a->p.pos.y)>>6)<<6) + 32;
+			rx=(a->p.pos.y-ry)*aTan + a->p.pos.x;
+			yo=-32;
+			xo=-aTan; 
+		}
+	}
 }
 
 void	draw_player(t_archive *a)
 {
-	double	sy;
-	double	sx;
+	t_img	img1;
+	int		i;
 
-	sy = a->p.pos.y - 2;
-	sx = a->p.pos.x - 2;
-	for (int i = sy; i < sy + 4; i++){
-		for (int j = sx; j < sx + 4; j++){
-			mlx_pixel_put(a->m.mlx, a->m.win, j, i, 0xffff00);
-		}
-	}
+	i = -1;
+	img1 = create_square(a, 5, 5, 0xffff00);
+	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x -2, a->p.pos.y-2);	
+	while (++i < 20)
+		mlx_pixel_put(a->m.mlx, a->m.win, a->p.pos.x + i * a->p.delta.x, a->p.pos.y + i * a->p.delta.y, 0xffff00);
 }
 
 int		main_loop(t_archive *a)
 {
 	mlx_clear_window(a->m.mlx, a->m.win);
+	draw_map(a);
 	draw_player(a);
 	move_player(a);
 	return (0);

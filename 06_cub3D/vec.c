@@ -39,11 +39,3 @@ double	cal_vector_len(t_vec a, t_vec b)
 {
 	return sqrtf(powf(a.x - b.x, 2) + powf(a.y - b.y, 2));
 }
-
-void	draw_line(t_vec a, t_vec b)
-{
-	double	len;
-
-	len = cal_vector_len(a, b);
-
-}
