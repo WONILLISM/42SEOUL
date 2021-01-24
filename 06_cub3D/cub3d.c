@@ -179,6 +179,11 @@ void	draw_rays(t_archive *a)
 			yo=-32;
 			xo=-aTan; 
 		}
+		while (dof < 16)
+		{
+			mx = (int)(rx)>>6;
+			my = (int)(ry)>>6;
+		}
 	}
 }
 
