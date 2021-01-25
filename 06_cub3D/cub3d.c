@@ -157,46 +157,27 @@ void	draw_map(t_archive *a)
 
 void	draw_rays(t_archive *a)
 {
-	int	r, mx, my, mp, dof;
-	double	rx, ry, ra, xo, yo;
+	double	nx;
+	double	ny;
+	int	i;
 
-	ra = a->p.angle;
-	for (r = 0; r < 1; r++)
-	{
-		dof = 0;
-		float aTan=-1/tan(ra);
-		if (ra>PI)
-		{
-			ry=(((int)(a->p.pos.y)>>6)<<6) - 0.0001;
-			rx=(a->p.pos.y-ry)*aTan + a->p.pos.x;
-			yo=-32;
-			xo=-aTan; 
-		}
-		if (ra<PI)
-		{
-			ry=(((int)(a->p.pos.y)>>6)<<6) + 32;
-			rx=(a->p.pos.y-ry)*aTan + a->p.pos.x;
-			yo=-32;
-			xo=-aTan; 
-		}
-		while (dof < 16)
-		{
-			mx = (int)(rx)>>6;
-			my = (int)(ry)>>6;
-		}
+	i = 0;
+	while (1){
+		nx = a->p.pos.x + i * a->p.delta.x;
+		ny = a->p.pos.y + i * a->p.delta.y;
+		if (nx < 0 || ny < 0 || nx > 512 || ny > 512)
+			break;
+		mlx_pixel_put(a->m.mlx, a->m.win, nx, ny, 0xffff00);
+		i++;
 	}
 }
 
 void	draw_player(t_archive *a)
 {
 	t_img	img1;
-	int		i;
 
-	i = -1;
 	img1 = create_square(a, 5, 5, 0xffff00);
 	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x -2, a->p.pos.y-2);	
-	while (++i < 20)
-		mlx_pixel_put(a->m.mlx, a->m.win, a->p.pos.x + i * a->p.delta.x, a->p.pos.y + i * a->p.delta.y, 0xffff00);
 }
 
 int		main_loop(t_archive *a)
@@ -204,6 +185,7 @@ int		main_loop(t_archive *a)
 	mlx_clear_window(a->m.mlx, a->m.win);
 	draw_map(a);
 	draw_player(a);
+	draw_rays(a);
 	move_player(a);
 	return (0);
 }
