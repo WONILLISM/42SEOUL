@@ -1,12 +1,4 @@
 #include "cub3d.h"
-// #include <stdio.h>
-// #include <math.h>
-
-typedef struct	s_vec
-{
-	double		x;
-	double		y;
-}				t_vec;
 
 t_vec	new_vector(double x, double y)
 {
@@ -35,7 +27,24 @@ t_vec	sub_vector(t_vec a, t_vec b)
 	return (ret);
 }
 
-double	cal_vector_len(t_vec a, t_vec b)
+t_vec	mul_vector(t_vec v, double k)
 {
-	return sqrtf(powf(a.x - b.x, 2) + powf(a.y - b.y, 2));
+	t_vec	ret;
+	
+	ret.x = v.x * k;
+	ret.y = v.y * k;
+	return (ret);
+}
+
+t_vec	rotate_vec(t_vec v, double angle)
+{
+	t_vec	ret;
+	double	cos_angle;
+	double	sin_angle;
+
+	cos_angle = cos(angle);
+	sin_angle = sin(angle);
+	ret.x = cos_angle * v.x - sin_angle * v.y;
+	ret.y = sin_angle * v.x + sin_angle * v.y;
+	return (ret);
 }

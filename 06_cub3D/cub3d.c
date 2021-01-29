@@ -21,8 +21,8 @@ int		g_map[16][16] = {
 
 void	init_window(t_archive *a)
 {
-	a->width = 1024	;
-	a->height = 512;
+	a->width = 1280;
+	a->height = 640;
 	a->m.mlx = mlx_init();
 	a->m.win = mlx_new_window(a->m.mlx, a->width, a->height, "cub3d");
 }
@@ -41,8 +41,8 @@ void	init_player(t_player *p)
 	p->pos.x = 250;
 	p->pos.y = 250;
 	p->angle = 0.0f;
-	p->delta.x = cos(p->angle);
-	p->delta.y = sin(p->angle);
+	p->dir.x = cos(p->angle);
+	p->dir.y = sin(p->angle);
 }
 
 int		key_pressed(int key, t_key *key_info)
@@ -85,29 +85,29 @@ void	move_player(t_archive *a)
 {
 	if (a->key.w)
 	{
-		a->p.pos.x += a->p.delta.x;
-		a->p.pos.y += a->p.delta.y;
+		a->p.pos.x += a->p.dir.x;
+		a->p.pos.y += a->p.dir.y;
 	}
 	else if (a->key.s)
 	{
-		a->p.pos.x += a->p.delta.x;
-		a->p.pos.y += a->p.delta.y;
+		a->p.pos.x += a->p.dir.x;
+		a->p.pos.y += a->p.dir.y;
 	}
 	else if (a->key.a)
 	{
 		a->p.angle -= 0.1;
 		if (a->p.angle < 0)
 			a->p.angle = 2*PI;
-		a->p.delta.x = cos(a->p.angle)*2;
-		a->p.delta.y = sin(a->p.angle)*2;
+		a->p.dir.x = cos(a->p.angle)*2;
+		a->p.dir.y = sin(a->p.angle)*2;
 	}
 	else if (a->key.d)
 	{
 		a->p.angle += 0.1;
 		if (a->p.angle > 2*PI)
 			a->p.angle = 0;
-		a->p.delta.x = cos(a->p.angle)*2;
-		a->p.delta.y = sin(a->p.angle)*2;
+		a->p.dir.x = cos(a->p.angle)*2;
+		a->p.dir.y = sin(a->p.angle)*2;
 	}
 }
 
@@ -157,15 +157,16 @@ void	draw_map(t_archive *a)
 
 void	draw_rays(t_archive *a)
 {
-	double	nx;
+	double	nx; 
 	double	ny;
 	int	i;
 
 	i = 0;
 	while (1){
-		nx = a->p.pos.x + i * a->p.delta.x;
-		ny = a->p.pos.y + i * a->p.delta.y;
-		if (nx < 0 || ny < 0 || nx > 512 || ny > 512)
+		nx = a->p.pos.x + i * a->p.dir.x;
+		ny = a->p.pos.y + i * a->p.dir.y;
+		if (nx )
+		if (nx < 0 || ny < 0 || nx > a->width / 2 || ny > a->height)
 			break;
 		mlx_pixel_put(a->m.mlx, a->m.win, nx, ny, 0xffff00);
 		i++;

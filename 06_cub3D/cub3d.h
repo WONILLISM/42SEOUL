@@ -69,9 +69,17 @@ typedef struct		s_img
 typedef struct	s_player
 {
     t_vec		pos;
-	t_vec		delta;
+	t_vec		dir;
 	double		angle;
 }				t_player;
+
+typedef struct	s_cam
+{
+	t_vec		cam_pln;
+	t_vec		m_term;
+	t_vec		l_term;
+	t_vec		r_term;
+}				t_cam;
 
 typedef struct	s_key
 {
@@ -92,4 +100,10 @@ typedef struct	s_archive
     t_player	p;
 	t_key		key;
 }				t_archive;
+
+t_vec	new_vector(double x, double y);
+t_vec	add_vector(t_vec a, t_vec b);
+t_vec	sub_vector(t_vec a, t_vec b);
+t_vec	mul_vector(t_vec v, double k);
+t_vec	rotate_vec(t_vec v, double angle);
 #endif
