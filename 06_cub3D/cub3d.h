@@ -70,16 +70,9 @@ typedef struct	s_player
 {
     t_vec		pos;
 	t_vec		dir;
+	t_vec		cam_plane;
 	double		angle;
 }				t_player;
-
-typedef struct	s_cam
-{
-	t_vec		cam_pln;
-	t_vec		m_term;
-	t_vec		l_term;
-	t_vec		r_term;
-}				t_cam;
 
 typedef struct	s_key
 {

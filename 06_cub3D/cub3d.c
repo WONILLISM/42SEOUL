@@ -40,9 +40,10 @@ void	init_player(t_player *p)
 {
 	p->pos.x = 250;
 	p->pos.y = 250;
-	p->angle = 0.0f;
-	p->dir.x = cos(p->angle);
-	p->dir.y = sin(p->angle);
+	p->angle = 180.0f;
+	p->dir.x = cos(p->angle * PI/180);
+	p->dir.y = sin(p->angle * PI/180);
+	// p->cam_plane.x = 
 }
 
 int		key_pressed(int key, t_key *key_info)
@@ -84,30 +85,24 @@ int		key_released(int key, t_key *key_info)
 void	move_player(t_archive *a)
 {
 	if (a->key.w)
-	{
-		a->p.pos.x += a->p.dir.x;
-		a->p.pos.y += a->p.dir.y;
-	}
+		a->p.pos = add_vector(a->p.pos, a->p.dir);
 	else if (a->key.s)
-	{
-		a->p.pos.x += a->p.dir.x;
-		a->p.pos.y += a->p.dir.y;
-	}
+		a->p.pos = sub_vector(a->p.pos, a->p.dir);
 	else if (a->key.a)
 	{
-		a->p.angle -= 0.1;
+		a->p.angle -= 2;
 		if (a->p.angle < 0)
-			a->p.angle = 2*PI;
-		a->p.dir.x = cos(a->p.angle)*2;
-		a->p.dir.y = sin(a->p.angle)*2;
+			a->p.angle = 360.0f;
+		a->p.dir.x = cos(a->p.angle * PI/180);
+		a->p.dir.y = sin(a->p.angle * PI/180);
 	}
 	else if (a->key.d)
 	{
-		a->p.angle += 0.1;
-		if (a->p.angle > 2*PI)
-			a->p.angle = 0;
-		a->p.dir.x = cos(a->p.angle)*2;
-		a->p.dir.y = sin(a->p.angle)*2;
+		a->p.angle += 3;
+		if (a->p.angle > 360.0f)
+			a->p.angle = 0.0f;
+		a->p.dir.x = cos(a->p.angle * PI/180);
+		a->p.dir.y = sin(a->p.angle * PI/180);
 	}
 }
 
