@@ -40,10 +40,11 @@ void	init_player(t_player *p)
 {
 	p->pos.x = 250;
 	p->pos.y = 250;
-	p->angle = 180.0f;
-	p->dir.x = cos(p->angle * PI/180);
-	p->dir.y = sin(p->angle * PI/180);
-	// p->cam_plane.x = 
+	p->angle = 0.0f;
+	p->dir.x = cos(p->angle * DEG2RAD);
+	p->dir.y = sin(p->angle * DEG2RAD);
+	p->cam_plane.x = cos((p->angle + 90) * DEG2RAD);
+	p->cam_plane.y = sin((p->angle + 90) * DEG2RAD);
 }
 
 int		key_pressed(int key, t_key *key_info)
@@ -93,16 +94,20 @@ void	move_player(t_archive *a)
 		a->p.angle -= 2;
 		if (a->p.angle < 0)
 			a->p.angle = 360.0f;
-		a->p.dir.x = cos(a->p.angle * PI/180);
-		a->p.dir.y = sin(a->p.angle * PI/180);
+		a->p.dir.x = cos(a->p.angle * DEG2RAD);
+		a->p.dir.y = sin(a->p.angle * DEG2RAD);
+		a->p.cam_plane.x = cos((a->p.angle + 90) * DEG2RAD);
+		a->p.cam_plane.y = sin((a->p.angle + 90) * DEG2RAD);
 	}
 	else if (a->key.d)
 	{
-		a->p.angle += 3;
+		a->p.angle += 2;
 		if (a->p.angle > 360.0f)
 			a->p.angle = 0.0f;
-		a->p.dir.x = cos(a->p.angle * PI/180);
-		a->p.dir.y = sin(a->p.angle * PI/180);
+		a->p.dir.x = cos(a->p.angle * DEG2RAD);
+		a->p.dir.y = sin(a->p.angle * DEG2RAD);
+		a->p.cam_plane.x = cos((a->p.angle + 90) * DEG2RAD);
+		a->p.cam_plane.y = sin((a->p.angle + 90) * DEG2RAD);
 	}
 }
 
@@ -125,7 +130,7 @@ t_img	create_square(t_archive *a, int w, int h, int fill)
 	return ret;
 }
 
-void	draw_map(t_archive *a)
+void	draw_grid(t_archive *a)
 {
 	t_img	wall;
 	t_img	ground;
@@ -154,17 +159,27 @@ void	draw_rays(t_archive *a)
 {
 	double	nx; 
 	double	ny;
-	int	i;
+	double	i;
+	int		j;
+	t_vec	ray_dir;
 
-	i = 0;
-	while (1){
-		nx = a->p.pos.x + i * a->p.dir.x;
-		ny = a->p.pos.y + i * a->p.dir.y;
-		if (nx )
-		if (nx < 0 || ny < 0 || nx > a->width / 2 || ny > a->height)
-			break;
-		mlx_pixel_put(a->m.mlx, a->m.win, nx, ny, 0xffff00);
-		i++;
+	i = -0.33;
+	while (i <= 0.33)
+	{
+		ray_dir.x = a->p.dir.x + i*a->p.cam_plane.x;
+		ray_dir.y = a->p.dir.y + i*a->p.cam_plane.y;
+		j = 0;
+		while (1)
+		{
+			nx = a->p.pos.x + j * ray_dir.x;
+			ny = a->p.pos.y + j * ray_dir.y;
+
+			if (nx < 0 || ny < 0 || nx > a->width / 2 || ny > a->height)
+				break;
+			mlx_pixel_put(a->m.mlx, a->m.win, nx, ny, 0xffff00);
+			j++;
+		}
+		i+=0.01;
 	}
 }
 
@@ -179,7 +194,7 @@ void	draw_player(t_archive *a)
 int		main_loop(t_archive *a)
 {
 	mlx_clear_window(a->m.mlx, a->m.win);
-	draw_map(a);
+	draw_grid(a);
 	draw_player(a);
 	draw_rays(a);
 	move_player(a);
