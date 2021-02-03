@@ -21,8 +21,8 @@ int		g_map[16][16] = {
 
 void	init_window(t_archive *a)
 {
-	a->width = 1280;
-	a->height = 640;
+	a->width = 512;
+	a->height = 256;
 	a->m.mlx = mlx_init();
 	a->m.win = mlx_new_window(a->m.mlx, a->width, a->height, "cub3d");
 }
@@ -38,8 +38,8 @@ void	init_keys(t_key *key)
 }
 void	init_player(t_player *p)
 {
-	p->pos.x = 250;
-	p->pos.y = 250;
+	p->pos.x = 20;
+	p->pos.y = 20;
 	p->angle = 0.0f;
 	p->dir.x = cos(p->angle * DEG2RAD);
 	p->dir.y = sin(p->angle * DEG2RAD);
@@ -161,6 +161,8 @@ void	draw_rays(t_archive *a)
 	double	ny;
 	double	i;
 	int		j;
+	int		mapX;
+	int		mapY;
 	t_vec	ray_dir;
 
 	i = -0.33;
@@ -176,10 +178,15 @@ void	draw_rays(t_archive *a)
 
 			if (nx < 0 || ny < 0 || nx > a->width / 2 || ny > a->height)
 				break;
+			mapX = (int)nx;
+			mapY = (int)ny;
+			// printf("%d %d\n", mapX, mapY);
+			if (g_map[mapY/16][mapX/16])
+				break;
 			mlx_pixel_put(a->m.mlx, a->m.win, nx, ny, 0xffff00);
 			j++;
 		}
-		i+=0.01;
+		i += 0.01;
 	}
 }
 
@@ -188,7 +195,7 @@ void	draw_player(t_archive *a)
 	t_img	img1;
 
 	img1 = create_square(a, 5, 5, 0xffff00);
-	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x -2, a->p.pos.y-2);	
+	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x - 2, a->p.pos.y - 2);	
 }
 
 int		main_loop(t_archive *a)

@@ -45,8 +45,8 @@
 
 typedef struct	s_mlx
 {
-	void	*mlx;
-	void	*win;
+	void		*mlx;
+	void		*win;
 }				t_mlx;
 
 typedef struct	s_vec
