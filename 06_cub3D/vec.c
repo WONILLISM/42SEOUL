@@ -36,15 +36,11 @@ t_vec	mul_vector(t_vec v, double k)
 	return (ret);
 }
 
-t_vec	rotate_vec(t_vec v, double angle)
+t_vec	rot_vector(t_vec v, double rs)
 {
 	t_vec	ret;
-	double	cos_angle;
-	double	sin_angle;
 
-	cos_angle = cos(angle);
-	sin_angle = sin(angle);
-	ret.x = cos_angle * v.x - sin_angle * v.y;
-	ret.y = sin_angle * v.x + sin_angle * v.y;
+	ret.x = v.x * cos(rs * DEG2RAD) - v.y * sin(rs * DEG2RAD);
+	ret.y = v.x * sin(rs * DEG2RAD) + v.y * cos(rs * DEG2RAD);
 	return (ret);
 }

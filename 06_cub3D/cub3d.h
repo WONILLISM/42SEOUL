@@ -34,14 +34,15 @@
 # define KEY_ESC 53
 /*************** mac OS key code **************/
 
-# define PI			3.1415926535897
-# define DEG2RAD	PI/180
-# define RAD2DEG	180/PI
 
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
 # include "includes/opengl/mlx.h"
+
+# define FOV		M_PI_2
+# define DEG2RAD	M_PI/180
+# define RAD2DEG	180/M_PI
 
 typedef struct	s_mlx
 {
@@ -70,9 +71,18 @@ typedef struct	s_player
 {
     t_vec		pos;
 	t_vec		dir;
-	t_vec		cam_plane;
-	double		angle;
+	double		move_speed;
+	double		rot_speed;
 }				t_player;
+
+typedef struct	s_screen
+{
+	double		screenX;
+	t_vec		ray;
+	t_vec		plane;
+	t_vec		side;
+	t_vec		delta;
+}				t_screen;
 
 typedef struct	s_key
 {
@@ -91,6 +101,7 @@ typedef struct	s_archive
 
 	t_mlx		m;
     t_player	p;
+	t_screen	s;
 	t_key		key;
 }				t_archive;
 
@@ -98,5 +109,5 @@ t_vec	new_vector(double x, double y);
 t_vec	add_vector(t_vec a, t_vec b);
 t_vec	sub_vector(t_vec a, t_vec b);
 t_vec	mul_vector(t_vec v, double k);
-t_vec	rotate_vec(t_vec v, double angle);
+t_vec	rot_vector(t_vec v, double angle);
 #endif
