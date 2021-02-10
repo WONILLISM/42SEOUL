@@ -40,7 +40,7 @@ t_vec	rot_vector(t_vec v, double rs)
 {
 	t_vec	ret;
 
-	ret.x = v.x * cos(rs * DEG2RAD) - v.y * sin(rs * DEG2RAD);
-	ret.y = v.x * sin(rs * DEG2RAD) + v.y * cos(rs * DEG2RAD);
+	ret.x = v.x * cos(rs ) - v.y * sin(rs );
+	ret.y = v.x * sin(rs ) + v.y * cos(rs );
 	return (ret);
 }

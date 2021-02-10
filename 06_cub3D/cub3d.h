@@ -82,6 +82,7 @@ typedef struct	s_screen
 	t_vec		plane;
 	t_vec		side;
 	t_vec		delta;
+	t_img		view;
 }				t_screen;
 
 typedef struct	s_key
