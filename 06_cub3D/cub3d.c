@@ -115,7 +115,7 @@ void	move_player(t_archive *a)
 	if (a->key.w)
 	{
 		np = add_vector(a->p.pos, mul_vector(a->p.dir, a->p.move_speed));
-		if (g_map[(int)(a->p.pos.y)][(int)(np.x)] != 1) 
+		if (g_map[(int)(a->p.pos.y)][(int)(np.x)] != 1)
 			a->p.pos.x = np.x;
 		if (g_map[(int)(np.y)][(int)(a->p.pos.x)] != 1)
 			a->p.pos.y = np.y;
@@ -129,7 +129,7 @@ void	move_player(t_archive *a)
 			a->p.pos.y = np.y;
 	}
 	else if (a->key.a)
-	{		
+	{
 		a->p.dir = rot_vector(a->p.dir, -1.0f * a->p.rot_speed);
 		a->s.plane = rot_vector(a->s.plane, -1.0f * a->p.rot_speed);
 	}
@@ -140,25 +140,6 @@ void	move_player(t_archive *a)
 	}
 }
 
-t_img	create_square(t_archive *a, int w, int h, int fill)
-{
-	int		i;
-	int		j;
-	t_img	ret;
-
-	ret.ptr = mlx_new_image(a->m.mlx, w, h);
-	ret.addr = (unsigned int *)mlx_get_data_addr(ret.ptr, &ret.bpp, &ret.size_line, &ret.endian);
-
-	i = -1;
-	while (++i < h)
-	{
-		j = -1;
-		while (++j < w)
-			ret.addr[i * w + j] = fill;
-	}
-	return ret;
-}
-
 void	draw_map(t_archive *a)
 {
 	int		i;
@@ -167,7 +148,7 @@ void	draw_map(t_archive *a)
 	int		mapSizeY;
 
 	mapSizeX = a->width/4;
-	mapSizeY = a->height/4; 
+	mapSizeY = a->height/4;
 	i = 0;
 	while (i <= mapSizeY){
 		j = 0;
@@ -176,21 +157,21 @@ void	draw_map(t_archive *a)
 				if (g_map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == 1){
 					// if (!a->s.view.addr[(a->width) * i + j])
 						a->s.view.addr[(a->width) * i + j] = 0x2e3258;
-					// else 
+					// else
 					// 	a->s.view.addr[(a->width) * i + j] = 0x222222;
 				}
 				else if (g_map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == 2){
 					// if (!a->s.view.addr[(a->width) * i + j])
 						a->s.view.addr[(a->width) * i + j] = 0x653865;
-					// else 
+					// else
 					// 	a->s.view.addr[(a->width) * i + j] = 0x111111;
-					// a->s.view.addr[(a->width) * i + j] = 0x653865;			
+					// a->s.view.addr[(a->width) * i + j] = 0x653865;
 				}
 				else
 					a->s.view.addr[(a->width) * i + j] = 0x222222;
 			}
 			else
-				a->s.view.addr[(a->width) * i + j] = 0x444444;
+				a->s.view.addr[(a->width) * i + j] += 0x444444;
 			j++;
 		}
 		i++;
@@ -208,7 +189,7 @@ void	draw_map(t_archive *a)
 
 // void	draw_rays(t_archive *a)
 // {
-// 	double	nx; 
+// 	double	nx;
 // 	double	ny;
 // 	double	i;
 // 	int		j;
@@ -245,109 +226,112 @@ void	draw_map(t_archive *a)
 // 	t_img	img1;
 
 // 	img1 = create_square(a, 5, 5, 0xffff00);
-// 	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x - 2, a->p.pos.y - 2);	
+// 	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x - 2, a->p.pos.y - 2);
 // }
+void	roop_to_wall(t_archive *a)
+{
+	while (!a->s.isHitWall)
+	{
+		if (a->s.side.x < a->s.side.y)
+		{
+			a->s.side.x += a->s.delta.x;
+			a->s.gridX += a->s.cellX;
+			a->s.isHitSide = 0;
+		}
+		else
+		{
+			a->s.side.y += a->s.delta.y;
+			a->s.gridY += a->s.cellY;
+			a->s.isHitSide = 1;
+		}
+		if (g_map[a->s.gridY][a->s.gridX]==1)
+			a->s.isHitWall = 1;
+	}
+}
+int		check_hit(t_archive *a)
+{
+	int color;
 
+	a->s.delta.x = fabs(1 / a->s.ray.x);
+	a->s.delta.y = fabs(1 / a->s.ray.y);
+	a->s.isHitWall = 0;
+	roop_to_wall(a);
+	if (!a->s.isHitSide)
+	{
+		if ((a->s.ray.x < 0 && a->s.ray.y > 0) || (a->s.ray.x < 0 && a->s.ray.y < 0))
+			color = 0xb35f44;
+		else
+			color = 0xfeae51;
+		a->s.distWall = (a->s.gridX - a->p.pos.x + (1 - a->s.cellX) / 2 ) / a->s.ray.x;
+	}
+	else
+	{
+		if ((a->s.ray.x > 0 && a->s.ray.y < 0) || (a->s.ray.x < 0 && a->s.ray.y < 0))
+			color = 0x98b2d1;
+		else
+			color = 0x3078b4;
+		a->s.distWall = (a->s.gridY - a->p.pos.y + (1 - a->s.cellY) / 2 ) / a->s.ray.y;
+	}
+	return (color);
+}
+void	proc_dda(t_archive *a, int x)
+{
+	// 화면의 범위를 -1 ~ 1로 바꿈
+	a->s.screenX = 2 * x / (double)a->width - 1;
+	// 광선 벡터를 구하는 과정
+	a->s.ray = add_vector(a->p.dir, mul_vector(a->s.plane, a->s.screenX));
+	// 현재 플레이어가 지도(g_map) 칸 안에 있는지 확인하기 위함
+	a->s.gridX = (int)(a->p.pos.x);
+	a->s.gridY = (int)(a->p.pos.y);
+	// dda과정
+	if (a->s.ray.x < 0)
+	{
+		a->s.cellX = -1;
+		a->s.side.x = (a->p.pos.x - a->s.gridX) * a->s.delta.x;
+	}
+	else
+	{
+		a->s.cellX = 1;
+		a->s.side.x = (a->s.gridX + 1.0f - a->p.pos.x) * a->s.delta.x;
+	}
+
+	if (a->s.ray.y < 0)
+	{
+		a->s.cellY = -1;
+		a->s.side.y = (a->p.pos.y - a->s.gridY) * a->s.delta.y;
+	}
+	else
+	{
+		a->s.cellY = 1;
+		a->s.side.y = (a->s.gridY + 1.0f - a->p.pos.y) * a->s.delta.y;
+	}
+}
 void	ray_cast(t_archive *a)
 {
 	int		x;
-	int		gridX;
-	int		gridY;
-	int		cellX;
-	int		cellY;
-	int		side;
-	int		isHitWall;
-	double	perpWall;
-	
-	// a->s.view.ptr = mlx_new_image(a->m.mlx, a->width, a->height);
-	// a->s.view.addr = (unsigned int *)mlx_get_data_addr(a->s.view.ptr, &(a->s.view.bpp), &(a->s.view.size_line), &(a->s.view.endian));
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	int		color;
 
 	x = 0;
 	while (x < a->width)
 	{
-		a->s.screenX = 2 * x / (double)a->width - 1;
-		a->s.ray.x = a->p.dir.x + a->s.plane.x * a->s.screenX;
-		a->s.ray.y = a->p.dir.y + a->s.plane.y * a->s.screenX;
-		gridX = (int)(a->p.pos.x);
-		gridY = (int)(a->p.pos.y);
-		a->s.delta.x = fabs(1 / a->s.ray.x);
-		a->s.delta.y = fabs(1 / a->s.ray.y);
-		isHitWall = 0;
-
-		if (a->s.ray.x < 0)
-		{
-			cellX = -1;
-			a->s.side.x = (a->p.pos.x - gridX) * a->s.delta.x;
-		}
-		else
-		{
-			cellX = 1;
-			a->s.side.x = (gridX + 1.0f - a->p.pos.x) * a->s.delta.x;
-		}
-
-		if (a->s.ray.y < 0)
-		{
-			cellY = -1;
-			a->s.side.y = (a->p.pos.y - gridY) * a->s.delta.y;
-		}
-		else
-		{
-			cellY = 1;
-			a->s.side.y = (gridY + 1.0f - a->p.pos.y) * a->s.delta.y;
-		}
-		while (!isHitWall)
-		{
-			if (a->s.side.x < a->s.side.y)
-			{
-				a->s.side.x += a->s.delta.x;
-				gridX += cellX;
-				side = 0;
-			}
-			else
-			{
-				a->s.side.y += a->s.delta.y;
-				gridY += cellY;
-				side = 1;
-			}
-			if (g_map[gridY][gridX]==1)
-				isHitWall = 1;
-		}
-		int color;
-		color = 0xffffff;
-		if (!side)
-		{
-			if ((a->s.ray.x < 0 && a->s.ray.y > 0) || (a->s.ray.x < 0 && a->s.ray.y < 0))
-				color = 0xb35f44;
-			else
-				color = 0xfeae51;
-			perpWall = (gridX - a->p.pos.x + (1 - cellX) / 2 ) / a->s.ray.x;
-		}
-		else
-		{
-			if ((a->s.ray.x > 0 && a->s.ray.y < 0) || (a->s.ray.x < 0 && a->s.ray.y < 0))
-				color = 0x98b2d1;
-			else 
-				color = 0xb3078b4;
-			perpWall = (gridY - a->p.pos.y + (1 - cellY) / 2 ) / a->s.ray.y;
-		}
-		
-		int		lineHeight = (int)(a->height / perpWall);
-
-		int		drawStart = -lineHeight / 2 + a->height / 2;
+		proc_dda(a, x);
+		color = check_hit(a);
+		lineHeight = (int)(a->height / a->s.distWall);
+		drawStart = -lineHeight / 2 + a->height / 2;
+		drawEnd = lineHeight / 2 + a->height / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		int		drawEnd = lineHeight / 2 + a->height / 2;
 		if (drawEnd >= a->height)
 			drawEnd = a->height - 1;
-		// if (side == 1)
-		// 	color /= 2;
 		while (drawStart < drawEnd)
 		{
 			a->s.view.addr[a->width * (drawStart++) + x] = color;
 		}
 		x++;
 	}
-	// mlx_put_image_to_window(a->m.mlx, a->m.win, a->s.view.ptr, 0, 0);
 }
 
 

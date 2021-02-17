@@ -60,11 +60,11 @@ typedef struct		s_img
 	int				w;
 	int				h;
 	int				bpp;	//bit per pixel
-	int				size_line;	
-	int				endian;	
-	void			*ptr;	
-	unsigned int	*addr;	
-}					t_img;	
+	int				size_line;
+	int				endian;
+	void			*ptr;
+	unsigned int	*addr;
+}					t_img;
 
 typedef struct	s_player
 {
@@ -77,11 +77,18 @@ typedef struct	s_player
 typedef struct	s_screen
 {
 	double		screenX;
+	double		distWall;
 	t_vec		ray;
 	t_vec		plane;
 	t_vec		side;
 	t_vec		delta;
 	t_img		view;
+	int			gridX;
+	int			gridY;
+	int			cellX;
+	int			cellY;
+	int			isHitSide;
+	int			isHitWall;
 }				t_screen;
 
 typedef struct	s_key
