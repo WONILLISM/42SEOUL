@@ -1,35 +1,35 @@
 #include "cub3d.h"
 
-// int		g_map[10][10] = {
-// 	{1,1,1,1,1,1,1,1,1,1},
-// 	{1,0,0,0,1,0,0,0,0,1},
-// 	{1,0,0,0,1,0,0,0,0,1},
-// 	{1,1,1,2,1,0,0,0,0,1},
-// 	{1,0,0,0,1,0,0,0,0,1},
-// 	{1,2,1,1,1,0,0,0,0,1},
-// 	{1,0,0,0,1,1,1,1,2,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,1,1,1,1,1,1,1,1,1}
-// };
-
 int		g_map[10][10] = {
 	{1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,1,0,0,0,0,1},
+	{1,0,0,0,1,0,0,0,0,1},
+	{1,1,1,2,1,0,0,0,0,1},
+	{1,0,0,0,1,0,0,0,0,1},
+	{1,2,1,1,1,0,0,0,0,1},
+	{1,0,0,0,1,1,1,1,2,1},
 	{1,0,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,1},
 	{1,1,1,1,1,1,1,1,1,1}
 };
 
+// int		g_map[10][10] = {
+// 	{1,1,1,1,1,1,1,1,1,1},
+// 	{1,0,0,0,0,0,0,0,0,1},
+// 	{1,0,0,0,0,0,0,0,0,1},
+// 	{1,0,0,0,0,0,0,0,0,1},
+// 	{1,0,0,0,0,0,0,0,0,1},
+// 	{1,0,0,0,0,0,0,0,0,1},
+// 	{1,0,0,0,0,0,0,0,0,1},
+// 	{1,0,0,0,0,0,0,0,0,1},
+// 	{1,0,0,0,0,0,0,0,0,1},
+// 	{1,1,1,1,1,1,1,1,1,1}
+// };
+
 void	init_window(t_archive *a)
 {
-	a->width = 500;
-	a->height = 500;
+	a->width = 1000;
+	a->height = 1000;
 	a->m.mlx = mlx_init();
 	a->m.win = mlx_new_window(a->m.mlx, a->width, a->height, "cub3d");
 }
@@ -79,6 +79,12 @@ int		key_pressed(int key, t_key *key_info)
 		key_info->q = 1;
 	else if (key == KEY_E)
 		key_info->e = 1;
+	else if (key == KEY_Z){
+		if (key_info->z == 1)
+			key_info->z = 0;
+		else
+			key_info->z = 1;
+	}
 	else if (key == KEY_ESC)
 		exit(0);
 	return (0);
@@ -134,53 +140,71 @@ void	move_player(t_archive *a)
 	}
 }
 
-// t_img	create_square(t_archive *a, int w, int h, int fill)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_img	ret;
+t_img	create_square(t_archive *a, int w, int h, int fill)
+{
+	int		i;
+	int		j;
+	t_img	ret;
 
-// 	ret.ptr = mlx_new_image(a->m.mlx, w, h);
-// 	ret.addr = (unsigned int *)mlx_get_data_addr(ret.ptr, &ret.bpp, &ret.size_line, &ret.endian);
+	ret.ptr = mlx_new_image(a->m.mlx, w, h);
+	ret.addr = (unsigned int *)mlx_get_data_addr(ret.ptr, &ret.bpp, &ret.size_line, &ret.endian);
 
-// 	i = -1;
-// 	while (++i < h)
-// 	{
-// 		j = -1;
-// 		while (++j < w)
-// 			ret.addr[i * w + j] = fill;
-// 	}
-// 	return ret;
-// }
+	i = -1;
+	while (++i < h)
+	{
+		j = -1;
+		while (++j < w)
+			ret.addr[i * w + j] = fill;
+	}
+	return ret;
+}
 
-// void	draw_grid(t_archive *a)
-// {
-// 	t_img	wall;
-// 	t_img	door;
-// 	t_img	ground;
-// 	int		row_size;
-// 	int		col_size;
-// 	int		i;
-// 	int		j;
+void	draw_map(t_archive *a)
+{
+	int		i;
+	int		j;
+	int		mapSizeX;
+	int		mapSizeY;
 
-// 	row_size = a->height/10;
-// 	col_size = a->width/10;
-// 	wall = create_square(a, col_size-1, row_size-1, 0x2e3258);
-// 	door = create_square(a, col_size-1, row_size-1, 0x653865);
-// 	ground = create_square(a, col_size-1, row_size-1, 0x222222);
-// 	i = -1;
-// 	while (++i < 10)
-// 	{
-// 		j = -1;
-// 		while (++j < 10)
-// 			if (g_map[i][j] == 1)
-// 				mlx_put_image_to_window(a->m.mlx, a->m.win, wall.ptr, j * col_size, i * row_size);
-// 			else if(g_map[i][j] == 2)
-// 				mlx_put_image_to_window(a->m.mlx, a->m.win, door.ptr, j * col_size, i * row_size);
-// 			else if(g_map[i][j] == 0)
-// 				mlx_put_image_to_window(a->m.mlx, a->m.win, ground.ptr, j * col_size, i * row_size);
-// 	}
-// }
+	mapSizeX = a->width/4;
+	mapSizeY = a->height/4; 
+	i = 0;
+	while (i <= mapSizeY){
+		j = 0;
+		while (j <= mapSizeX){
+			if (i % (mapSizeY/10) != 0 && j % (mapSizeY/10) != 0){
+				if (g_map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == 1){
+					// if (!a->s.view.addr[(a->width) * i + j])
+						a->s.view.addr[(a->width) * i + j] = 0x2e3258;
+					// else 
+					// 	a->s.view.addr[(a->width) * i + j] = 0x222222;
+				}
+				else if (g_map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == 2){
+					// if (!a->s.view.addr[(a->width) * i + j])
+						a->s.view.addr[(a->width) * i + j] = 0x653865;
+					// else 
+					// 	a->s.view.addr[(a->width) * i + j] = 0x111111;
+					// a->s.view.addr[(a->width) * i + j] = 0x653865;			
+				}
+				else
+					a->s.view.addr[(a->width) * i + j] = 0x222222;
+			}
+			else
+				a->s.view.addr[(a->width) * i + j] = 0x444444;
+			j++;
+		}
+		i++;
+	}
+	i = -1;
+	while (i < 2){
+		j = -1;
+		while (j < 2){
+			a->s.view.addr[(a->width) * (int)(a->p.pos.y/10 * mapSizeY + i) + (int)(a->p.pos.x/10 * mapSizeX + j)] = 0xffff00;
+			j++;
+		}
+		i++;
+	}
+}
 
 // void	draw_rays(t_archive *a)
 // {
@@ -193,8 +217,8 @@ void	move_player(t_archive *a)
 // 	int		mapY;
 // 	t_vec	ray_dir;
 
-// 	i = -0.68;
-// 	while (i <= 0.68)
+// 	i = -0.25;
+// 	while (i <= 0.25)
 // 	{
 // 		ray_dir.x = a->p.dir.x + i*a->s.plane.x;
 // 		ray_dir.y = a->p.dir.y + i*a->s.plane.y;
@@ -208,12 +232,22 @@ void	move_player(t_archive *a)
 
 // 			if (g_map[mapY/50][mapX/50])
 // 				break;
-// 			mlx_pixel_put(a->m.mlx, a->m.win, nx, ny, 0xffff00);
+// 			a->s.view.addr[a->width * mapY + mapX] = 0xffff00;
+// 			// mlx_pixel_put(a->m.mlx, a->m.win, nx, ny, 0xffff00);
 // 			j++;
 // 		}
-// 		i += 0.03;
+// 		i += 0.01;
 // 	}
 // }
+
+// void	draw_player(t_archive *a)
+// {
+// 	t_img	img1;
+
+// 	img1 = create_square(a, 5, 5, 0xffff00);
+// 	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x - 2, a->p.pos.y - 2);	
+// }
+
 void	ray_cast(t_archive *a)
 {
 	int		x;
@@ -225,11 +259,9 @@ void	ray_cast(t_archive *a)
 	int		isHitWall;
 	double	perpWall;
 	
-	a->s.view.ptr = mlx_new_image(a->m.mlx, a->width, a->height);
-	a->s.view.addr = (unsigned int *)mlx_get_data_addr(a->s.view.ptr, &(a->s.view.bpp), &(a->s.view.size_line), &(a->s.view.endian));
-	// for (int i = 0; i < a->height; i++)
-	// 	for (int j = 0; j < a->width; j++)
-	// 		a->s.view.addr[i * a->width + j] = 0x22ddff;
+	// a->s.view.ptr = mlx_new_image(a->m.mlx, a->width, a->height);
+	// a->s.view.addr = (unsigned int *)mlx_get_data_addr(a->s.view.ptr, &(a->s.view.bpp), &(a->s.view.size_line), &(a->s.view.endian));
+
 	x = 0;
 	while (x < a->width)
 	{
@@ -315,25 +347,22 @@ void	ray_cast(t_archive *a)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(a->m.mlx, a->m.win, a->s.view.ptr, 0, 0);
+	// mlx_put_image_to_window(a->m.mlx, a->m.win, a->s.view.ptr, 0, 0);
 }
 
-// void	draw_player(t_archive *a)
-// {
-// 	t_img	img1;
-
-// 	img1 = create_square(a, 5, 5, 0xffff00);
-// 	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x - 2, a->p.pos.y - 2);	
-// }
 
 int		main_loop(t_archive *a)
 {
 	mlx_clear_window(a->m.mlx, a->m.win);
-	// draw_grid(a);
+	a->s.view.ptr = mlx_new_image(a->m.mlx, a->width, a->height);
+	a->s.view.addr = (unsigned int *)mlx_get_data_addr(a->s.view.ptr, &(a->s.view.bpp), &(a->s.view.size_line), &(a->s.view.endian));
 	// draw_player(a);
 	// draw_rays(a);
 	ray_cast(a);
+	if (a->key.z == 1)
+		draw_map(a);
 	move_player(a);
+	mlx_put_image_to_window(a->m.mlx, a->m.win, a->s.view.ptr, 0, 0);
 	return (0);
 }
 

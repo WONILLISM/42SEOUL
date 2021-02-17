@@ -40,7 +40,6 @@
 # include <stdlib.h>
 # include "includes/opengl/mlx.h"
 
-# define FOV		M_PI_2
 # define DEG2RAD	M_PI/180
 # define RAD2DEG	180/M_PI
 
@@ -93,6 +92,7 @@ typedef struct	s_key
     int			d;
 	int			q;
 	int			e;
+	int			z;
 }				t_key;
 
 typedef struct	s_archive
