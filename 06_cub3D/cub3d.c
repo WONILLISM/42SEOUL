@@ -28,8 +28,8 @@ int		g_map[10][10] = {
 
 void	init_window(t_archive *a)
 {
-	a->width = 1000;
-	a->height = 1000;
+	a->width = 1920;
+	a->height = 1080;
 	a->m.mlx = mlx_init();
 	a->m.win = mlx_new_window(a->m.mlx, a->width, a->height, "cub3d");
 }
@@ -155,23 +155,26 @@ void	draw_map(t_archive *a)
 		while (j <= mapSizeX){
 			if (i % (mapSizeY/10) != 0 && j % (mapSizeY/10) != 0){
 				if (g_map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == 1){
-					// if (!a->s.view.addr[(a->width) * i + j])
+					if (!a->s.view.addr[(a->width) * i + j])
 						a->s.view.addr[(a->width) * i + j] = 0x2e3258;
-					// else
-					// 	a->s.view.addr[(a->width) * i + j] = 0x222222;
+					else
+						a->s.view.addr[(a->width) * i + j] += 0x44000000;
 				}
 				else if (g_map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == 2){
-					// if (!a->s.view.addr[(a->width) * i + j])
+					if (!a->s.view.addr[(a->width) * i + j])
 						a->s.view.addr[(a->width) * i + j] = 0x653865;
-					// else
-					// 	a->s.view.addr[(a->width) * i + j] = 0x111111;
-					// a->s.view.addr[(a->width) * i + j] = 0x653865;
+					else
+						a->s.view.addr[(a->width) * i + j] += 0x44000000;
 				}
 				else
 					a->s.view.addr[(a->width) * i + j] = 0x222222;
 			}
-			else
-				a->s.view.addr[(a->width) * i + j] += 0x444444;
+			else{
+				if (!a->s.view.addr[(a->width) * i + j])
+					a->s.view.addr[(a->width) * i + j] = 0x000000;
+				else
+					a->s.view.addr[(a->width) * i + j] = 0xffffff;
+			}
 			j++;
 		}
 		i++;
@@ -186,48 +189,6 @@ void	draw_map(t_archive *a)
 		i++;
 	}
 }
-
-// void	draw_rays(t_archive *a)
-// {
-// 	double	nx;
-// 	double	ny;
-// 	double	i;
-// 	int		j;
-// 	int		hit;
-// 	int		mapX;
-// 	int		mapY;
-// 	t_vec	ray_dir;
-
-// 	i = -0.25;
-// 	while (i <= 0.25)
-// 	{
-// 		ray_dir.x = a->p.dir.x + i*a->s.plane.x;
-// 		ray_dir.y = a->p.dir.y + i*a->s.plane.y;
-// 		j = 0;
-// 		while (1)
-// 		{
-// 			nx = a->p.pos.x + j * ray_dir.x;
-// 			ny = a->p.pos.y + j * ray_dir.y;
-// 			mapX = (int)nx;
-// 			mapY = (int)ny;
-
-// 			if (g_map[mapY/50][mapX/50])
-// 				break;
-// 			a->s.view.addr[a->width * mapY + mapX] = 0xffff00;
-// 			// mlx_pixel_put(a->m.mlx, a->m.win, nx, ny, 0xffff00);
-// 			j++;
-// 		}
-// 		i += 0.01;
-// 	}
-// }
-
-// void	draw_player(t_archive *a)
-// {
-// 	t_img	img1;
-
-// 	img1 = create_square(a, 5, 5, 0xffff00);
-// 	mlx_put_image_to_window(a->m.mlx, a->m.win, img1.ptr, a->p.pos.x - 2, a->p.pos.y - 2);
-// }
 void	roop_to_wall(t_archive *a)
 {
 	while (!a->s.isHitWall)
@@ -274,6 +235,7 @@ int		check_hit(t_archive *a)
 	}
 	return (color);
 }
+int i = 0;
 void	proc_dda(t_archive *a, int x)
 {
 	// 화면의 범위를 -1 ~ 1로 바꿈
