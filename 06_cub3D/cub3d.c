@@ -28,8 +28,8 @@ int		g_map[10][10] = {
 
 void	init_window(t_archive *a)
 {
-	a->width = 1920;
-	a->height = 1080;
+	a->width = 800;
+	a->height = 800;
 	a->m.mlx = mlx_init();
 	a->m.win = mlx_new_window(a->m.mlx, a->width, a->height, "cub3d");
 }
@@ -85,6 +85,8 @@ int		key_pressed(int key, t_key *key_info)
 		else
 			key_info->z = 1;
 	}
+	else if (key == KEY_SHIFT)
+		key_info->sft = 1;
 	else if (key == KEY_ESC)
 		exit(0);
 	return (0);
@@ -104,6 +106,8 @@ int		key_released(int key, t_key *key_info)
 		key_info->q = 0;
 	else if (key == KEY_E)
 		key_info->e = 0;
+	else if (key == KEY_SHIFT)
+		key_info->sft = 0;
 	return (0);
 }
 
@@ -112,6 +116,10 @@ void	move_player(t_archive *a)
 	t_vec	np;
 	t_vec	nd;
 
+	// if (a->key.sft)
+	// 	a->p.move_speed = 0.075;
+	// else
+	// 	a->p.move_speed = 0.05;
 	if (a->key.w)
 	{
 		np = add_vector(a->p.pos, mul_vector(a->p.dir, a->p.move_speed));
@@ -172,8 +180,8 @@ void	draw_map(t_archive *a)
 			else{
 				if (!a->s.view.addr[(a->width) * i + j])
 					a->s.view.addr[(a->width) * i + j] = 0x000000;
-				else
-					a->s.view.addr[(a->width) * i + j] = 0xffffff;
+				// else
+					// a->s.view.addr[(a->width) * i + j] = 0xffffff;
 			}
 			j++;
 		}
@@ -235,7 +243,6 @@ int		check_hit(t_archive *a)
 	}
 	return (color);
 }
-int i = 0;
 void	proc_dda(t_archive *a, int x)
 {
 	// 화면의 범위를 -1 ~ 1로 바꿈
@@ -277,6 +284,8 @@ void	ray_cast(t_archive *a)
 	int		color;
 
 	x = 0;
+	int i = 0;
+	if (i == 1) exit(0);
 	while (x < a->width)
 	{
 		proc_dda(a, x);
@@ -293,6 +302,8 @@ void	ray_cast(t_archive *a)
 			a->s.view.addr[a->width * (drawStart++) + x] = color;
 		}
 		x++;
+		// printf("%lf\n", a->s.distWall);
+		i++;
 	}
 }
 
