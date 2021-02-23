@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int		g_map[10][10] = {
 	{1,1,1,1,1,1,1,1,1,1},
@@ -305,6 +305,7 @@ void	ray_cast(t_archive *a)
 		// printf("%lf\n", a->s.distWall);
 		i++;
 	}
+
 }
 
 
@@ -313,27 +314,40 @@ int		main_loop(t_archive *a)
 	mlx_clear_window(a->m.mlx, a->m.win);
 	a->s.view.ptr = mlx_new_image(a->m.mlx, a->width, a->height);
 	a->s.view.addr = (unsigned int *)mlx_get_data_addr(a->s.view.ptr, &(a->s.view.bpp), &(a->s.view.size_line), &(a->s.view.endian));
-	// draw_player(a);
-	// draw_rays(a);
 	ray_cast(a);
 	if (a->key.z == 1)
 		draw_map(a);
 	move_player(a);
 	mlx_put_image_to_window(a->m.mlx, a->m.win, a->s.view.ptr, 0, 0);
+	// a->s.view.ptr = mlx_xpm_file_to_image(a->m.mlx, "wall.xpm", &a->s.view.w, &a->s.view.h);
+	// a->s.view.addr = (unsigned int *)mlx_get_data_addr(a->s.view.ptr, &a->s.view.bpp, &a->s.view.size_line, &a->s.view.endian);
+	// mlx_put_image_to_window(a->m.mlx, a->m.win, a->s.view.ptr, 0,0);
 	return (0);
 }
 
-int	 main(void)
+int	 cub3d(t_data *d)
 {
-	t_archive	archive;
+	init_window(&d->a);
+	init_player(&d->a.p);
+	init_screen(&d->a.s);
 
-	init_window(&archive);
-	init_player(&archive.p);
-	init_screen(&archive.s);
-
-	mlx_hook(archive.m.win, 2, 1, key_pressed, &(archive.key));
-	mlx_hook(archive.m.win, 3, 2, key_released, &(archive.key));
-	mlx_loop_hook(archive.m.mlx, main_loop, &archive);
-	mlx_loop(archive.m.mlx);
+	mlx_hook(d->a.m.win, 2, 1, key_pressed, &(d->a.key));
+	mlx_hook(d->a.m.win, 3, 2, key_released, &(d->a.key));
+	mlx_loop_hook(d->a.m.mlx, main_loop, &d->a);
+	mlx_loop(d->a.m.mlx);
 	return (0);
 }
+// int	 main(void)
+// {
+// 	t_archive	archive;
+
+// 	init_window(&archive);
+// 	init_player(&archive.p);
+// 	init_screen(&archive.s);
+
+// 	mlx_hook(archive.m.win, 2, 1, key_pressed, &(archive.key));
+// 	mlx_hook(archive.m.win, 3, 2, key_released, &(archive.key));
+// 	mlx_loop_hook(archive.m.mlx, main_loop, &archive);
+// 	mlx_loop(archive.m.mlx);
+// 	return (0);
+// }

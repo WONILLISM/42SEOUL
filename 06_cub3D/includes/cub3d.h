@@ -4,9 +4,9 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
-# include "includes/opengl/mlx.h"
+# include "opengl/mlx.h"
 # include "key.h"
-# include "GNL/get_next_line_bonus.h"
+# include "../GNL/get_next_line_bonus.h"
 # define DEG2RAD	M_PI/180
 # define RAD2DEG	180/M_PI
 
@@ -31,6 +31,7 @@ typedef struct		s_img
 	int				endian;
 	void			*ptr;
 	unsigned int	*addr;
+	char			*path;
 }					t_img;
 
 typedef struct	s_player
@@ -84,6 +85,14 @@ typedef struct	s_archive
 typedef struct	s_data
 {
 	t_archive	a;
+	t_img		north_img;
+	t_img		south_img;
+	t_img		west_img;
+	t_img		east_img;
+	t_img		floor_img;
+	t_img		ceil_img;
+	t_img		sprite_img;
+	char		**map;
 }				t_data;
 
 t_vec	new_vector(double x, double y);
@@ -93,5 +102,5 @@ t_vec	mul_vector(t_vec v, double k);
 t_vec	rot_vector(t_vec v, double angle);
 
 
-int	 cub3d(t_data *data);
+int	 cub3d(t_data *d);
 #endif
