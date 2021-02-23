@@ -28,7 +28,7 @@ struct ContentView: View {
                 }
                 .tag(Tab.search)
         }
-    }
+    }	
 }
 
 struct ContentView_Previews: PreviewProvider {
