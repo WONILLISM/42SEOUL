@@ -7,6 +7,7 @@
 # include "opengl/mlx.h"
 # include "key.h"
 # include "../GNL/get_next_line_bonus.h"
+# include "../Libft/libft.h"
 # define DEG2RAD	M_PI/180
 # define RAD2DEG	180/M_PI
 

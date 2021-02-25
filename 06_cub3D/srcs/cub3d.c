@@ -28,8 +28,6 @@ int		g_map[10][10] = {
 
 void	init_window(t_archive *a)
 {
-	a->width = 800;
-	a->height = 800;
 	a->m.mlx = mlx_init();
 	a->m.win = mlx_new_window(a->m.mlx, a->width, a->height, "cub3d");
 }
@@ -284,8 +282,6 @@ void	ray_cast(t_archive *a)
 	int		color;
 
 	x = 0;
-	int i = 0;
-	if (i == 1) exit(0);
 	while (x < a->width)
 	{
 		proc_dda(a, x);
@@ -303,9 +299,7 @@ void	ray_cast(t_archive *a)
 		}
 		x++;
 		// printf("%lf\n", a->s.distWall);
-		i++;
 	}
-
 }
 
 
