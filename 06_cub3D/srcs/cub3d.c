@@ -41,20 +41,20 @@ void	init_keys(t_key *key)
 	key->q = 0;
 	key->e = 0;
 }
-void	init_player(t_player *p)
-{
-	p->pos.x = 1.5f;
-	p->pos.y = 1.5f;
-	p->move_speed = 0.05f;
-	p->rot_speed = 0.02f;
-	p->dir.x = 0.0f;
-	p->dir.y = 1.0f;
-}
+// void	init_player(t_player *p)
+// {
+// 	p->pos.x = 8.5f;
+// 	p->pos.y = 8.5f;
+// 	p->move_speed = 0.05f;
+// 	p->rot_speed = 0.02f;
+// 	p->dir.x = 0.0f;
+// 	p->dir.y = 1.0f;
+// }
 
 void	init_screen(t_screen *s)
 {
-	s->plane.x = -0.6f;
-	s->plane.y = 0.0f;
+	s->plane.x = 0.0f;
+	s->plane.y = -0.66f;
 	s->delta.x = 0.0f;
 	s->delta.y = 0.0f;
 	s->ray.x = 0.0f;
@@ -114,24 +114,20 @@ void	move_player(t_archive *a)
 	t_vec	np;
 	t_vec	nd;
 
-	// if (a->key.sft)
-	// 	a->p.move_speed = 0.075;
-	// else
-	// 	a->p.move_speed = 0.05;
 	if (a->key.w)
 	{
 		np = add_vector(a->p.pos, mul_vector(a->p.dir, a->p.move_speed));
-		if (g_map[(int)(a->p.pos.y)][(int)(np.x)] != 1)
+		if (a->map[(int)(a->p.pos.y)][(int)(np.x)] != '1')
 			a->p.pos.x = np.x;
-		if (g_map[(int)(np.y)][(int)(a->p.pos.x)] != 1)
+		if (a->map[(int)(np.y)][(int)(a->p.pos.x)] != '1')
 			a->p.pos.y = np.y;
 	}
 	else if (a->key.s)
 	{
 		np = add_vector(a->p.pos, mul_vector(a->p.dir, -1 * a->p.move_speed));
-		if (g_map[(int)(a->p.pos.y)][(int)(np.x)] != 1)
+		if (a->map[(int)(a->p.pos.y)][(int)(np.x)] != '1')
 			a->p.pos.x = np.x;
-		if (g_map[(int)(np.y)][(int)(a->p.pos.x)] != 1)
+		if (a->map[(int)(np.y)][(int)(a->p.pos.x)] != '1')
 			a->p.pos.y = np.y;
 	}
 	else if (a->key.a)
@@ -160,13 +156,13 @@ void	draw_map(t_archive *a)
 		j = 0;
 		while (j <= mapSizeX){
 			if (i % (mapSizeY/10) != 0 && j % (mapSizeY/10) != 0){
-				if (g_map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == 1){
+				if (a->map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == '1'){
 					if (!a->s.view.addr[(a->width) * i + j])
 						a->s.view.addr[(a->width) * i + j] = 0x2e3258;
 					else
 						a->s.view.addr[(a->width) * i + j] += 0x44000000;
 				}
-				else if (g_map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == 2){
+				else if (a->map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == '2'){
 					if (!a->s.view.addr[(a->width) * i + j])
 						a->s.view.addr[(a->width) * i + j] = 0x653865;
 					else
@@ -195,7 +191,27 @@ void	draw_map(t_archive *a)
 		i++;
 	}
 }
-void	roop_to_wall(t_archive *a)
+void	set_floor_ceil(t_data *d)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < d->a.height)
+	{
+		j = 0;
+		while (j < d->a.width)
+		{
+			if (i > d->a.height / 2)
+				d->a.s.view.addr[(d->a.width) * i + j] = 0xffffff;
+			else
+				d->a.s.view.addr[(d->a.width) * i + j] = 0x3c3c64;
+			j++;
+		}
+		i++;
+	}
+}
+void	loop_to_wall(t_archive *a)
 {
 	while (!a->s.isHitWall)
 	{
@@ -211,7 +227,7 @@ void	roop_to_wall(t_archive *a)
 			a->s.gridY += a->s.cellY;
 			a->s.isHitSide = 1;
 		}
-		if (g_map[a->s.gridY][a->s.gridX]==1)
+		if (a->map[a->s.gridY][a->s.gridX]=='1')
 			a->s.isHitWall = 1;
 	}
 }
@@ -222,7 +238,7 @@ int		check_hit(t_archive *a)
 	a->s.delta.x = fabs(1 / a->s.ray.x);
 	a->s.delta.y = fabs(1 / a->s.ray.y);
 	a->s.isHitWall = 0;
-	roop_to_wall(a);
+	loop_to_wall(a);
 	if (!a->s.isHitSide)
 	{
 		if ((a->s.ray.x < 0 && a->s.ray.y > 0) || (a->s.ray.x < 0 && a->s.ray.y < 0))
@@ -298,32 +314,30 @@ void	ray_cast(t_archive *a)
 			a->s.view.addr[a->width * (drawStart++) + x] = color;
 		}
 		x++;
-		// printf("%lf\n", a->s.distWall);
 	}
 }
 
 
-int		main_loop(t_archive *a)
+int		main_loop(t_data *d)
 {
-	mlx_clear_window(a->m.mlx, a->m.win);
-	a->s.view.ptr = mlx_new_image(a->m.mlx, a->width, a->height);
-	a->s.view.addr = (unsigned int *)mlx_get_data_addr(a->s.view.ptr, &(a->s.view.bpp), &(a->s.view.size_line), &(a->s.view.endian));
-	ray_cast(a);
-	if (a->key.z == 1)
-		draw_map(a);
-	move_player(a);
-	mlx_put_image_to_window(a->m.mlx, a->m.win, a->s.view.ptr, 0, 0);
-	// a->s.view.ptr = mlx_xpm_file_to_image(a->m.mlx, "wall.xpm", &a->s.view.w, &a->s.view.h);
-	// a->s.view.addr = (unsigned int *)mlx_get_data_addr(a->s.view.ptr, &a->s.view.bpp, &a->s.view.size_line, &a->s.view.endian);
-	// mlx_put_image_to_window(a->m.mlx, a->m.win, a->s.view.ptr, 0,0);
+	mlx_clear_window(d->a.m.mlx, d->a.m.win);
+	d->a.s.view.ptr = mlx_new_image(d->a.m.mlx, d->a.width, d->a.height);
+	d->a.s.view.addr = (unsigned int *)mlx_get_data_addr(d->a.s.view.ptr, &(d->a.s.view.bpp), &(d->a.s.view.size_line), &(d->a.s.view.endian));
+	set_floor_ceil(d);
+	ray_cast(&d->a);
+	if (d->a.key.z == 1)
+		draw_map(&d->a);
+	move_player(&d->a);
+	mlx_put_image_to_window(d->a.m.mlx, d->a.m.win, d->a.s.view.ptr, 0, 0);
 	return (0);
 }
 
 int	 cub3d(t_data *d)
 {
 	init_window(&d->a);
-	init_player(&d->a.p);
+	// init_player(&d->a.p);
 	init_screen(&d->a.s);
+	init_keys(&d->a.key);
 
 	mlx_hook(d->a.m.win, 2, 1, key_pressed, &(d->a.key));
 	mlx_hook(d->a.m.win, 3, 2, key_released, &(d->a.key));

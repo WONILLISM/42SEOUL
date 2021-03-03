@@ -10,8 +10,6 @@
 # include "../Libft/libft.h"
 # define DEG2RAD		M_PI/180
 # define RAD2DEG		180/M_PI
-# define TEXTURE_SPEC	"EA NO WE SO F C S R"
-# define MAP_SPEC		"012 "
 
 typedef struct	s_mlx
 {
@@ -83,6 +81,9 @@ typedef struct	s_archive
     t_player	p;
 	t_screen	s;
 	t_key		key;
+	char		**map;
+	int			row_size;
+	int			col_size;
 }				t_archive;
 
 typedef struct	s_data
@@ -93,7 +94,6 @@ typedef struct	s_data
 	t_img		west_img;
 	t_img		east_img;
 	t_img		sprite_img;
-	char		**map;
 }				t_data;
 
 t_vec	new_vector(double x, double y);

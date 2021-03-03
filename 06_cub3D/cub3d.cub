@@ -4,10 +4,10 @@ NO ./assets/textures/north.xpm
 SO ./assets/textures/south.xpm
 WE ./assets/textures/west.xpm
 EA ./assets/textures/east.xpm
-
 S ./assets/textures/sprite.xpm
-F ./assets/textures/floor.xpm
-C ./assets/textures/ceil.xpm
+
+F 255,255,255
+C 60,60,100
 
      11111
      10001
@@ -15,7 +15,7 @@ C ./assets/textures/ceil.xpm
 1111110001
 1000000001
 1001100001
-1000000111
+1000000101
 1011100001
-101 100001
+101 1000W1
 111 111111
