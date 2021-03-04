@@ -1,21 +1,20 @@
-R 800 800
+R 1000 1000
 
-NO ./assets/textures/north.xpm
-SO ./assets/textures/south.xpm
-WE ./assets/textures/west.xpm
-EA ./assets/textures/east.xpm
-S ./assets/textures/sprite.xpm
+NO ./assets/textures/wall_n.xpm
+SO ./assets/textures/wall_s.xpm
+WE ./assets/textures/wall_w.xpm
+EA ./assets/textures/wall_e.xpm
 
 F 255,255,255
 C 60,60,100
 
-     11111
-     10001
-     10101
+1111111111
+1000010001
+1000000101
 1111110001
 1000000001
 1001100001
 1000000101
 1011100001
-101 1000W1
+101 1000N1
 111 111111

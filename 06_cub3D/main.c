@@ -18,59 +18,59 @@ int		is_valid_map(t_data *d)
 
 void	init_player(t_data *d)
 {
-	// int		i;
-	// int		j;
+	int		i;
+	int		j;
 
-	// i = 0;
-	// while (i < d->a.row_size)
-	// {
-	// 	j = 0;
-	// 	while (j < d->a.col_size)
-	// 	{
-	// 		if (d->a.map[i][j] == 'N')
-	// 		{
-	// 			d->a.p.pos.x = j + 0.5;
-	// 			d->a.p.pos.y = i + 0.5;
-	// 			d->a.p.dir.x = 0;
-	// 			d->a.p.dir.y = -1;
-	// 			d->a.s.plane.x = 0.66;
-	// 			d->a.s.plane.y = 0;
-	// 		}
-	// 		else if (d->a.map[i][j] == 'E')
-	// 		{
-	// 			d->a.p.pos.x = j + 0.5;
-	// 			d->a.p.pos.y = i + 0.5;
-	// 			d->a.p.dir.x = 1.0;
-	// 			d->a.p.dir.y = 0;
-	// 			d->a.s.plane.x = 0;
-	// 			d->a.s.plane.y = 0.66;
-	// 		}
-	// 		else if (d->a.map[i][j] == 'W')
-	// 		{
-	// 			d->a.p.pos.x = j + 0.5;
-	// 			d->a.p.pos.y = i + 0.5;
-	// 			d->a.p.dir.x = -1.0;
-	// 			d->a.p.dir.y = 0;
-	// 			d->a.s.plane.x = 0;
-	// 			d->a.s.plane.y = -0.66;
-	// 		}
-	// 		else if (d->a.map[i][j] == 'S')
-	// 		{
-	// 			d->a.p.pos.x = j + 0.5;
-	// 			d->a.p.pos.y = i + 0.5;
-	// 			d->a.p.dir.x = 0;
-	// 			d->a.p.dir.y = 1;
-	// 			d->a.s.plane.x = -0.66;
-	// 			d->a.s.plane.y = 0;
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	d->a.p.pos.x = 8.1f;
-	d->a.p.pos.y = 8.1f;
-	d->a.p.dir.x = -1.0f;
-	d->a.p.dir.y = 0.0f;
+	i = 0;
+	while (i < d->a.row_size)
+	{
+		j = 0;
+		while (j < d->a.col_size)
+		{
+			if (d->a.map[i][j] == 'N')
+			{
+				d->a.p.pos.x = j + 0.5;
+				d->a.p.pos.y = i + 0.5;
+				d->a.p.dir.x = 0;
+				d->a.p.dir.y = -1;
+				d->a.s.plane.x = 0.66;
+				d->a.s.plane.y = 0;
+			}
+			else if (d->a.map[i][j] == 'E')
+			{
+				d->a.p.pos.x = j + 0.5;
+				d->a.p.pos.y = i + 0.5;
+				d->a.p.dir.x = 1.0;
+				d->a.p.dir.y = 0;
+				d->a.s.plane.x = 0;
+				d->a.s.plane.y = 0.66;
+			}
+			else if (d->a.map[i][j] == 'W')
+			{
+				d->a.p.pos.x = j + 0.5;
+				d->a.p.pos.y = i + 0.5;
+				d->a.p.dir.x = -1.0;
+				d->a.p.dir.y = 0;
+				d->a.s.plane.x = 0;
+				d->a.s.plane.y = -0.66;
+			}
+			else if (d->a.map[i][j] == 'S')
+			{
+				d->a.p.pos.x = j + 0.5;
+				d->a.p.pos.y = i + 0.5;
+				d->a.p.dir.x = 0;
+				d->a.p.dir.y = 1;
+				d->a.s.plane.x = -0.66;
+				d->a.s.plane.y = 0;
+			}
+			j++;
+		}
+		i++;
+	}
+	// d->a.p.pos.x = 8.1f;
+	// d->a.p.pos.y = 8.1f;
+	// d->a.p.dir.x = -1.0f;
+	// d->a.p.dir.y = 0.0f;
 	d->a.p.move_speed = 0.05f;
 	d->a.p.rot_speed = 0.02f;
 }
@@ -180,7 +180,27 @@ int		parse_color(char **res)
 	while (++i < 3)
 		color += ft_atoi(tmp[i]) << ((2 - i) * 8);
 	free_split(tmp);
-	return (0);
+	return (color);
+}
+
+void	set_texture(t_data *d, char *s, int *ret)
+{
+	t_img	img;
+	int		i;
+	int		j;
+
+	img.ptr = mlx_xpm_file_to_image(d->a.m.mlx, s, &img.w, &img.h);
+	img.addr = (unsigned int *)mlx_get_data_addr(img.ptr, &img.bpp, &img.size_line, &img.endian);
+	ret = (int *)malloc(sizeof(int) * img.w * img.h);
+	i = -1;
+	while (++i < img.h)
+	{
+		j = -1;
+		while (++j < img.w)
+			ret[img.w * i + j] = img.addr[img.w * i + j];
+	}
+	printf("%d\n", ret[0]);
+	mlx_destroy_image(d->a.m.mlx, img.ptr);
 }
 
 int		parse_info(t_data *game_d, char *line)
@@ -193,19 +213,19 @@ int		parse_info(t_data *game_d, char *line)
 	if (ft_strncmp("R", res[0],ft_strlen("R")) == 0)
 		parse_resolution(res, game_d);
 	else if (ft_strncmp("NO", res[0], ft_strlen("NO")) == 0)
-		game_d->north_img.path = res[1];
+		set_texture(game_d, res[1], game_d->north);
 	else if (ft_strncmp("SO", res[0], ft_strlen("SO")) == 0)
-		game_d->south_img.path = res[1];
+		set_texture(game_d, res[1], game_d->south);
 	else if (ft_strncmp("WE", res[0], ft_strlen("WE")) == 0)
-		game_d->west_img.path = res[1];
+		set_texture(game_d, res[1], game_d->west);
 	else if (ft_strncmp("EA", res[0], ft_strlen("EA")) == 0)
-		game_d->east_img.path = res[1];
+		set_texture(game_d, res[1], game_d->east);
 	else if (ft_strncmp("S", res[0], ft_strlen("S")) == 0)
-		game_d->sprite_img.path = res[1];
+		set_texture(game_d, res[1], game_d->sprite);
 	else if (ft_strncmp("C", res[0], ft_strlen("C")) == 0)
-		parse_color(res);
+		game_d->ceil_color = parse_color(res);
 	else if (ft_strncmp("F", res[0], ft_strlen("F")) == 0)
-		parse_color(res);
+		game_d->floor_color = parse_color(res);
 	else
 	{
 		free_split(res);
@@ -239,7 +259,6 @@ int		parse_data(char *path, t_data *game_d)
 			break ;
 	}
 	game_d->a.map = lst2arr(game_d, map_lst);
-	printf("%d\n", is_valid_map(game_d));
 	close(fd);
 	return (0);
 }
@@ -248,7 +267,10 @@ int		main(void)
 {
 	t_data		data;
 
+	data.a.m.mlx = mlx_init();
+	data.a.m.win = mlx_new_window(data.a.m.mlx, data.a.width, data.a.height, "cub3d");
 	parse_data("./cub3d.cub", &data);
+	// printf("%d\n", data.north[0]);
 	init_player(&data);
 	cub3d(&data);
 	return (0);

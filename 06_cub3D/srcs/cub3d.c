@@ -53,8 +53,8 @@ void	init_keys(t_key *key)
 
 void	init_screen(t_screen *s)
 {
-	s->plane.x = 0.0f;
-	s->plane.y = -0.66f;
+	// s->plane.x = 0.0f;
+	// s->plane.y = -0.66f;
 	s->delta.x = 0.0f;
 	s->delta.y = 0.0f;
 	s->ray.x = 0.0f;
@@ -203,9 +203,9 @@ void	set_floor_ceil(t_data *d)
 		while (j < d->a.width)
 		{
 			if (i > d->a.height / 2)
-				d->a.s.view.addr[(d->a.width) * i + j] = 0xffffff;
+				d->a.s.view.addr[(d->a.width) * i + j] = d->floor_color;
 			else
-				d->a.s.view.addr[(d->a.width) * i + j] = 0x3c3c64;
+				d->a.s.view.addr[(d->a.width) * i + j] = d->ceil_color;
 			j++;
 		}
 		i++;
@@ -231,6 +231,7 @@ void	loop_to_wall(t_archive *a)
 			a->s.isHitWall = 1;
 	}
 }
+
 int		check_hit(t_archive *a)
 {
 	int color;
@@ -241,17 +242,17 @@ int		check_hit(t_archive *a)
 	loop_to_wall(a);
 	if (!a->s.isHitSide)
 	{
-		if ((a->s.ray.x < 0 && a->s.ray.y > 0) || (a->s.ray.x < 0 && a->s.ray.y < 0))
+		if (a->s.ray.x > 0)		//동
 			color = 0xb35f44;
-		else
+		else					//서
 			color = 0xfeae51;
 		a->s.distWall = (a->s.gridX - a->p.pos.x + (1 - a->s.cellX) / 2 ) / a->s.ray.x;
 	}
 	else
 	{
-		if ((a->s.ray.x > 0 && a->s.ray.y < 0) || (a->s.ray.x < 0 && a->s.ray.y < 0))
+		if (a->s.ray.y > 0)		//남
 			color = 0x98b2d1;
-		else
+		else					//북
 			color = 0x3078b4;
 		a->s.distWall = (a->s.gridY - a->p.pos.y + (1 - a->s.cellY) / 2 ) / a->s.ray.y;
 	}
@@ -317,7 +318,6 @@ void	ray_cast(t_archive *a)
 	}
 }
 
-
 int		main_loop(t_data *d)
 {
 	mlx_clear_window(d->a.m.mlx, d->a.m.win);
@@ -338,7 +338,7 @@ int	 cub3d(t_data *d)
 	// init_player(&d->a.p);
 	init_screen(&d->a.s);
 	init_keys(&d->a.key);
-
+	// xpm2img(d);
 	mlx_hook(d->a.m.win, 2, 1, key_pressed, &(d->a.key));
 	mlx_hook(d->a.m.win, 3, 2, key_released, &(d->a.key));
 	mlx_loop_hook(d->a.m.mlx, main_loop, &d->a);

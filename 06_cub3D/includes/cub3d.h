@@ -89,11 +89,13 @@ typedef struct	s_archive
 typedef struct	s_data
 {
 	t_archive	a;
-	t_img		north_img;
-	t_img		south_img;
-	t_img		west_img;
-	t_img		east_img;
-	t_img		sprite_img;
+	int		*north;
+	int		*south;
+	int		*west;
+	int		*east;
+	int		*sprite;
+	int			floor_color;
+	int			ceil_color;
 }				t_data;
 
 t_vec	new_vector(double x, double y);
@@ -102,6 +104,7 @@ t_vec	sub_vector(t_vec a, t_vec b);
 t_vec	mul_vector(t_vec v, double k);
 t_vec	rot_vector(t_vec v, double angle);
 
+void	xpm2img(t_data *game_d);
 
 int	 cub3d(t_data *d);
 #endif
