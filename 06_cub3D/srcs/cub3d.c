@@ -15,20 +15,9 @@ void	init_keys(t_key *key)
 	key->q = 0;
 	key->e = 0;
 }
-// void	init_player(t_player *p)
-// {
-// 	p->pos.x = 8.5f;
-// 	p->pos.y = 8.5f;
-// 	p->move_speed = 0.05f;
-// 	p->rot_speed = 0.02f;
-// 	p->dir.x = 0.0f;
-// 	p->dir.y = 1.0f;
-// }
 
 void	init_screen(t_screen *s)
 {
-	// s->plane.x = 0.0f;
-	// s->plane.y = -0.66f;
 	s->delta.x = 0.0f;
 	s->delta.y = 0.0f;
 	s->ray.x = 0.0f;
@@ -256,25 +245,21 @@ int		check_hit(t_data *d, int x)
 	a->s.delta.y = fabs(1 / a->s.ray.y);
 	a->s.isHitWall = 0;
 	loop_to_wall(a);
-	if (!a->s.isHitSide)//좌 우
+	if (!a->s.isHitSide)
 	{
-		if (a->s.ray.x > 0){		//동
+		if (a->s.ray.x > 0){
 			draw_texture(a, d->east, x);
-			// color = 0xb35f44;
 		}
-		else					//서
+		else
 			draw_texture(a, d->west, x);
-			// color = 0xffffff;
 		a->s.distWall = (a->s.gridX - a->p.pos.x + (1 - a->s.cellX) / 2 ) / a->s.ray.x;
 	}
-	else// 위 아래
+	else
 	{
-		if (a->s.ray.y > 0)		//남
+		if (a->s.ray.y > 0)
 			draw_texture(a, d->south,x);
-			// color = 0xffffff;
-		else					//북
+		else
 			draw_texture(a, d->north, x);
-			// color = 0xffffff;
 		a->s.distWall = (a->s.gridY - a->p.pos.y + (1 - a->s.cellY) / 2 ) / a->s.ray.y;
 	}
 	return (color);
@@ -285,7 +270,6 @@ void	proc_dda(t_archive *a, int x)
 	a->s.ray = add_vector(a->p.dir, mul_vector(a->s.plane, a->s.screenX));
 	a->s.gridX = (int)(a->p.pos.x);
 	a->s.gridY = (int)(a->p.pos.y);
-	// printf("%f %f\n", a->s.ray.x, a->s.ray.y);
 	if (a->s.ray.x < 0)
 	{
 		a->s.cellX = -1;
@@ -312,9 +296,6 @@ void	ray_cast(t_data *d)
 {
 	t_archive	*a;
 	int			x;
-	// int			lineHeight;
-	// int			drawStart;
-	// int			drawEnd;
 	int			color;
 
 	a = &d->a;
@@ -323,18 +304,6 @@ void	ray_cast(t_data *d)
 	{
 		proc_dda(a, x);
 		color = check_hit(d, x);
-		// lineHeight = (int)(a->height / a->s.distWall);
-		// drawStart = -lineHeight / 2 + a->height / 2;
-		// drawEnd = lineHeight / 2 + a->height / 2;
-		// if (drawStart < 0)
-		// 	drawStart = 0;
-		// if (drawEnd >= a->height)
-		// 	drawEnd = a->height - 1;
-		// while (drawStart < drawEnd)
-		// {
-		// 	a->s.view.addr[a->width * (drawStart++) + x] = color;
-		// }
-		// x++;
 		x++;
 	}
 }
@@ -356,27 +325,11 @@ int		main_loop(t_data *d)
 int	 cub3d(t_data *d)
 {
 	init_window(&d->a);
-	// init_player(&d->a.p);
 	init_screen(&d->a.s);
 	init_keys(&d->a.key);
-	// xpm2img(d);
 	mlx_hook(d->a.m.win, 2, 1, key_pressed, &(d->a.key));
 	mlx_hook(d->a.m.win, 3, 2, key_released, &(d->a.key));
 	mlx_loop_hook(d->a.m.mlx, main_loop, &d->a);
 	mlx_loop(d->a.m.mlx);
 	return (0);
 }
-// int	 main(void)
-// {
-// 	t_archive	archive;
-
-// 	init_window(&archive);
-// 	init_player(&archive.p);
-// 	init_screen(&archive.s);
-
-// 	mlx_hook(archive.m.win, 2, 1, key_pressed, &(archive.key));
-// 	mlx_hook(archive.m.win, 3, 2, key_released, &(archive.key));
-// 	mlx_loop_hook(archive.m.mlx, main_loop, &archive);
-// 	mlx_loop(archive.m.mlx);
-// 	return (0);
-// }

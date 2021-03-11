@@ -271,7 +271,6 @@ int		main(void)
 	data.a.m.mlx = mlx_init();
 	data.a.m.win = mlx_new_window(data.a.m.mlx, data.a.width, data.a.height, "cub3d");
 	parse_data("./cub3d.cub", &data);
-	// printf("%d\n", data.north[0]);
 	init_player(&data);
 	cub3d(&data);
 	return (0);
