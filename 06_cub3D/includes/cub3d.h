@@ -94,8 +94,8 @@ typedef struct	s_data
 	int		*west;
 	int		*east;
 	int		*sprite;
-	int			floor_color;
-	int			ceil_color;
+	int		floor_color;
+	int		ceil_color;
 }				t_data;
 
 t_vec	new_vector(double x, double y);
