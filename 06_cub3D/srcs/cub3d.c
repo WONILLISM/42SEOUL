@@ -1,31 +1,5 @@
 #include "../includes/cub3d.h"
 
-int		g_map[10][10] = {
-	{1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,1,0,0,0,0,1},
-	{1,0,0,0,1,0,0,0,0,1},
-	{1,1,1,2,1,0,0,0,0,1},
-	{1,0,0,0,1,0,0,0,0,1},
-	{1,2,1,1,1,0,0,0,0,1},
-	{1,0,0,0,1,1,1,1,2,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1}
-};
-
-// int		g_map[10][10] = {
-// 	{1,1,1,1,1,1,1,1,1,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,1},
-// 	{1,1,1,1,1,1,1,1,1,1}
-// };
-
 void	init_window(t_archive *a)
 {
 	a->m.mlx = mlx_init();
@@ -146,50 +120,51 @@ void	draw_map(t_archive *a)
 {
 	int		i;
 	int		j;
-	int		mapSizeX;
-	int		mapSizeY;
+	double		mapSizeX;
+	double		mapSizeY;
 
 	mapSizeX = a->width/4;
 	mapSizeY = a->height/4;
-	i = 0;
-	while (i <= mapSizeY){
-		j = 0;
-		while (j <= mapSizeX){
-			if (i % (mapSizeY/10) != 0 && j % (mapSizeY/10) != 0){
-				if (a->map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == '1'){
-					if (!a->s.view.addr[(a->width) * i + j])
-						a->s.view.addr[(a->width) * i + j] = 0x2e3258;
-					else
-						a->s.view.addr[(a->width) * i + j] += 0x44000000;
-				}
-				else if (a->map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == '2'){
-					if (!a->s.view.addr[(a->width) * i + j])
-						a->s.view.addr[(a->width) * i + j] = 0x653865;
-					else
-						a->s.view.addr[(a->width) * i + j] += 0x44000000;
-				}
-				else
-					a->s.view.addr[(a->width) * i + j] = 0x222222;
-			}
-			else{
-				if (!a->s.view.addr[(a->width) * i + j])
-					a->s.view.addr[(a->width) * i + j] = 0x000000;
-				// else
-					// a->s.view.addr[(a->width) * i + j] = 0xffffff;
-			}
-			j++;
-		}
-		i++;
-	}
-	i = -1;
-	while (i < 2){
-		j = -1;
-		while (j < 2){
-			a->s.view.addr[(a->width) * (int)(a->p.pos.y/10 * mapSizeY + i) + (int)(a->p.pos.x/10 * mapSizeX + j)] = 0xffff00;
-			j++;
-		}
-		i++;
-	}
+	printf("%f %f\n", mapSizeX, mapSizeY);
+	// i = 0;
+	// while (i <= mapSizeY){
+	// 	j = 0;
+	// 	while (j <= mapSizeX){
+	// 		if (i % (int)(mapSizeY/a->row_size) != 0 && j % (int)(mapSizeY/a->row_size) != 0){
+	// 			if (a->map[(int)(i/(mapSizeY/a->row_size))][(int)(j/(mapSizeX/a->col_size))] == '1'){
+	// 				if (!a->s.view.addr[(a->width) * i + j])
+	// 					a->s.view.addr[(a->width) * i + j] = 0x2e3258;
+	// 				else
+	// 					a->s.view.addr[(a->width) * i + j] += 0x44000000;
+	// 			}
+	// 			else if (a->map[(int)(i/(mapSizeY/10))][(int)(j/(mapSizeX/10))] == '2'){
+	// 				if (!a->s.view.addr[(a->width) * i + j])
+	// 					a->s.view.addr[(a->width) * i + j] = 0x653865;
+	// 				else
+	// 					a->s.view.addr[(a->width) * i + j] += 0x44000000;
+	// 			}
+	// 			else
+	// 				a->s.view.addr[(a->width) * i + j] = 0x222222;
+	// 		}
+	// 		else{
+	// 			if (!a->s.view.addr[(a->width) * i + j])
+	// 				a->s.view.addr[(a->width) * i + j] = 0x000000;
+	// 			// else
+	// 				// a->s.view.addr[(a->width) * i + j] = 0xffffff;
+	// 		}
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	// i = -1;
+	// while (i < 2){
+	// 	j = -1;
+	// 	while (j < 2){
+	// 		a->s.view.addr[(a->width) * (int)(a->p.pos.y/(a->row_size) * mapSizeY + i) + (int)(a->p.pos.x/(a->col_size) * mapSizeX + j)] = 0xffff00;
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 }
 void	set_floor_ceil(t_data *d)
 {
@@ -231,43 +206,86 @@ void	loop_to_wall(t_archive *a)
 			a->s.isHitWall = 1;
 	}
 }
-
-int		check_hit(t_archive *a)
+void	draw_texture(t_archive *a, int *img, int x)
 {
-	int color;
+	double	wall;
+	int 	texX;
+	int		texY;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
 
+	lineHeight = (int)(a->height / a->s.distWall);
+	drawStart = -lineHeight / 2 + a->height / 2;
+	drawEnd = lineHeight / 2 + a->height / 2;
+
+	if (drawStart < 0)
+		drawStart = 0;
+	if (drawEnd >= a->height)
+		drawEnd = a->height - 1;
+	if (a->s.isHitSide == 1)
+		wall = a->p.pos.x + a->s.distWall * a->s.ray.x;
+	else
+		wall = a->p.pos.y + a->s.distWall * a->s.ray.y;
+	wall -= floor(wall);
+
+	texX = (int)(wall * (double)64);
+	if (a->s.isHitSide == 0 && a->s.ray.x < 0)
+		texX = 64 - texX - 1;
+	if (a->s.isHitSide == 1 && a->s.ray.y > 0)
+		texX = 64 - texX - 1;
+
+	double		step = 1.0 * 64 / lineHeight;
+	double		texPos = (drawStart - a->height / 2 + lineHeight / 2) * step;
+	while (drawStart < drawEnd)
+	{
+		texY = (int)texPos & (64 - 1);
+		texPos += step;
+		int color = img[64 * texY + texX];
+		a->s.view.addr[a->width * drawStart + x] = color;
+		drawStart++;
+	}
+}
+int		check_hit(t_data *d, int x)
+{
+	t_archive	*a;
+	int			color;
+
+	a = &d->a;
 	a->s.delta.x = fabs(1 / a->s.ray.x);
 	a->s.delta.y = fabs(1 / a->s.ray.y);
 	a->s.isHitWall = 0;
 	loop_to_wall(a);
-	if (!a->s.isHitSide)
+	if (!a->s.isHitSide)//좌 우
 	{
-		if (a->s.ray.x > 0)		//동
-			color = 0xb35f44;
+		if (a->s.ray.x > 0){		//동
+			draw_texture(a, d->east, x);
+			// color = 0xb35f44;
+		}
 		else					//서
-			color = 0xfeae51;
+			draw_texture(a, d->west, x);
+			// color = 0xffffff;
 		a->s.distWall = (a->s.gridX - a->p.pos.x + (1 - a->s.cellX) / 2 ) / a->s.ray.x;
 	}
-	else
+	else// 위 아래
 	{
 		if (a->s.ray.y > 0)		//남
-			color = 0x98b2d1;
+			draw_texture(a, d->south,x);
+			// color = 0xffffff;
 		else					//북
-			color = 0x3078b4;
+			draw_texture(a, d->north, x);
+			// color = 0xffffff;
 		a->s.distWall = (a->s.gridY - a->p.pos.y + (1 - a->s.cellY) / 2 ) / a->s.ray.y;
 	}
 	return (color);
 }
 void	proc_dda(t_archive *a, int x)
 {
-	// 화면의 범위를 -1 ~ 1로 바꿈
 	a->s.screenX = 2 * x / (double)a->width - 1;
-	// 광선 벡터를 구하는 과정
 	a->s.ray = add_vector(a->p.dir, mul_vector(a->s.plane, a->s.screenX));
-	// 현재 플레이어가 지도(g_map) 칸 안에 있는지 확인하기 위함
 	a->s.gridX = (int)(a->p.pos.x);
 	a->s.gridY = (int)(a->p.pos.y);
-	// dda과정
+	// printf("%f %f\n", a->s.ray.x, a->s.ray.y);
 	if (a->s.ray.x < 0)
 	{
 		a->s.cellX = -1;
@@ -290,30 +308,33 @@ void	proc_dda(t_archive *a, int x)
 		a->s.side.y = (a->s.gridY + 1.0f - a->p.pos.y) * a->s.delta.y;
 	}
 }
-void	ray_cast(t_archive *a)
+void	ray_cast(t_data *d)
 {
-	int		x;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
-	int		color;
+	t_archive	*a;
+	int			x;
+	// int			lineHeight;
+	// int			drawStart;
+	// int			drawEnd;
+	int			color;
 
+	a = &d->a;
 	x = 0;
 	while (x < a->width)
 	{
 		proc_dda(a, x);
-		color = check_hit(a);
-		lineHeight = (int)(a->height / a->s.distWall);
-		drawStart = -lineHeight / 2 + a->height / 2;
-		drawEnd = lineHeight / 2 + a->height / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		if (drawEnd >= a->height)
-			drawEnd = a->height - 1;
-		while (drawStart < drawEnd)
-		{
-			a->s.view.addr[a->width * (drawStart++) + x] = color;
-		}
+		color = check_hit(d, x);
+		// lineHeight = (int)(a->height / a->s.distWall);
+		// drawStart = -lineHeight / 2 + a->height / 2;
+		// drawEnd = lineHeight / 2 + a->height / 2;
+		// if (drawStart < 0)
+		// 	drawStart = 0;
+		// if (drawEnd >= a->height)
+		// 	drawEnd = a->height - 1;
+		// while (drawStart < drawEnd)
+		// {
+		// 	a->s.view.addr[a->width * (drawStart++) + x] = color;
+		// }
+		// x++;
 		x++;
 	}
 }
@@ -324,7 +345,7 @@ int		main_loop(t_data *d)
 	d->a.s.view.ptr = mlx_new_image(d->a.m.mlx, d->a.width, d->a.height);
 	d->a.s.view.addr = (unsigned int *)mlx_get_data_addr(d->a.s.view.ptr, &(d->a.s.view.bpp), &(d->a.s.view.size_line), &(d->a.s.view.endian));
 	set_floor_ceil(d);
-	ray_cast(&d->a);
+	ray_cast(d);
 	if (d->a.key.z == 1)
 		draw_map(&d->a);
 	move_player(&d->a);

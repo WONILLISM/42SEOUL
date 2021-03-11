@@ -183,11 +183,12 @@ int		parse_color(char **res)
 	return (color);
 }
 
-void	set_texture(t_data *d, char *s, int *ret)
+int		*set_texture(t_data *d, char *s)
 {
 	t_img	img;
 	int		i;
 	int		j;
+	int		*ret;
 
 	img.ptr = mlx_xpm_file_to_image(d->a.m.mlx, s, &img.w, &img.h);
 	img.addr = (unsigned int *)mlx_get_data_addr(img.ptr, &img.bpp, &img.size_line, &img.endian);
@@ -199,8 +200,8 @@ void	set_texture(t_data *d, char *s, int *ret)
 		while (++j < img.w)
 			ret[img.w * i + j] = img.addr[img.w * i + j];
 	}
-	printf("%d\n", ret[0]);
 	mlx_destroy_image(d->a.m.mlx, img.ptr);
+	return (ret);
 }
 
 int		parse_info(t_data *game_d, char *line)
@@ -213,15 +214,15 @@ int		parse_info(t_data *game_d, char *line)
 	if (ft_strncmp("R", res[0],ft_strlen("R")) == 0)
 		parse_resolution(res, game_d);
 	else if (ft_strncmp("NO", res[0], ft_strlen("NO")) == 0)
-		set_texture(game_d, res[1], game_d->north);
+		game_d->north = set_texture(game_d, res[1]);
 	else if (ft_strncmp("SO", res[0], ft_strlen("SO")) == 0)
-		set_texture(game_d, res[1], game_d->south);
+		game_d->south = set_texture(game_d, res[1]);
 	else if (ft_strncmp("WE", res[0], ft_strlen("WE")) == 0)
-		set_texture(game_d, res[1], game_d->west);
+		game_d->west = set_texture(game_d, res[1]) ;
 	else if (ft_strncmp("EA", res[0], ft_strlen("EA")) == 0)
-		set_texture(game_d, res[1], game_d->east);
+		game_d->east = set_texture(game_d, res[1]);
 	else if (ft_strncmp("S", res[0], ft_strlen("S")) == 0)
-		set_texture(game_d, res[1], game_d->sprite);
+		game_d->sprite = set_texture(game_d, res[1]);
 	else if (ft_strncmp("C", res[0], ft_strlen("C")) == 0)
 		game_d->ceil_color = parse_color(res);
 	else if (ft_strncmp("F", res[0], ft_strlen("F")) == 0)
