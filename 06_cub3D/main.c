@@ -67,10 +67,6 @@ void	init_player(t_data *d)
 		}
 		i++;
 	}
-	// d->a.p.pos.x = 8.1f;
-	// d->a.p.pos.y = 8.1f;
-	// d->a.p.dir.x = -1.0f;
-	// d->a.p.dir.y = 0.0f;
 	d->a.p.move_speed = 0.05f;
 	d->a.p.rot_speed = 0.02f;
 }
@@ -108,7 +104,7 @@ char	**lst2arr(t_data *game_d, t_list *lst)
 
 	game_d->a.col_size = get_col_size(lst);
 	game_d->a.row_size = ft_lstsize(lst);
-	if (!(ret = (char **)malloc(sizeof(char *) * ft_lstsize(lst) + 1)))
+	if (!(ret = (char **)malloc(sizeof(char *) * (ft_lstsize(lst) + 1))))
 		return (0);
 	i = 0;
 	while (lst)
@@ -269,8 +265,8 @@ int		main(void)
 	t_data		data;
 
 	data.a.m.mlx = mlx_init();
-	data.a.m.win = mlx_new_window(data.a.m.mlx, data.a.width, data.a.height, "cub3d");
 	parse_data("./cub3d.cub", &data);
+	data.a.m.win = mlx_new_window(data.a.m.mlx, data.a.width, data.a.height, "cub3d");
 	init_player(&data);
 	cub3d(&data);
 	return (0);

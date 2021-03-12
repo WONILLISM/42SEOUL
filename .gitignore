@@ -17,6 +17,7 @@ opengl/
 
 tests/
 .DS_Store
+*/.DS_Store
 ### VisualStudioCode ###
 .vscode/*
 #!.vscode/settings.json

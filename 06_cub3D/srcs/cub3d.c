@@ -75,7 +75,6 @@ int		key_released(int key, t_key *key_info)
 void	move_player(t_archive *a)
 {
 	t_vec	np;
-	t_vec	nd;
 
 	if (a->key.w)
 	{
@@ -114,7 +113,6 @@ void	draw_map(t_archive *a)
 
 	mapSizeX = a->width/4;
 	mapSizeY = a->height/4;
-	printf("%f %f\n", mapSizeX, mapSizeY);
 	// i = 0;
 	// while (i <= mapSizeY){
 	// 	j = 0;
