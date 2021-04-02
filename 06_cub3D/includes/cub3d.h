@@ -91,7 +91,7 @@ typedef struct		s_bfs
 	int				r;
 }					t_bfs;
 
-typedef struct	s_gamedata 
+typedef struct	s_gamedata
 {
 	t_screen	scrn;
 	t_key		key;
@@ -143,7 +143,7 @@ void	free_split(char **res);
 void	free_gamedata(t_gamedata *d);
 
 /*
-**
+** ------------------ vec.c -----------------------
 */
 t_vec	new_vector(double x, double y);
 t_vec	add_vector(t_vec a, t_vec b);
