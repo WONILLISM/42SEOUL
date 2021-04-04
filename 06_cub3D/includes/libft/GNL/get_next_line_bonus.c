@@ -1,4 +1,4 @@
-#include "../libft.h"
+#include "get_next_line_bonus.h"
 
 static int	proc_remain(char **line, char **store, char *tmp_ptr)
 {
