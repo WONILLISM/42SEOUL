@@ -62,5 +62,7 @@ void	free_gamedata(t_gamedata *d)
 	free(d->west_img);
 	free(d->east_img);
 	free(d->scrn.sprite);
+	free(d->scrn.ZBuffer);
+	free(d->scrn.sprite_idx);
 	free_split(d->scrn.map_arr);
 }
