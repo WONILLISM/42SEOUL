@@ -63,6 +63,7 @@ typedef struct	s_screen
 	t_vec		plane;
 
 	double		*ZBuffer;
+	int			*sprite_idx;
 	int			numofsprt;
 	t_sprite	*sprite;
 

@@ -13,6 +13,7 @@ void	init_keys(t_key *key)
 void	init_screen(t_screen *s)
 {
 	s->ZBuffer = (double *)malloc(sizeof(double) * s->width);
+	s->sprite_idx = (int *)malloc(sizeof(int) * s->numofsprt);
 	s->screenX = 0;
 	s->distWall = 0;
 	s->ray.x = 0.0f;
