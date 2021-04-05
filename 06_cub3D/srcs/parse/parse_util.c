@@ -25,7 +25,7 @@ char	**lst2arr(t_gamedata *d, t_list *lst)
 	d->scrn.row_size = ft_lstsize(lst);
 	ret = (char **)malloc(sizeof(char *) * (d->scrn.row_size + 1));
 	if (!ret)
-		return (0);	// malloc error 
+		return (0);	// malloc error
 	i = 0;
 	while (lst)
 	{
@@ -61,5 +61,6 @@ void	free_gamedata(t_gamedata *d)
 	free(d->south_img);
 	free(d->west_img);
 	free(d->east_img);
+	free(d->scrn.sprite);
 	free_split(d->scrn.map_arr);
 }

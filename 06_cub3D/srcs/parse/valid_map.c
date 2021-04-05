@@ -1,32 +1,43 @@
 #include "../../includes/cub3d.h"
 
-void	find_player(t_gamedata *d, t_bfs *a)
+void	find_player_spirte(t_gamedata *d, t_bfs *a, int i, int j)
+{
+	int		k;
+	char	*spec;
+
+	spec = "ESWN";
+	k = 0;
+	if (d->scrn.map_arr[i][j] == '2')
+	{
+		d->scrn.numofsprt++;
+	}
+	while (spec[k])
+	{
+		if (d->scrn.map_arr[i][j] == spec[k])
+		{
+			a->cur.y = i;
+			a->cur.x = j;
+			init_player(d, a, k);
+		}
+		k++;
+	}
+}
+void	find_arguments(t_gamedata *d, t_bfs *a)
 {
 	int		i;
 	int		j;
 	int		k;
-	char	*spec;
 
 	i = -1;
-	spec = "ESWN";
 	while (++i < a->row)
 	{
 		j = -1;
 		while (++j < a->col)
 		{
-			k = 0;
-			while (spec[k])
-			{
-				if (d->scrn.map_arr[i][j] == spec[k])
-				{
-					a->cur.y = i;
-					a->cur.x = j;
-					init_player(d, a, k);
-				}
-				k++;
-			}
+			find_player_spirte(d, a, i, j);
 		}
 	}
+	d->scrn.sprite = (t_sprite *)malloc(sizeof(t_sprite) * d->scrn.numofsprt);
 }
 
 int		process_bfs(t_gamedata *d, t_bfs *bf, t_pos *nxt, t_pos **q)
@@ -74,7 +85,7 @@ int		is_valid_map(t_gamedata *d)
 		flag = process_bfs(d, &bf, &nxt, &q);
 	}
 	free(bf.chk);
-	free(q); 
+	free(q);
 	if (!flag)
 		return (0);
 	else

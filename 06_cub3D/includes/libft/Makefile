@@ -21,7 +21,7 @@ FILES = ft_strlen \
 	  	ft_lstdelone \
 	  	ft_lstclear \
 	  	ft_lstiter \
-	  	ft_lstmap 
+	  	ft_lstmap
 
 SRCS_DIR = ./
 SRCS = \
@@ -38,7 +38,7 @@ OBJS = \
 $(NAME): $(OBJS)
 	$(AR) $@ $^
 
-all: $(NAME)
+all: $(NAME) clean
 
 clean:
 	$(RM) $(OBJS) $(OBJS_B)

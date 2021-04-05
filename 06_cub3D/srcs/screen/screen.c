@@ -12,6 +12,7 @@ void	init_keys(t_key *key)
 
 void	init_screen(t_screen *s)
 {
+	s->ZBuffer = (double *)malloc(sizeof(double) * s->width);
 	s->screenX = 0;
 	s->distWall = 0;
 	s->ray.x = 0.0f;
@@ -197,6 +198,7 @@ void	loop_to_wall(t_screen *s)
 			s->isHitWall = 1;
 	}
 }
+
 void	draw_texture(t_screen *s, int *img, int x)
 {
 	double	wall;
@@ -263,6 +265,7 @@ void	check_hit(t_gamedata *d, int x)
 			draw_texture(s, d->north_img, x);
 		s->distWall = (s->gridY - s->p.pos.y + (1 - s->cellY) / 2 ) / s->ray.y;
 	}
+	s->ZBuffer[x] = s->distWall;
 }
 void	proc_dda(t_screen *s, int x)
 {
@@ -292,6 +295,7 @@ void	proc_dda(t_screen *s, int x)
 		s->side.y = (s->gridY + 1.0f - s->p.pos.y) * s->delta.y;
 	}
 }
+
 void	ray_cast(t_gamedata *d)
 {
 	t_screen	*s;
@@ -305,6 +309,7 @@ void	ray_cast(t_gamedata *d)
 		check_hit(d, x);
 		x++;
 	}
+	proc_sprite(d);
 }
 
 int		main_loop(t_gamedata *d)
@@ -319,12 +324,13 @@ int		main_loop(t_gamedata *d)
 	return (0);
 }
 
-int	 cub3d(t_gamedata *d)
+int		 cub3d(t_gamedata *d)
 {
 	t_screen	*s;
 
 	s = &d->scrn;
 	init_screen(s);
+	init_sprite(s);
 	init_keys(&d->key);
 	mlx_hook(d->scrn.win, 2, 1, key_pressed, &(d->key));
 	mlx_hook(d->scrn.win, 3, 2, key_released, &(d->key));

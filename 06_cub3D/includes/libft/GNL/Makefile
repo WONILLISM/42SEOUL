@@ -9,13 +9,10 @@ SRCS	= \
 
 OBJS	= $(SRCS:.c=.o)
 
-LIBFT_DIR = ../
-LIBFT = $(LIBFT_DIR)libft.a
-
 all : $(NAME)
 
-$(NAME) : $(LIBFT) $(OBJS)
-	ar r $(LIBFT) $(OBJS)
+$(NAME) : $(OBJS)
+	ar r $@ $(OBJS)
 
 $(OBJS):%.o : %.c
 	$(CC) $(CFLAG) -c -o $@ $*.c

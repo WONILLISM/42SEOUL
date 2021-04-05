@@ -16,7 +16,7 @@ void	init_bfs(t_gamedata *d, t_bfs *a)
 	a->dy[3] = -1;
 	a->col = d->scrn.col_size;
 	a->row = d->scrn.row_size;
-	find_player(d, a);
+	find_arguments(d, a);
 	a->chk = (int *)malloc(sizeof(int) * a->row * a->col);
 	if (!a->chk)
 		printf("malloc error\n");
@@ -47,6 +47,7 @@ void	init_player(t_gamedata *d, t_bfs *a, int k)
 
 void	init_gamedata(t_gamedata *d)
 {
+	d->scrn.numofsprt = 0;
 	d->north_img = 0;
 	d->south_img = 0;
 	d->east_img = 0;

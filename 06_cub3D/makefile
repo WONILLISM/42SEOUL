@@ -4,18 +4,18 @@ NAME = cub3D
 # compile option
 CC = gcc
 FLAG = -Wall -Wextra -Werror
-AR = ar rcs		
-RM = rm -f		
+AR = ar rcs
+RM = rm -f
 
 # library
 LIBFT_DIR = ./includes/libft/
 LIBFT = libft.a
 
-GNL_DIR = ./includes/libft/GNL
+GNL_DIR = ./includes/libft/GNL/
 GNL = gnl.a
 
-OPENGL_DIR = ./mlx/
-OPENGL = mlx.a
+OPENGL_DIR = ./includes/opengl/
+OPENGL = libmlx.a
 
 # source files
 SRCS_DIR = ./srcs/
@@ -33,7 +33,8 @@ PARSE_NAME = \
 SCREEN_DIR = ${SRCS_DIR}screen/
 SCREEN_NAME = \
 		screen.c \
-		vec.c
+		vec.c \
+		sprite.c
 
 MANDATORY = \
 		$(addprefix $(SRCS_DIR), $(MAIN_NAME)) \
@@ -45,26 +46,36 @@ OBJS = $(MANDATORY:.c=.o)
 # rules
 all : $(NAME)
 
-$(NAME) :	$(OBJS)
-			$(CC) $(FLAG) -o $(NAME) $(OBJS) \
-			-L ./includes/opengl/ -lmlx -framework OpenGL -framework Appkit
+$(NAME) :	library $(OBJS)
+			$(AR) cub3d.a $(OBJS)
+			$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIBFT) $(GNL) $(OPENGL)\
+			-framework OpenGL -framework Appkit
 
 lib : library
 
-library : $(LIBFT) $(OPENGL)
+library : $(LIBFT) $(OPENGL) $(GNL)
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
 	mv $(LIBFT_DIR)$(LIBFT) .
+
+$(GNL) :
+	make -C $(GNL_DIR)
+	mv $(GNL_DIR)$(GNL) .
 
 $(OPENGL) :
 	make -C $(OPENGL_DIR)
 	mv $(OPENGL_DIR)$(OPENGL) ./$(OPENGL)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(LIBFT) $(GNL)
+	make clean -C $(LIBFT_DIR)
+	make clean -C $(GNL_DIR)
+	make clean -C $(OPENGL_DIR)
 
 fclean : clean
 	$(RM) $(NAME)
+
+re : fclean $(NAME)
 
 .PHONY:	all clean fclean re

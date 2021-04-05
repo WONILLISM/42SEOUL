@@ -35,8 +35,15 @@ typedef struct	s_vec
 {
 	double		x;
 	double		y;
-	double		z;
 }				t_vec;
+
+typedef struct	s_sprite
+{
+	int			idx;
+	double		x;
+	double		y;
+	double		dist;
+}				t_sprite;
 
 typedef struct	s_player
 {
@@ -54,6 +61,10 @@ typedef struct	s_screen
 	int			row_size;
 	t_player	p;
 	t_vec		plane;
+
+	double		*ZBuffer;
+	int			numofsprt;
+	t_sprite	*sprite;
 
 	double		screenX;
 	double		distWall;
@@ -109,7 +120,8 @@ int	 cub3d(t_gamedata *d);
 /*
 ** ------------------ valid_map.c -----------------------
 */
-void	find_player(t_gamedata *d, t_bfs *a);
+void	find_player_spirte(t_gamedata *d, t_bfs *a, int i, int j);
+void	find_arguments(t_gamedata *d, t_bfs *a);
 int		process_bfs(t_gamedata *d, t_bfs *bf, t_pos *nxt, t_pos **q);
 int		is_valid_map(t_gamedata *d);
 
@@ -151,4 +163,9 @@ t_vec	sub_vector(t_vec a, t_vec b);
 t_vec	mul_vector(t_vec v, double k);
 t_vec	rot_vector(t_vec v, double rs);
 
+/*
+** sprite.c
+*/
+void	init_sprite(t_screen *s);
+void	proc_sprite(t_gamedata *d);
 #endif
