@@ -15,7 +15,6 @@ void	init_sprite(t_screen *s)
 		{
 			if (s->map_arr[i][j] == '2')
 			{
-				s->sprite_idx[idx] = idx;
 				s->sprite[idx].y = (double)i + 0.5;
 				s->sprite[idx].x = (double)j + 0.5;
 				idx++;
@@ -40,9 +39,6 @@ void	sort_sprite(t_screen *s)
 		{
 			if (s->sprite[i].dist < s->sprite[j].dist)
 			{
-				// idx_tmp = s->sprite_idx[j];
-				// s->sprite_idx[j] = s->sprite_idx[i];
-				// s->sprite_idx[i] = idx_tmp;
 				tmp = s->sprite[j].dist;
 				s->sprite[j].dist = s->sprite[i].dist;
 				s->sprite[i].dist = tmp;
@@ -70,7 +66,6 @@ void	proc_sprite(t_gamedata *d)
 	i = 0;
 	while (i < s->numofsprt)
 	{
-		s->sprite[i].idx = i;
 		s->sprite[i].dist = ((s->p.pos.x - s->sprite[i].x) * (s->p.pos.x - s->sprite[i].x) + (s->p.pos.y - s->sprite[i].y) * (s->p.pos.y - s->sprite[i].y));
 		i++;
 	}

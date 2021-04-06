@@ -32,6 +32,9 @@ PARSE_NAME = \
 
 SCREEN_DIR = ${SRCS_DIR}screen/
 SCREEN_NAME = \
+		init.c \
+		key_manage.c \
+		ray_cast.c \
 		screen.c \
 		vec.c \
 		sprite.c

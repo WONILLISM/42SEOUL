@@ -18,6 +18,7 @@ void	find_player_spirte(t_gamedata *d, t_bfs *a, int i, int j)
 			a->cur.y = i;
 			a->cur.x = j;
 			init_player(d, a, k);
+			d->scrn.map_arr[i][j] = '0';
 		}
 		k++;
 	}

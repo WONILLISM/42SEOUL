@@ -53,6 +53,20 @@ typedef struct	s_player
 	double		rot_speed;
 }				t_player;
 
+typedef struct	s_texture
+{
+	double		wall;
+	double		step;
+	double		texPos;
+
+	int			color;
+	int			texX;
+	int			texY;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+}				t_texture;
+
 typedef struct	s_screen
 {
 	int			width;
@@ -66,6 +80,8 @@ typedef struct	s_screen
 	int			*sprite_idx;
 	int			numofsprt;
 	t_sprite	*sprite;
+
+	t_texture	tex;
 
 	double		screenX;
 	double		distWall;
@@ -117,7 +133,7 @@ typedef struct	s_gamedata
 }				t_gamedata;
 
 
-int	 cub3d(t_gamedata *d);
+int	 	cub3d(t_gamedata *d);
 /*
 ** ------------------ valid_map.c -----------------------
 */
@@ -169,4 +185,27 @@ t_vec	rot_vector(t_vec v, double rs);
 */
 void	init_sprite(t_screen *s);
 void	proc_sprite(t_gamedata *d);
+
+/*
+** ------------------ init.c -----------------------
+*/
+void	init_keys(t_key *key);
+void	init_screen(t_screen *s);
+
+/*
+** ------------------ key_manage.c -----------------------
+*/
+int		key_pressed(int key, t_key *key_info);
+int		key_released(int key, t_key *key_info);
+void	move_player(t_gamedata *d);
+
+/*
+** ------------------ ray_cast.c -----------------------
+*/
+void	loop_to_wall(t_screen *s);
+void	draw_texture(t_screen *s, int *img, int x);
+void	check_hit(t_gamedata *d, int x);
+void	proc_dda(t_screen *s, int x);
+void	ray_cast(t_gamedata *d);
+
 #endif
