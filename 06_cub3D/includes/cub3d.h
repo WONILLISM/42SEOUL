@@ -7,18 +7,6 @@
 # include "key.h"
 # include "libft/libft.h"
 
-typedef struct	s_key
-{
-    int			w;
-    int			s;
-    int			a;
-    int			d;
-	int			q;
-	int			e;
-	int			z;
-	int			sft;
-}				t_key;
-
 typedef struct		s_img
 {
 	int				w;
@@ -222,7 +210,7 @@ void	init_screen(t_screen *s);
 */
 int		key_pressed(int key, t_key *key_info);
 int		key_released(int key, t_key *key_info);
-void	move_player(t_gamedata *d);
+void	manage_player(t_gamedata *d);
 
 /*
 ** ------------------ ray_cast.c -----------------------

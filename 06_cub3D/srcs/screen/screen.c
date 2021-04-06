@@ -79,7 +79,7 @@ int		main_loop(t_gamedata *d)
 	d->scrn.view.addr = (unsigned int *)mlx_get_data_addr(d->scrn.view.ptr, &(d->scrn.view.bpp), &(d->scrn.view.size_line), &(d->scrn.view.endian));
 	set_floor_ceil(d);
 	ray_cast(d);
-	move_player(d);
+	manage_player(d);
 	mlx_put_image_to_window(d->scrn.mlx, d->scrn.win, d->scrn.view.ptr, 0, 0);
 	return (0);
 }

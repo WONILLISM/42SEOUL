@@ -10,18 +10,14 @@ int		key_pressed(int key, t_key *key_info)
 		key_info->a = 1;
 	else if (key == KEY_D)
 		key_info->d = 1;
-	else if (key == KEY_Q)
-		key_info->q = 1;
-	else if (key == KEY_E)
-		key_info->e = 1;
-	else if (key == KEY_Z){
-		if (key_info->z == 1)
-			key_info->z = 0;
-		else
-			key_info->z = 1;
-	}
-	else if (key == KEY_SHIFT)
-		key_info->sft = 1;
+	else if (key == KEY_UP)
+		key_info->up = 1;
+	else if (key == KEY_DOWN)
+		key_info->down = 1;
+	else if (key == KEY_LEFT)
+		key_info->left = 1;
+	else if (key == KEY_RIGTH)
+		key_info->right = 1;
 	else if (key == KEY_ESC)
 		exit(0);
 	return (0);
@@ -37,43 +33,51 @@ int		key_released(int key, t_key *key_info)
 		key_info->a = 0;
 	else if (key == KEY_D)
 		key_info->d = 0;
-	else if (key == KEY_Q)
-		key_info->q = 0;
-	else if (key == KEY_E)
-		key_info->e = 0;
-	else if (key == KEY_SHIFT)
-		key_info->sft = 0;
+	else if (key == KEY_UP)
+		key_info->up = 0;
+	else if (key == KEY_DOWN)
+		key_info->down = 0;
+	else if (key == KEY_LEFT)
+		key_info->left = 0;
+	else if (key == KEY_RIGTH)
+		key_info->right = 0;
 	return (0);
 }
 
-void	move_player(t_gamedata *d)
+void	move_player(t_gamedata *d, t_vec dir,int sub_add)
 {
 	t_vec	np;
 
-	if (d->key.w)
-	{
-		np = add_vector(d->scrn.p.pos, mul_vector(d->scrn.p.dir, d->scrn.p.move_speed));
-		if (d->scrn.map_arr[(int)(d->scrn.p.pos.y)][(int)(np.x)] == '0')
+	if (sub_add == 0)
+		np = sub_vector(d->scrn.p.pos, mul_vector(dir, d->scrn.p.move_speed));
+	else if (sub_add == 1)
+		np = add_vector(d->scrn.p.pos, mul_vector(dir, d->scrn.p.move_speed));
+	if (d->scrn.map_arr[(int)(d->scrn.p.pos.y)][(int)(np.x)] == '0')
 			d->scrn.p.pos.x = np.x;
-		if (d->scrn.map_arr[(int)(np.y)][(int)(d->scrn.p.pos.x)] == '0')
-			d->scrn.p.pos.y = np.y;
-	}
-	else if (d->key.s)
-	{
-		np = add_vector(d->scrn.p.pos, mul_vector(d->scrn.p.dir, -1 * d->scrn.p.move_speed));
-		if (d->scrn.map_arr[(int)(d->scrn.p.pos.y)][(int)(np.x)] == '0')
-			d->scrn.p.pos.x = np.x;
-		if (d->scrn.map_arr[(int)(np.y)][(int)(d->scrn.p.pos.x)] == '0')
-			d->scrn.p.pos.y = np.y;
-	}
+	if (d->scrn.map_arr[(int)(np.y)][(int)(d->scrn.p.pos.x)] == '0')
+		d->scrn.p.pos.y = np.y;
+}
+
+void	rotate_player(t_gamedata *d, int sign)
+{
+	d->scrn.p.dir = rot_vector(d->scrn.p.dir, sign * d->scrn.p.rot_speed);
+	d->scrn.plane = rot_vector(d->scrn.plane, sign * d->scrn.p.rot_speed);
+}
+
+void	manage_player(t_gamedata *d)
+{
+	t_vec	np;
+
+	if (d->key.w || d->key.up)
+		move_player(d, d->scrn.p.dir, 1);
+	else if (d->key.s || d->key.down)
+		move_player(d, d->scrn.p.dir, 0);
+	else if (d->key.left)
+		rotate_player(d, -1);
+	else if (d->key.right)
+		rotate_player(d, 1);
 	else if (d->key.a)
-	{
-		d->scrn.p.dir = rot_vector(d->scrn.p.dir, -1.0f * d->scrn.p.rot_speed);
-		d->scrn.plane = rot_vector(d->scrn.plane, -1.0f * d->scrn.p.rot_speed);
-	}
+		move_player(d, rot_vector(d->scrn.p.dir, M_PI/2), 0);
 	else if (d->key.d)
-	{
-		d->scrn.p.dir = rot_vector(d->scrn.p.dir, d->scrn.p.rot_speed);
-		d->scrn.plane = rot_vector(d->scrn.plane, d->scrn.p.rot_speed);
-	}
+		move_player(d, rot_vector(d->scrn.p.dir, M_PI/2), 1);
 }

@@ -6,8 +6,10 @@ void	init_keys(t_key *key)
 	key->s = 0;
 	key->a = 0;
 	key->d = 0;
-	key->q = 0;
-	key->e = 0;
+	key->up = 0;
+	key->down = 0;
+	key->left = 0;
+	key->right = 0;
 }
 
 void	init_screen(t_screen *s)

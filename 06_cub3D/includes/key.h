@@ -33,5 +33,21 @@
 # define KEY_0	29
 # define KEY_ESC 53
 # define KEY_SHIFT 57
+# define KEY_UP		126
+# define KEY_DOWN	125
+# define KEY_LEFT	123
+# define KEY_RIGTH	124
+
+typedef struct	s_key
+{
+    int			w;
+    int			s;
+    int			a;
+    int			d;
+	int			up;
+	int			down;
+	int			left;
+	int			right;
+}				t_key;
 
 #endif
