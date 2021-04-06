@@ -11,6 +11,7 @@ int		main(int argc, char **argv)
 	parse_gamedata(&gamedata, argv[1]);
 	s->win = mlx_new_window(gamedata.scrn.mlx, gamedata.scrn.width, gamedata.scrn.height, "cub3d");	
 	is_valid_map(&gamedata);
+	save_bitmap(argc, argv, &gamedata);
 	cub3d(&gamedata);
 	free_gamedata(&gamedata);
 	return (0);

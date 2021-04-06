@@ -1,5 +1,6 @@
 #ifndef _CUB3D_H_
 # define _CUB3D_H_
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
@@ -220,5 +221,8 @@ void	draw_texture(t_screen *s, int *img, int x);
 void	check_hit(t_gamedata *d, int x);
 void	proc_dda(t_screen *s, int x);
 void	ray_cast(t_gamedata *d);
+
+
+int		save_bitmap(int argc, char **argv, t_gamedata *d);
 
 #endif

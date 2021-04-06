@@ -20,7 +20,8 @@ OPENGL = libmlx.a
 # source files
 SRCS_DIR = ./srcs/
 MAIN_NAME = \
-		main.c
+		main.c \
+		save_bitmap.c
 
 PARSE_DIR = $(SRCS_DIR)parse/
 PARSE_NAME = \
