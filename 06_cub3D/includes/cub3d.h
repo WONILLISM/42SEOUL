@@ -39,7 +39,6 @@ typedef struct	s_vec
 
 typedef struct	s_sprite
 {
-	int			idx;
 	double		x;
 	double		y;
 	double		dist;
@@ -52,6 +51,26 @@ typedef struct	s_player
 	double		move_speed;
 	double		rot_speed;
 }				t_player;
+
+typedef struct	s_sprites
+{
+	t_vec		sprt_pos;
+	t_vec		transform;
+	double		inv_det;
+
+	int			scrnX;
+	int			sprt_h;
+	int			sprt_w;
+	int			drawStartX;
+	int			drawStartY;
+	int			drawEndY;
+	int			drawEndX;
+
+	int			texX;
+	int			texY;
+	int			dist;
+	int			color;
+}				t_sprites;
 
 typedef struct	s_texture
 {
@@ -181,10 +200,16 @@ t_vec	mul_vector(t_vec v, double k);
 t_vec	rot_vector(t_vec v, double rs);
 
 /*
-** sprite.c
+** ------------------ sprite.c -----------------------
 */
 void	init_sprite(t_screen *s);
-void	proc_sprite(t_gamedata *d);
+void	proc_sprite(t_screen *s, int *img);
+
+/*
+** ------------------ sprite_util.c -----------------------
+*/
+void	init_sprite(t_screen *s);
+void	sort_sprite(t_screen *s);
 
 /*
 ** ------------------ init.c -----------------------

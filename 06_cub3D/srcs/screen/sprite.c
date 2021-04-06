@@ -1,116 +1,84 @@
 #include "../../includes/cub3d.h"
 
-void	init_sprite(t_screen *s)
+void	cal_sprite(t_screen *s, t_sprites *sp, int i)
 {
-	int		i;
-	int		j;
-	int		idx;
+	sp->sprt_pos.x = s->sprite[i].x - s->p.pos.x;
+	sp->sprt_pos.y = s->sprite[i].y - s->p.pos.y;
+	sp->inv_det = 1.0 / (s->plane.x * s->p.dir.y - s->p.dir.x * s->plane.y);
+	sp->transform.x = sp->inv_det * (s->p.dir.y * sp->sprt_pos.x - s->p.dir.x * sp->sprt_pos.y);
+	sp->transform.y = sp->inv_det * (-s->plane.y * sp->sprt_pos.x + s->plane.x * sp->sprt_pos.y);
+	sp->scrnX = (int)((s->width / 2) * (1 + sp->transform.x / sp->transform.y));
+	sp->sprt_h = abs((int)(s->height / (sp->transform.y)));
+	sp->drawStartY = -sp->sprt_h / 2 + s->height / 2;
+	if (sp->drawStartY < 0)
+		sp->drawStartY = 0;
+	sp->drawEndY = sp->sprt_h / 2 + s->height / 2;
+	if (sp->drawEndY >= s->height)
+		sp->drawEndY = s->height - 1;
+	sp->sprt_w = abs((int)(s->height / (sp->transform.y)));
+	sp->drawStartX = -sp->sprt_w / 2 + sp->scrnX;
+	if (sp->drawStartX < 0)
+		sp->drawStartX = 0;
+	sp->drawEndX = sp->sprt_w / 2 + sp->scrnX;
+	if (sp->drawEndX >= s->width)
+		sp->drawEndX = s->width - 1;
+}
 
-	idx = 0;
-	i = -1;
-	while (++i < s->row_size)
+void	put_sprites(t_screen *s, t_sprites *sp, int *img)
+{
+	int		j;
+	int		k;
+
+	j = sp->drawStartX;
+	while (j < sp->drawEndX)
 	{
-		j = -1;
-		while (++j < s->col_size)
+		sp->texX = (int)(256 * (j - (-sp->sprt_w / 2 + sp->scrnX)) * 64 / sp->sprt_w) / 256;
+		if (sp->transform.y > 0 && j > 0 && j < s->width && sp->transform.y < s->ZBuffer[j])
 		{
-			if (s->map_arr[i][j] == '2')
+			k = sp->drawStartY;
+			while (k < sp->drawEndY)
 			{
-				s->sprite[idx].y = (double)i + 0.5;
-				s->sprite[idx].x = (double)j + 0.5;
-				idx++;
+				sp->dist = (k)*256 - s->height * 128 + sp->sprt_h * 128;
+				sp->texY = ((sp->dist * 64) / sp->sprt_h) / 256;
+				sp->color = img[64 * sp->texY + sp->texX];
+				if ((sp->color & 0x00FFFFFF) != 0)
+					s->view.addr[k * s->width + j] = sp->color;
+				k++;
 			}
 		}
+		j++;
 	}
 }
 
-void	sort_sprite(t_screen *s)
+void	draw_sprites(t_screen *s, int *img)
 {
-	double		tmp;
-	int			idx_tmp;
+	t_sprites	sp;
 	int			i;
 	int			j;
-	t_vec		pos_tmp;
+	int			k;
 
 	i = 0;
 	while (i < s->numofsprt)
 	{
-		j = i;
-		while (j < s->numofsprt)
-		{
-			if (s->sprite[i].dist < s->sprite[j].dist)
-			{
-				tmp = s->sprite[j].dist;
-				s->sprite[j].dist = s->sprite[i].dist;
-				s->sprite[i].dist = tmp;
-				idx_tmp = s->sprite[j].idx;
-				s->sprite[j].idx = s->sprite[i].idx;
-				s->sprite[i].idx = idx_tmp;
-				pos_tmp.x = s->sprite[j].x;
-				pos_tmp.y = s->sprite[j].y;
-				s->sprite[j].x = s->sprite[i].x;
-				s->sprite[j].y = s->sprite[i].y;
-				s->sprite[i].x = pos_tmp.x;
-				s->sprite[i].y = pos_tmp.y;
-			}
-			j++;
-		}
+		cal_sprite(s, &sp, i);
+		put_sprites(s, &sp, img);
 		i++;
 	}
 }
-void	proc_sprite(t_gamedata *d)
-{
-	t_screen	*s;
-	int		i;
 
-	s = &d->scrn;
+void	proc_sprite(t_screen *s, int *img)
+{
+	int		i;
+	
 	i = 0;
 	while (i < s->numofsprt)
 	{
-		s->sprite[i].dist = ((s->p.pos.x - s->sprite[i].x) * (s->p.pos.x - s->sprite[i].x) + (s->p.pos.y - s->sprite[i].y) * (s->p.pos.y - s->sprite[i].y));
+		s->sprite[i].dist = ((s->p.pos.x - s->sprite[i].x)
+		* (s->p.pos.x - s->sprite[i].x)
+		+ (s->p.pos.y - s->sprite[i].y)
+		* (s->p.pos.y - s->sprite[i].y));
 		i++;
 	}
 	sort_sprite(s);
-	i = 0;
-	while (i < s->numofsprt)
-	{
-		// double	spriteX = s->sprite[s->sprite_idx[i]].x - s->p.pos.x;
-		// double	spriteY = s->sprite[s->sprite_idx[i]].y - s->p.pos.y;
-		double	spriteX = s->sprite[i].x - s->p.pos.x;
-		double	spriteY = s->sprite[i].y - s->p.pos.y;
-		double	invDet = 1.0 / (s->plane.x * s->p.dir.y - s->p.dir.x * s->plane.y);
-
-		double transformX = invDet * (s->p.dir.y * spriteX - s->p.dir.x * spriteY);
-		double transformY = invDet * (-s->plane.y * spriteX + s->plane.x * spriteY);
-
-		int spriteScreenX = (int)((s->width / 2) * (1 + transformX / transformY));
-		int spriteHeight = abs((int)(s->height / (transformY)));
-		int drawStartY = -spriteHeight / 2 + s->height / 2;
-		if (drawStartY < 0)
-			drawStartY = 0;
-		int drawEndY = spriteHeight / 2 + s->height / 2;
-		if (drawEndY >= s->height)
-			drawEndY = s->height - 1;
-		int spriteWidth = abs((int)(s->height / (transformY)));
-		int drawStartX = -spriteWidth / 2 + spriteScreenX;
-		if (drawStartX < 0)
-			drawStartX = 0;
-		int drawEndX = spriteWidth / 2 + spriteScreenX;
-		if (drawEndX >= s->width)
-			drawEndX = s->width - 1;
-		for (int stripe = drawStartX; stripe < drawEndX; stripe++)
-		{
-			int texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 64 / spriteWidth) / 256;
-			if (transformY > 0 && stripe > 0 && stripe < s->width && transformY < s->ZBuffer[stripe])
-				for (int y = drawStartY; y < drawEndY; y++)
-				{
-					int dist = (y)*256 - s->height * 128 + spriteHeight * 128;
-					int texY = ((dist * 64) / spriteHeight) / 256;
-					int color = d->sprite_img[64 * texY + texX];;
-					if ((color & 0x00FFFFFF) != 0)
-						s->view.addr[y * s->width + stripe] = color;
-				}
-		}
-
-		i++;
-	}
+	draw_sprites(s, img);
 }

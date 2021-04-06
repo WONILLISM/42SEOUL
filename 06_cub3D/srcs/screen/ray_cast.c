@@ -122,5 +122,5 @@ void	ray_cast(t_gamedata *d)
 		check_hit(d, x);
 		x++;
 	}
-	proc_sprite(d);
+	proc_sprite(s, d->sprite_img);
 }

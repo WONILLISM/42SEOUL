@@ -37,7 +37,8 @@ SCREEN_NAME = \
 		ray_cast.c \
 		screen.c \
 		vec.c \
-		sprite.c
+		sprite.c \
+		sprite_util.c
 
 MANDATORY = \
 		$(addprefix $(SRCS_DIR), $(MAIN_NAME)) \
