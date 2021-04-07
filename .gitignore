@@ -14,6 +14,7 @@ printf_lover_v2/
 42TESTERS-PRINTF/
 
 cub3D_map_tester/
+cub3d_destroyer/
 
 ### main , library
 ./03_Printf/main.c
