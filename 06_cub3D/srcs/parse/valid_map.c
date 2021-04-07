@@ -52,12 +52,13 @@ int		process_bfs(t_gamedata *d, t_bfs *bf, t_pos *nxt, t_pos **q)
 		nxt->x = bf->cur.x + bf->dx[i];
 		if ((nxt->y >= 0 && nxt->y < bf->row && nxt->x >= 0 && nxt->x < bf->col) && bf->chk[nxt->y * bf->col + nxt->x] == 0)
 		{
-			if (d->scrn.map_arr[nxt->y][nxt->x] == '0')
+			if (d->scrn.map_arr[nxt->y][nxt->x] == '0'
+			|| d->scrn.map_arr[nxt->y][nxt->x] == '2')
 			{
 				bf->chk[nxt->y * bf->col + nxt->x] = 1;
 				(*q)[bf->r++] = *nxt;
 			}
-			if (d->scrn.map_arr[nxt->y][nxt->x] == ' ')
+			else if (d->scrn.map_arr[nxt->y][nxt->x] != '1')
 			{
 				bf->chk[nxt->y * bf->col + nxt->x] = 9;
 				return (1);
