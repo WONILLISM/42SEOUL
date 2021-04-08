@@ -1,5 +1,10 @@
 #include "../../includes/cub3d.h"
 
+void	error_message(char *s)
+{
+
+}
+
 int		get_col_size(t_list *lst)
 {
 	int		ret;

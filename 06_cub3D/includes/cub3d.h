@@ -5,6 +5,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include "opengl/mlx.h"
+# include "mms/mlx.h"
 # include "key.h"
 # include "libft/libft.h"
 
@@ -138,6 +139,9 @@ typedef struct	s_gamedata
 	int			*sprite_img;
 	int			ceil_color;
 	int			floor_color;
+
+	int			argc;
+	char		**argv;
 }				t_gamedata;
 
 
@@ -223,6 +227,8 @@ void	proc_dda(t_screen *s, int x);
 void	ray_cast(t_gamedata *d);
 
 
-int		save_bitmap(int argc, char **argv, t_gamedata *d);
+void	save_bitmap(t_gamedata *d);
+
+int	mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
 #endif

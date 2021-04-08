@@ -17,6 +17,9 @@ GNL = gnl.a
 OPENGL_DIR = ./includes/opengl/
 OPENGL = libmlx.a
 
+MMS_DIR = ./includes/mms/
+MMS = libmlx.dylib
+
 # source files
 SRCS_DIR = ./srcs/
 MAIN_NAME = \
@@ -53,12 +56,12 @@ all : $(NAME)
 
 $(NAME) :	library $(OBJS)
 			$(AR) cub3d.a $(OBJS)
-			$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIBFT) $(GNL) $(OPENGL)\
+			$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIBFT) $(GNL) $(OPENGL) $(MMS)\
 			-framework OpenGL -framework Appkit
 
 lib : library
 
-library : $(LIBFT) $(OPENGL) $(GNL)
+library : $(LIBFT) $(OPENGL) $(MMS) $(GNL)
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
@@ -71,6 +74,10 @@ $(GNL) :
 $(OPENGL) :
 	make -C $(OPENGL_DIR)
 	mv $(OPENGL_DIR)$(OPENGL) ./$(OPENGL)
+
+$(MMS) :
+	make -C $(MMS_DIR)
+	mv $(MMS_DIR)$(MMS) ./$(MMS)
 
 clean:
 	$(RM) $(OBJS) $(LIBFT) $(GNL)

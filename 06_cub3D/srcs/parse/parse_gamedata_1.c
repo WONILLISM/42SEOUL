@@ -1,5 +1,20 @@
 #include "../../includes/cub3d.h"
 
+int		is_valid_resol(t_gamedata *d)
+{
+	int		max_w;
+	int		max_h;
+
+	mlx_get_screen_size(d->scrn.mlx, &max_w, &max_h);
+	if (d->scrn.width >= max_w)
+		d->scrn.width = max_w;
+	if (d->scrn.height >= max_h)
+		d->scrn.height = max_h;
+	if (d->scrn.width < 0 || d->scrn.height < 0)
+		printf("resolution error\n");
+	return (0);
+}
+
 void	parse_resolution(t_gamedata *d, char **res)
 {
 	int		i;
@@ -23,6 +38,7 @@ void	parse_resolution(t_gamedata *d, char **res)
 	}
 	if (i <= 1 || i >= 4)
 		printf("is not resolution\n");		// resolution error
+	is_valid_resol(d);
 }
 
 int		parse_info(t_gamedata *d, char *line, char **res)

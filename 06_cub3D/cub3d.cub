@@ -1,4 +1,4 @@
-R 1000 1000
+R 5000 5000
 
 NO ./assets/textures/wall_n.xpm
 SO ./assets/textures/wall_s.xpm
