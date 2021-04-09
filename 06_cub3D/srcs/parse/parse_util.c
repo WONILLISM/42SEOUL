@@ -1,8 +1,10 @@
 #include "../../includes/cub3d.h"
 
-void	error_message(char *s)
+void	error_message(char *s, t_gamedata *d)
 {
-
+	printf("%s error!!\n", s);
+	free_gamedata(d);
+	exit(0);
 }
 
 int		get_col_size(t_list *lst)
@@ -62,11 +64,20 @@ void	free_split(char **res)
 
 void	free_gamedata(t_gamedata *d)
 {
-	free(d->north_img);
-	free(d->south_img);
-	free(d->west_img);
-	free(d->east_img);
-	free(d->scrn.sprite);
-	free(d->scrn.ZBuffer);
-	free_split(d->scrn.map_arr);
+	if (d->north_img)
+		free(d->north_img);
+	if (d->south_img)
+		free(d->south_img);
+	if (d->west_img)
+		free(d->west_img);
+	if (d->east_img)
+		free(d->east_img);
+	if (d->sprite_img)
+		free(d->sprite_img);
+	if (d->scrn.sprite)
+		free(d->scrn.sprite);
+	if (d->scrn.ZBuffer)
+		free(d->scrn.ZBuffer);
+	if (d->scrn.map_arr)
+		free_split(d->scrn.map_arr);
 }

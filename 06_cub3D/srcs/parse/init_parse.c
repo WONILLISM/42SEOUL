@@ -47,7 +47,14 @@ void	init_player(t_gamedata *d, t_bfs *a, int k)
 
 void	init_gamedata(t_gamedata *d)
 {
+	d->chk_parse = 0;
+	d->scrn.sprite = 0;
+	d->scrn.ZBuffer = 0;
 	d->scrn.numofsprt = 0;
+	d->scrn.height = 0;
+	d->scrn.width = 0;
+	d->ceil_color = -1;
+	d->floor_color = -1;
 	d->north_img = 0;
 	d->south_img = 0;
 	d->east_img = 0;

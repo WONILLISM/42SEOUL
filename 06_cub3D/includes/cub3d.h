@@ -140,8 +140,8 @@ typedef struct	s_gamedata
 	int			ceil_color;
 	int			floor_color;
 
+	int			chk_parse;
 	int			argc;
-	char		**argv;
 }				t_gamedata;
 
 
@@ -164,8 +164,8 @@ void	init_player(t_gamedata *d, t_bfs *a, int k);
 /*
 ** ------------------ parse_gamedata_2.c -----------------------
 */
-void	parse_map(char *line, t_list **map);
-int		parse_color(char **res);
+int		parse_map(char *line, t_list **map);
+int		parse_color(char **res, t_gamedata *d);
 int		*parse_texture(t_gamedata *d, char *path);
 
 /*
@@ -178,6 +178,7 @@ int		parse_gamedata(t_gamedata *d, char *path);
 /*
 ** ------------------ parse_util.c -----------------------
 */
+void	error_message(char *s, t_gamedata *d);
 int		get_col_size(t_list *lst);
 char	**lst2arr(t_gamedata *d, t_list *lst);
 void	free_split(char **res);
@@ -228,7 +229,8 @@ void	ray_cast(t_gamedata *d);
 
 
 void	save_bitmap(t_gamedata *d);
+int		chk_save_cmd(char **argv, t_gamedata *d);
 
-int	mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
+int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
 #endif

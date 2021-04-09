@@ -80,11 +80,12 @@ int		main_loop(t_gamedata *d)
 	set_floor_ceil(d);
 	ray_cast(d);
 	manage_player(d);
-	// save_bitmap(d);
+	if (d->argc == 3)
+		save_bitmap(d);
 	mlx_put_image_to_window(d->scrn.mlx, d->scrn.win, d->scrn.view.ptr, 0, 0);
 	return (0);
 }
-
+//map error
 int		 cub3d(t_gamedata *d)
 {
 	t_screen	*s;

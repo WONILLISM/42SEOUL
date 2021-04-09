@@ -1,23 +1,25 @@
 #include "../../includes/cub3d.h"
 
-void	parse_map(char *line, t_list **map)
+int		parse_map(char *line, t_list **map)
 {
 	char	*tmp;
 
 	tmp = line;
+	if (!*line)
+		return (0);
 	while (*line)
 	{
 		if (ft_strchr("012NEWS ", *tmp) == 0)
 		{
-			printf("Wrong map element\n");	// map element error
-			break;
+			return (-1);
 		}
 		line++;
 	}
 	ft_lstadd_back(map, ft_lstnew(ft_strdup(tmp)));
+	return (1);
 }
 
-int		parse_color(char **res)
+int		parse_color(char **res, t_gamedata *d)
 {
 	char	**tmp;
 	int		color;
@@ -26,6 +28,7 @@ int		parse_color(char **res)
 
 	tmp = ft_split(res[1], ',');
 	color = 0;
+	d->chk_parse++;
 	i = -1;
 	while (++i < 3)
 	{
@@ -58,5 +61,6 @@ int		*parse_texture(t_gamedata *d, char *path)
 			ret[img.w * i + j] = img.addr[img.w * i + j];
 	}
 	mlx_destroy_image(d->scrn.mlx, img.ptr);
+	d->chk_parse++;
 	return (ret);
 }

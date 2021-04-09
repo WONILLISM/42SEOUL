@@ -1,5 +1,16 @@
 #include "../../includes/cub3d.h"
 
+int		chk_parse_textures(t_gamedata *d)
+{
+	if (d->chk_parse == 8)
+	{
+		if (d->north_img && d->south_img && d->east_img && d->west_img && d->sprite_img && d->ceil_color != -1 && d->floor_color != -1)
+			return (1);
+	}
+
+	return (0);			// texture parsing error
+}
+
 int		is_valid_resol(t_gamedata *d)
 {
 	int		max_w;
@@ -11,7 +22,7 @@ int		is_valid_resol(t_gamedata *d)
 	if (d->scrn.height >= max_h)
 		d->scrn.height = max_h;
 	if (d->scrn.width < 0 || d->scrn.height < 0)
-		printf("resolution error\n");
+		error_message("resolution", d);
 	return (0);
 }
 
@@ -21,6 +32,7 @@ void	parse_resolution(t_gamedata *d, char **res)
 	int		j;
 
 	i = 1;
+	d->chk_parse++;
 	while (res[i])
 	{
 		j = 0;
@@ -37,15 +49,15 @@ void	parse_resolution(t_gamedata *d, char **res)
 		i++;
 	}
 	if (i <= 1 || i >= 4)
-		printf("is not resolution\n");		// resolution error
+		error_message("resolution", d);
 	is_valid_resol(d);
 }
 
 int		parse_info(t_gamedata *d, char *line, char **res)
 {
 	if (!*line)
-		return (-1);	// empty value
-	if (ft_strncmp("R", res[0],ft_strlen("R")) == 0)
+		return (0);
+	else if ((ft_strncmp("R", res[0],ft_strlen("R")) == 0))
 		parse_resolution(d, res);
 	else if (ft_strncmp("NO", res[0], ft_strlen("NO")) == 0)
 		d->north_img = parse_texture(d, res[1]);
@@ -58,18 +70,21 @@ int		parse_info(t_gamedata *d, char *line, char **res)
 	else if (ft_strncmp("S", res[0], ft_strlen("S")) == 0)
 		d->sprite_img = parse_texture(d, res[1]);
 	else if (ft_strncmp("C", res[0], ft_strlen("C")) == 0)
-		d->ceil_color = parse_color(res);
+		d->ceil_color = parse_color(res, d);
 	else if (ft_strncmp("F", res[0], ft_strlen("F")) == 0)
-		d->floor_color = parse_color(res);
+		d->floor_color = parse_color(res, d);
+	else if (chk_parse_textures(d))
+		return (1);
 	else
-		return (2);		// able map parse
-	return (1);			// unable map parse
+		error_message("texture parsing", d);
+	return (0);
 }
 
 int		parse_gamedata(t_gamedata *d, char *path)
 {
 	int			fd;
 	int			eof;
+	int			chk_map_parse;
 	char		*line;
 	char		**res;
 	t_list		*map_lst;
@@ -78,14 +93,21 @@ int		parse_gamedata(t_gamedata *d, char *path)
 	map_lst = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		printf("[%s] : WRONG CUB FILE PATH\n", path);	// GNL error 1
+		error_message("GNL", d);
 	while (1)
 	{
 		if ((eof = get_next_line(fd, &line)) < 0)
-			printf("EOF ERROR!!!\n");		// GNL error 2
+			error_message("EOF", d);
 		res = ft_split(line, ' ');
-		if (parse_info(d, line, res) == 2)
-			parse_map(line, &map_lst);
+		if (*line)
+			chk_map_parse = parse_info(d, line, res);
+		if (chk_map_parse == 1)
+			chk_map_parse = parse_map(line, &map_lst);
+		else if (chk_map_parse == -1)
+		{
+			free(line);
+			error_message("map element", d);
+		}
 		free(line);
 		if (eof == 0)
 			break ;

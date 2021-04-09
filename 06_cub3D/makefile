@@ -20,6 +20,8 @@ OPENGL = libmlx.a
 MMS_DIR = ./includes/mms/
 MMS = libmlx.dylib
 
+SCREEN_SHOT = ./cub3D_screenshot.bmp
+
 # source files
 SRCS_DIR = ./srcs/
 MAIN_NAME = \
@@ -87,6 +89,7 @@ clean:
 
 fclean : clean
 	$(RM) $(NAME)
+	$(RM) $(SCREEN_SHOT)
 
 re : fclean $(NAME)
 
