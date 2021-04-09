@@ -103,10 +103,11 @@ int		parse_gamedata(t_gamedata *d, char *path)
 			chk_map_parse = parse_info(d, line, res);
 		if (chk_map_parse == 1)
 			chk_map_parse = parse_map(line, &map_lst);
-		else if (chk_map_parse == -1)
+		if (chk_map_parse == 0)
 		{
 			free(line);
 			error_message("map element", d);
+			break;
 		}
 		free(line);
 		if (eof == 0)

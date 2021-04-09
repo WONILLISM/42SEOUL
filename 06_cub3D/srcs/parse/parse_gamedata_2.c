@@ -11,7 +11,7 @@ int		parse_map(char *line, t_list **map)
 	{
 		if (ft_strchr("012NEWS ", *tmp) == 0)
 		{
-			return (-1);
+			return (0);
 		}
 		line++;
 	}
