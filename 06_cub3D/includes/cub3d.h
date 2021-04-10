@@ -126,6 +126,7 @@ typedef struct		s_bfs
 	int				row;
 	int				f;
 	int				r;
+	int				is_empty_player;
 }					t_bfs;
 
 typedef struct	s_gamedata
@@ -140,7 +141,7 @@ typedef struct	s_gamedata
 	int			ceil_color;
 	int			floor_color;
 
-	int			chk_parse;
+	int			chk_parse[8];
 	int			argc;
 }				t_gamedata;
 
@@ -149,9 +150,7 @@ int	 	cub3d(t_gamedata *d);
 /*
 ** ------------------ valid_map.c -----------------------
 */
-void	find_player_spirte(t_gamedata *d, t_bfs *a, int i, int j);
-void	find_arguments(t_gamedata *d, t_bfs *a);
-int		process_bfs(t_gamedata *d, t_bfs *bf, t_pos *nxt, t_pos **q);
+int		find_arguments(t_gamedata *d, t_bfs *a);
 int		is_valid_map(t_gamedata *d);
 
 /*
@@ -165,13 +164,12 @@ void	init_player(t_gamedata *d, t_bfs *a, int k);
 ** ------------------ parse_gamedata_2.c -----------------------
 */
 int		parse_map(char *line, t_list **map);
-int		parse_color(char **res, t_gamedata *d);
-int		*parse_texture(t_gamedata *d, char *path);
+int		parse_color(char **res, t_gamedata *d, int n);
+int		*parse_texture(t_gamedata *d, char *path, int n);
 
 /*
 ** ------------------ parse_gamedata_1.c -----------------------
 */
-void	parse_resolution(t_gamedata *d, char **res);
 int		parse_info(t_gamedata *d, char *line, char **res);
 int		parse_gamedata(t_gamedata *d, char *path);
 

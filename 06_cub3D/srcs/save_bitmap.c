@@ -8,8 +8,9 @@ int		chk_save_cmd(char **argv, t_gamedata *d)
 
 	s1 = "--save";
 	s2 = argv[2];
-	while (1)
+	while (*s1)
 	{
+		printf("s: %c d: %c\n", *s1, *s2);
 		if (*s1 != *s2)
 			error_message("save param", d);
 		s1++;
@@ -33,7 +34,7 @@ void		save_bitmap(t_gamedata *d)
 
 	fd = open("cub3D_screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
 	if (fd < 0)
-		printf("Error\n");
+		error_message("fd", d);
 	write(fd, "BM", 2);
 	put_bitmap_data(fd, d->scrn.width * d->scrn.height * 4 + 54, 4); // header size
 	put_bitmap_data(fd, 0, 4); // header reserved

@@ -2,13 +2,15 @@
 
 int		chk_parse_textures(t_gamedata *d)
 {
-	if (d->chk_parse == 8)
-	{
-		if (d->north_img && d->south_img && d->east_img && d->west_img && d->sprite_img && d->ceil_color != -1 && d->floor_color != -1)
-			return (1);
-	}
+	int		i;
 
-	return (0);			// texture parsing error
+	i = -1;
+	while (++i < 8)
+	{
+		if (d->chk_parse[i] == 0 || d->chk_parse[i] >= 2)
+			return (0);
+	}
+	return (1);
 }
 
 int		is_valid_resol(t_gamedata *d)
@@ -26,13 +28,13 @@ int		is_valid_resol(t_gamedata *d)
 	return (0);
 }
 
-void	parse_resolution(t_gamedata *d, char **res)
+void	parse_resolution(t_gamedata *d, char **res, int n)
 {
 	int		i;
 	int		j;
 
 	i = 1;
-	d->chk_parse++;
+	d->chk_parse[n]++;
 	while (res[i])
 	{
 		j = 0;
@@ -58,25 +60,28 @@ int		parse_info(t_gamedata *d, char *line, char **res)
 	if (!*line)
 		return (0);
 	else if ((ft_strncmp("R", res[0],ft_strlen("R")) == 0))
-		parse_resolution(d, res);
+		parse_resolution(d, res, 0);
 	else if (ft_strncmp("NO", res[0], ft_strlen("NO")) == 0)
-		d->north_img = parse_texture(d, res[1]);
+		d->north_img = parse_texture(d, res[1], 1);
 	else if (ft_strncmp("SO", res[0], ft_strlen("SO")) == 0)
-		d->south_img = parse_texture(d, res[1]);
+		d->south_img = parse_texture(d, res[1], 2);
 	else if (ft_strncmp("WE", res[0], ft_strlen("WE")) == 0)
-		d->west_img = parse_texture(d, res[1]) ;
+		d->west_img = parse_texture(d, res[1], 3) ;
 	else if (ft_strncmp("EA", res[0], ft_strlen("EA")) == 0)
-		d->east_img = parse_texture(d, res[1]);
+		d->east_img = parse_texture(d, res[1], 4);
 	else if (ft_strncmp("S", res[0], ft_strlen("S")) == 0)
-		d->sprite_img = parse_texture(d, res[1]);
+		d->sprite_img = parse_texture(d, res[1], 5);
 	else if (ft_strncmp("C", res[0], ft_strlen("C")) == 0)
-		d->ceil_color = parse_color(res, d);
+		d->ceil_color = parse_color(res, d, 6);
 	else if (ft_strncmp("F", res[0], ft_strlen("F")) == 0)
-		d->floor_color = parse_color(res, d);
-	else if (chk_parse_textures(d))
-		return (1);
-	else
-		error_message("texture parsing", d);
+		d->floor_color = parse_color(res, d, 7);
+	else 
+	{
+		if (chk_parse_textures(d))
+			return (1);
+		else
+			error_message("parsing", d);
+	}
 	return (0);
 }
 
@@ -91,6 +96,7 @@ int		parse_gamedata(t_gamedata *d, char *path)
 
 	line = 0;
 	map_lst = 0;
+	chk_map_parse = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_message("GNL", d);
@@ -99,15 +105,19 @@ int		parse_gamedata(t_gamedata *d, char *path)
 		if ((eof = get_next_line(fd, &line)) < 0)
 			error_message("EOF", d);
 		res = ft_split(line, ' ');
-		if (*line)
+		if (chk_map_parse == 0)
 			chk_map_parse = parse_info(d, line, res);
 		if (chk_map_parse == 1)
 			chk_map_parse = parse_map(line, &map_lst);
-		if (chk_map_parse == 0)
+		else if (chk_map_parse == 2)
 		{
 			free(line);
 			error_message("map element", d);
 			break;
+		}
+		else if (chk_map_parse == 3)
+		{
+			eof = 0;
 		}
 		free(line);
 		if (eof == 0)

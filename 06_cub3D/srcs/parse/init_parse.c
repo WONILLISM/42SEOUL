@@ -16,14 +16,13 @@ void	init_bfs(t_gamedata *d, t_bfs *a)
 	a->dy[3] = -1;
 	a->col = d->scrn.col_size;
 	a->row = d->scrn.row_size;
-	find_arguments(d, a);
+	a->is_empty_player = 0;
+	if (find_arguments(d, a) != 1)
+		error_message("empty or many player", d);
 	a->chk = (int *)malloc(sizeof(int) * a->row * a->col);
-	if (!a->chk)
-		printf("malloc error\n");
 	i = -1;
 	while (++i < a->row * a->col)
 		a->chk[i] = 0;
-	a->chk[20] = 1;
 }
 
 void	init_player(t_gamedata *d, t_bfs *a, int k)
@@ -47,7 +46,11 @@ void	init_player(t_gamedata *d, t_bfs *a, int k)
 
 void	init_gamedata(t_gamedata *d)
 {
-	d->chk_parse = 0;
+	int		i;
+	
+	i = -1;
+	while (++i < 8)
+		d->chk_parse[i] = 0;
 	d->scrn.sprite = 0;
 	d->scrn.ZBuffer = 0;
 	d->scrn.numofsprt = 0;
