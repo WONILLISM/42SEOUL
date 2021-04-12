@@ -8,9 +8,10 @@ int		chk_save_cmd(char **argv, t_gamedata *d)
 
 	s1 = "--save";
 	s2 = argv[2];
+	if (ft_strlen(s1) != ft_strlen(s2))
+		error_message("save param", d);
 	while (*s1)
 	{
-		printf("s: %c d: %c\n", *s1, *s2);
 		if (*s1 != *s2)
 			error_message("save param", d);
 		s1++;

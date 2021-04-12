@@ -1,5 +1,17 @@
 #include "../../includes/cub3d.h"
 
+char	**split_line(char *line, char c, int *len)
+{
+	char	**ret;
+	int		i;
+
+	ret = ft_split(line, c);
+	while (ret[i])
+		i++;
+	*len = i;
+	return (ret);
+}
+
 int		parse_map(char *line, t_list **map)
 {
 	char	*tmp;
@@ -43,7 +55,7 @@ int		parse_color(char **res, t_gamedata *d, int n)
 	return (color);
 }
 
-int		*parse_texture(t_gamedata *d, char *path, int n)
+int		*parse_texture(t_gamedata *d, char *res, int n)
 {
 	t_img	img;
 	int		i;
@@ -52,6 +64,8 @@ int		*parse_texture(t_gamedata *d, char *path, int n)
 
 	d->chk_parse[n]++;
 	img.ptr = mlx_xpm_file_to_image(d->scrn.mlx, path, &img.w, &img.h);
+	if (!img.ptr)
+		error_message("texture file doesn't exist", d);
 	img.addr = (unsigned int *)mlx_get_data_addr(img.ptr, &img.bpp, &img.size_line, &img.endian);
 	ret = (int *)malloc(sizeof(int) * img.w * img.h);
 	i = -1;

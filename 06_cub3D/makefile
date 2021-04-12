@@ -3,7 +3,6 @@ NAME = cub3D
 
 # compile option
 CC = gcc
-FLAG = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 
@@ -56,14 +55,11 @@ OBJS = $(MANDATORY:.c=.o)
 # rules
 all : $(NAME)
 
-$(NAME) :	library $(OBJS)
-			$(AR) cub3d.a $(OBJS)
-			$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIBFT) $(GNL) $(OPENGL) $(MMS)\
-			-framework OpenGL -framework Appkit
-
-lib : library
-
 library : $(LIBFT) $(OPENGL) $(MMS) $(GNL)
+
+$(NAME) :	library $(OBJS)
+			$(CC) -Werror -Wextra -Wall -o $(NAME) $(OBJS) $(LIBFT) $(GNL) $(OPENGL) $(MMS)\
+			-framework OpenGL -framework Appkit
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
@@ -82,7 +78,7 @@ $(MMS) :
 	mv $(MMS_DIR)$(MMS) ./$(MMS)
 
 clean:
-	$(RM) $(OBJS) $(LIBFT) $(GNL)
+	$(RM) $(OBJS) $(LIBFT) $(GNL) $(OPENGL) $(MMS) $(SRCS)
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(GNL_DIR)
 	make clean -C $(OPENGL_DIR)

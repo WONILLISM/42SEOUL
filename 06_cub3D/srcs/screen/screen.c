@@ -96,6 +96,7 @@ int		 cub3d(t_gamedata *d)
 	init_keys(&d->key);
 	mlx_hook(d->scrn.win, 2, 1, key_pressed, &(d->key));
 	mlx_hook(d->scrn.win, 3, 2, key_released, &(d->key));
+	mlx_hook(d->scrn.win, 17, 0, ft_exit, 0);
 	mlx_loop_hook(d->scrn.mlx, main_loop, d);
 	mlx_loop(d->scrn.mlx);
 	return (0);

@@ -1,12 +1,10 @@
 R 1000 1000
 
-NO ./assets/textures/north.xpm
+NO ./assets/textures/north.xpm ssd
 SO ./assets/textures/south.xpm
 WE ./assets/textures/west.xpm
 EA ./assets/textures/east.xpm
-
 S ./assets/textures/sprite2.xpm
-
 F 20,80,81
 C 28,37,60
 

@@ -41,7 +41,7 @@ void	parse_resolution(t_gamedata *d, char **res, int n)
 		while (res[i][j])
 		{
 			if (!ft_isdigit(res[i][j]))
-				printf("is not digit\n");
+				error_message("resolution is not digit", d);
 			j++;
 		}
 		if (i == 1)
@@ -50,7 +50,7 @@ void	parse_resolution(t_gamedata *d, char **res, int n)
 			d->scrn.height = ft_atoi(res[i]);
 		i++;
 	}
-	if (i <= 1 || i >= 4)
+	if (i <= 2 || i >= 4)
 		error_message("resolution", d);
 	is_valid_resol(d);
 }
@@ -75,7 +75,7 @@ int		parse_info(t_gamedata *d, char *line, char **res)
 		d->ceil_color = parse_color(res, d, 6);
 	else if (ft_strncmp("F", res[0], ft_strlen("F")) == 0)
 		d->floor_color = parse_color(res, d, 7);
-	else 
+	else
 	{
 		if (chk_parse_textures(d))
 			return (1);

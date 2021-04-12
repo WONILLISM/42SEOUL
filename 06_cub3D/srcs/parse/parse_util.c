@@ -1,10 +1,11 @@
 #include "../../includes/cub3d.h"
 
-void	error_message(char *s, t_gamedata *d)
+int		error_message(char *s, t_gamedata *d)
 {
 	printf("%s error!!\n", s);
 	free_gamedata(d);
-	exit(0);
+	ft_exit(0);
+	return (0);
 }
 
 int		get_col_size(t_list *lst)

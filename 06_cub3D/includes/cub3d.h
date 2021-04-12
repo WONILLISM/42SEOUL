@@ -146,6 +146,7 @@ typedef struct	s_gamedata
 }				t_gamedata;
 
 
+int		ft_exit();
 int	 	cub3d(t_gamedata *d);
 /*
 ** ------------------ valid_map.c -----------------------
@@ -165,7 +166,7 @@ void	init_player(t_gamedata *d, t_bfs *a, int k);
 */
 int		parse_map(char *line, t_list **map);
 int		parse_color(char **res, t_gamedata *d, int n);
-int		*parse_texture(t_gamedata *d, char *path, int n);
+int		*parse_texture(t_gamedata *d, char *res, int n)
 
 /*
 ** ------------------ parse_gamedata_1.c -----------------------
@@ -176,7 +177,7 @@ int		parse_gamedata(t_gamedata *d, char *path);
 /*
 ** ------------------ parse_util.c -----------------------
 */
-void	error_message(char *s, t_gamedata *d);
+int		error_message(char *s, t_gamedata *d);
 int		get_col_size(t_list *lst);
 char	**lst2arr(t_gamedata *d, t_list *lst);
 void	free_split(char **res);

@@ -19,7 +19,7 @@ int		key_pressed(int key, t_key *key_info)
 	else if (key == KEY_RIGTH)
 		key_info->right = 1;
 	else if (key == KEY_ESC)
-		exit(0);
+		ft_exit();
 	return (0);
 }
 
