@@ -1,5 +1,21 @@
 #include "../../includes/cub3d.h"
 
+void	chk_player_pos(t_gamedata *d,t_bfs *a, int i, int j)
+{
+	int		k;
+	char	tmp;
+
+	k = 0;
+	if (i == 0 || j == 0 || i == a->row -1 || i == a->col - 1)
+		error_message("player pos", d);
+	while (k < 4)
+	{
+		tmp = d->scrn.map_arr[i + a->dy[k]][j + a->dx[k]];
+		if (tmp == ' ' || tmp == '\0')
+			error_message("player pos", d);
+		k++;
+	}
+}
 void	find_player_spirte(t_gamedata *d, t_bfs *a, int i, int j)
 {
 	int		k;
@@ -8,15 +24,14 @@ void	find_player_spirte(t_gamedata *d, t_bfs *a, int i, int j)
 	spec = "ESWN";
 	k = 0;
 	if (d->scrn.map_arr[i][j] == '2')
-	{
 		d->scrn.numofsprt++;
-	}
 	while (spec[k])
 	{
 		if (d->scrn.map_arr[i][j] == spec[k])
 		{
 			a->cur.y = i;
 			a->cur.x = j;
+			chk_player_pos(d,a,i,j);
 			init_player(d, a, k);
 			d->scrn.map_arr[i][j] = '0';
 			a->is_empty_player++;

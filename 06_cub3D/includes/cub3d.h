@@ -166,7 +166,7 @@ void	init_player(t_gamedata *d, t_bfs *a, int k);
 */
 int		parse_map(char *line, t_list **map);
 int		parse_color(char **res, t_gamedata *d, int n);
-int		*parse_texture(t_gamedata *d, char *res, int n)
+int		*parse_texture(t_gamedata *d, char **res, int n);
 
 /*
 ** ------------------ parse_gamedata_1.c -----------------------

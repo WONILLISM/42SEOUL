@@ -1,24 +1,12 @@
 #include "../../includes/cub3d.h"
 
-char	**split_line(char *line, char c, int *len)
-{
-	char	**ret;
-	int		i;
-
-	ret = ft_split(line, c);
-	while (ret[i])
-		i++;
-	*len = i;
-	return (ret);
-}
-
 int		parse_map(char *line, t_list **map)
 {
 	char	*tmp;
 
 	tmp = line;
-	if (!*line)
-		return (3);
+	// if (!*line)
+	// 	return (3);
 	while (*line)
 	{
 		if (ft_strchr("012NEWS ", *tmp) == 0)
@@ -40,30 +28,43 @@ int		parse_color(char **res, t_gamedata *d, int n)
 
 	tmp = ft_split(res[1], ',');
 	color = 0;
-	d->chk_parse[n]++;
-	i = -1;
-	while (++i < 3)
+	i = 0;
+	while (tmp[i])
 	{
 		rgb = ft_atoi(tmp[i]);
 		if (rgb < 0 || rgb > 255)
-			return (-1);
+			error_message("color range", d);
 		color += rgb << ((2 - i) * 8);
+		i++;
 	}
+	d->chk_parse[n]++;
 	free_split(tmp);
-	if (i <= 2 || i >= 4)
-		return (-1);	// color parsing error
+	if (i != 3)
+		error_message("color argument", d);
 	return (color);
 }
 
-int		*parse_texture(t_gamedata *d, char *res, int n)
+int		get_split_size(char **res)
+{
+	int		ret;
+
+	ret = 0;
+	while (res[ret])
+		ret++;
+	return (ret);
+}
+
+int		*parse_texture(t_gamedata *d, char **res, int n)
 {
 	t_img	img;
 	int		i;
 	int		j;
 	int		*ret;
 
+	if  (get_split_size(res) != 2)
+		error_message("texture argument error", d);
 	d->chk_parse[n]++;
-	img.ptr = mlx_xpm_file_to_image(d->scrn.mlx, path, &img.w, &img.h);
+	img.ptr = mlx_xpm_file_to_image(d->scrn.mlx, res[1], &img.w, &img.h);
 	if (!img.ptr)
 		error_message("texture file doesn't exist", d);
 	img.addr = (unsigned int *)mlx_get_data_addr(img.ptr, &img.bpp, &img.size_line, &img.endian);

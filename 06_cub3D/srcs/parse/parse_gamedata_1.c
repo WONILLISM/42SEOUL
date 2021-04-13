@@ -41,7 +41,7 @@ void	parse_resolution(t_gamedata *d, char **res, int n)
 		while (res[i][j])
 		{
 			if (!ft_isdigit(res[i][j]))
-				error_message("resolution is not digit", d);
+				error_message("resolution arg is not digit", d);
 			j++;
 		}
 		if (i == 1)
@@ -50,8 +50,8 @@ void	parse_resolution(t_gamedata *d, char **res, int n)
 			d->scrn.height = ft_atoi(res[i]);
 		i++;
 	}
-	if (i <= 2 || i >= 4)
-		error_message("resolution", d);
+	if (i != 3)
+		error_message("resolution argument", d);
 	is_valid_resol(d);
 }
 
@@ -62,15 +62,15 @@ int		parse_info(t_gamedata *d, char *line, char **res)
 	else if ((ft_strncmp("R", res[0],ft_strlen("R")) == 0))
 		parse_resolution(d, res, 0);
 	else if (ft_strncmp("NO", res[0], ft_strlen("NO")) == 0)
-		d->north_img = parse_texture(d, res[1], 1);
+		d->north_img = parse_texture(d, res, 1);
 	else if (ft_strncmp("SO", res[0], ft_strlen("SO")) == 0)
-		d->south_img = parse_texture(d, res[1], 2);
+		d->south_img = parse_texture(d, res, 2);
 	else if (ft_strncmp("WE", res[0], ft_strlen("WE")) == 0)
-		d->west_img = parse_texture(d, res[1], 3) ;
+		d->west_img = parse_texture(d, res, 3) ;
 	else if (ft_strncmp("EA", res[0], ft_strlen("EA")) == 0)
-		d->east_img = parse_texture(d, res[1], 4);
+		d->east_img = parse_texture(d, res, 4);
 	else if (ft_strncmp("S", res[0], ft_strlen("S")) == 0)
-		d->sprite_img = parse_texture(d, res[1], 5);
+		d->sprite_img = parse_texture(d, res, 5);
 	else if (ft_strncmp("C", res[0], ft_strlen("C")) == 0)
 		d->ceil_color = parse_color(res, d, 6);
 	else if (ft_strncmp("F", res[0], ft_strlen("F")) == 0)
@@ -113,12 +113,12 @@ int		parse_gamedata(t_gamedata *d, char *path)
 		{
 			free(line);
 			error_message("map element", d);
-			break;
 		}
-		else if (chk_map_parse == 3)
-		{
-			eof = 0;
-		}
+		// else if (chk_map_parse == 3)
+		// {
+		// 	eof = 0;
+		// }
+		free_split(res);
 		free(line);
 		if (eof == 0)
 			break ;
