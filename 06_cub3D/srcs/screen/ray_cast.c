@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_cast.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/13 16:34:59 by wopark            #+#    #+#             */
+/*   Updated: 2021/04/13 16:41:54 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	loop_to_wall(t_screen *s)
@@ -16,16 +28,16 @@ void	loop_to_wall(t_screen *s)
 			s->gridY += s->cellY;
 			s->isHitSide = 1;
 		}
-		if (s->map_arr[s->gridY][s->gridX]=='1')
+		if (s->map_arr[s->gridY][s->gridX] == '1')
 			s->isHitWall = 1;
 	}
+	s->tex.lineHeight = (int)(s->height / s->distWall);
+	s->tex.drawStart = -s->tex.lineHeight / 2 + s->height / 2;
+	s->tex.drawEnd = s->tex.lineHeight / 2 + s->height / 2;
 }
 
 void	draw_texture(t_screen *s, int *img, int x)
 {
-	s->tex.lineHeight = (int)(s->height / s->distWall);
-	s->tex.drawStart = -s->tex.lineHeight / 2 + s->height / 2;
-	s->tex.drawEnd = s->tex.lineHeight / 2 + s->height / 2;
 	if (s->tex.drawStart < 0)
 		s->tex.drawStart = 0;
 	if (s->tex.drawEnd >= s->height)
@@ -41,12 +53,14 @@ void	draw_texture(t_screen *s, int *img, int x)
 	if (s->isHitSide == 1 && s->ray.y > 0)
 		s->tex.texX = 64 - s->tex.texX - 1;
 	s->tex.step = 1.0 * 64 / s->tex.lineHeight;
-	s->tex.texPos = (s->tex.drawStart - s->height / 2 + s->tex.lineHeight / 2) * s->tex.step;
+	s->tex.texPos = (s->tex.drawStart - s->height / 2 + s->tex.lineHeight / 2)
+	* s->tex.step;
 	while (s->tex.drawStart < s->tex.drawEnd)
 	{
 		s->tex.texY = (int)s->tex.texPos & (64 - 1);
 		s->tex.texPos += s->tex.step;
-		s->view.addr[s->width * s->tex.drawStart + x] = img[64 * s->tex.texY + s->tex.texX];
+		s->view.addr[s->width * s->tex.drawStart + x] =
+		img[64 * s->tex.texY + s->tex.texX];
 		s->tex.drawStart++;
 	}
 }
@@ -62,20 +76,19 @@ void	check_hit(t_gamedata *d, int x)
 	loop_to_wall(s);
 	if (!s->isHitSide)
 	{
-		if (s->ray.x > 0){
+		if (s->ray.x > 0)
 			draw_texture(s, d->east_img, x);
-		}
 		else
 			draw_texture(s, d->west_img, x);
-		s->distWall = (s->gridX - s->p.pos.x + (1 - s->cellX) / 2 ) / s->ray.x;
+		s->distWall = (s->gridX - s->p.pos.x + (1 - s->cellX) / 2) / s->ray.x;
 	}
 	else
 	{
 		if (s->ray.y > 0)
-			draw_texture(s, d->south_img,x);
+			draw_texture(s, d->south_img, x);
 		else
 			draw_texture(s, d->north_img, x);
-		s->distWall = (s->gridY - s->p.pos.y + (1 - s->cellY) / 2 ) / s->ray.y;
+		s->distWall = (s->gridY - s->p.pos.y + (1 - s->cellY) / 2) / s->ray.y;
 	}
 	s->ZBuffer[x] = s->distWall;
 }
@@ -96,7 +109,6 @@ void	proc_dda(t_screen *s, int x)
 		s->cellX = 1;
 		s->side.x = (s->gridX + 1.0f - s->p.pos.x) * s->delta.x;
 	}
-
 	if (s->ray.y < 0)
 	{
 		s->cellY = -1;

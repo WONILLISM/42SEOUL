@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/13 16:47:00 by wopark            #+#    #+#             */
+/*   Updated: 2021/04/13 16:47:25 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 t_vec	new_vector(double x, double y)
@@ -12,7 +24,7 @@ t_vec	new_vector(double x, double y)
 t_vec	add_vector(t_vec a, t_vec b)
 {
 	t_vec	ret;
-	
+
 	ret.x = a.x + b.x;
 	ret.y = a.y + b.y;
 	return (ret);
@@ -40,7 +52,7 @@ t_vec	rot_vector(t_vec v, double rs)
 {
 	t_vec	ret;
 
-	ret.x = v.x * cos(rs ) - v.y * sin(rs );
-	ret.y = v.x * sin(rs ) + v.y * cos(rs );
+	ret.x = v.x * cos(rs) - v.y * sin(rs);
+	ret.y = v.x * sin(rs) + v.y * cos(rs);
 	return (ret);
 }

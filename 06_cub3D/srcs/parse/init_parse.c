@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_parse.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/13 14:41:38 by wopark            #+#    #+#             */
+/*   Updated: 2021/04/13 17:11:30 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	init_bfs(t_gamedata *d, t_bfs *a)
@@ -35,19 +47,12 @@ void	init_player(t_gamedata *d, t_bfs *a, int k)
 	d->scrn.plane.y = a->dy[(int)(k + 1) % 4] * 0.66;
 	d->scrn.p.move_speed = 0.05f;
 	d->scrn.p.rot_speed = 0.02f;
-
-	// printf("%f\n",d->scrn.p.pos.x);
-	// printf("%f\n",d->scrn.p.pos.y);
-	// printf("%f\n",d->scrn.p.dir.x);
-	// printf("%f\n",d->scrn.p.dir.y);
-	// printf("%f\n",d->scrn.plane.x);
-	// printf("%f\n",d->scrn.plane.y);
 }
 
 void	init_gamedata(t_gamedata *d)
 {
 	int		i;
-	
+
 	i = -1;
 	while (++i < 8)
 		d->chk_parse[i] = 0;

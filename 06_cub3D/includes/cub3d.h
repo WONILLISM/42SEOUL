@@ -143,10 +143,17 @@ typedef struct	s_gamedata
 
 	int			chk_parse[8];
 	int			argc;
+
+	int			fd;
+	int			eof;
+	int			chk_map_parse;
+	char		*line;
+	char		**res;
+	t_list		*map_lst;
 }				t_gamedata;
 
 
-int		ft_exit();
+int		ft_exit(void);
 int	 	cub3d(t_gamedata *d);
 /*
 ** ------------------ valid_map.c -----------------------

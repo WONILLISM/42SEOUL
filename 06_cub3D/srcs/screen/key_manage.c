@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_manage.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/13 16:33:33 by wopark            #+#    #+#             */
+/*   Updated: 2021/04/13 16:34:36 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 int		key_pressed(int key, t_key *key_info)
@@ -44,7 +56,7 @@ int		key_released(int key, t_key *key_info)
 	return (0);
 }
 
-void	move_player(t_gamedata *d, t_vec dir,int sub_add)
+void	move_player(t_gamedata *d, t_vec dir, int sub_add)
 {
 	t_vec	np;
 
@@ -53,7 +65,7 @@ void	move_player(t_gamedata *d, t_vec dir,int sub_add)
 	else if (sub_add == 1)
 		np = add_vector(d->scrn.p.pos, mul_vector(dir, d->scrn.p.move_speed));
 	if (d->scrn.map_arr[(int)(d->scrn.p.pos.y)][(int)(np.x)] == '0')
-			d->scrn.p.pos.x = np.x;
+		d->scrn.p.pos.x = np.x;
 	if (d->scrn.map_arr[(int)(np.y)][(int)(d->scrn.p.pos.x)] == '0')
 		d->scrn.p.pos.y = np.y;
 }
@@ -77,7 +89,7 @@ void	manage_player(t_gamedata *d)
 	else if (d->key.right)
 		rotate_player(d, 1);
 	else if (d->key.a)
-		move_player(d, rot_vector(d->scrn.p.dir, M_PI/2), 0);
+		move_player(d, rot_vector(d->scrn.p.dir, M_PI / 2), 0);
 	else if (d->key.d)
-		move_player(d, rot_vector(d->scrn.p.dir, M_PI/2), 1);
+		move_player(d, rot_vector(d->scrn.p.dir, M_PI / 2), 1);
 }

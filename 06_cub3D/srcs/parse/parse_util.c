@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_util.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/13 16:21:48 by wopark            #+#    #+#             */
+/*   Updated: 2021/04/13 16:22:21 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 int		error_message(char *s, t_gamedata *d)
 {
 	printf("%s error!!\n", s);
 	free_gamedata(d);
-	ft_exit(0);
+	ft_exit();
 	return (0);
 }
 
@@ -33,7 +45,7 @@ char	**lst2arr(t_gamedata *d, t_list *lst)
 	d->scrn.row_size = ft_lstsize(lst);
 	ret = (char **)malloc(sizeof(char *) * (d->scrn.row_size + 1));
 	if (!ret)
-		return (0);	// malloc error
+		return (0);
 	i = 0;
 	while (lst)
 	{
@@ -41,7 +53,7 @@ char	**lst2arr(t_gamedata *d, t_list *lst)
 		if (!ret[i])
 		{
 			free_split(ret);
-			return (0); // malloc error
+			return (0);
 		}
 		ft_strlcpy(ret[i], lst->content, d->scrn.col_size + 1);
 		i++;
