@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:20:06 by wopark            #+#    #+#             */
-/*   Updated: 2021/04/13 18:10:12 by wopark           ###   ########.fr       */
+/*   Updated: 2021/04/14 12:37:58 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,65 +27,47 @@ int		parse_map(char *line, t_list **map)
 	return (1);
 }
 
+int		proc_color(char **res, t_gamedata *d, t_color *c)
+{
+	if (c->rgb < 0 || c->rgb > 255)
+		error_message("color range", d);
+	c->color += c->rgb << ((2 - c->cnt) * 8);
+	c->rgb = 0;
+	c->cnt++;
+	if (*(c->tmp) == '\0')
+	{
+		if (*((c->tmp) - 1) == ',')
+			error_message("color argument", d);
+		return (1);
+	}
+	return (0);
+}
+
 int		parse_color(char **res, t_gamedata *d, int n)
 {
-	char	*tmp;
-	int		i;
-	int		j;
-	int		rgb;
-	int		color;
+	t_color		c;
 
+	c.tmp = res[1];
+	c.rgb = 0;
+	c.cnt = 0;
+	c.color = 0;
 	if (!res[1])
 		error_message("color is empty", d);
-	tmp = res[1];
-	i = 0;
-	j = 0;
 	while (1)
 	{
-		printf("%s\n", res[1]);
-		if (res[1][i] == ',')
+		if (ft_isdigit(*(c.tmp)))
+			c.rgb = c.rgb * 10 + (*(c.tmp) - '0');
+		else if (*(c.tmp) == ',' || *(c.tmp) == '\0')
 		{
-			tmp[j] = '\0';
-			rgb = ft_atoi(tmp);
-			// printf("%d\n", rgb);
-			color += rgb << (2 - i) * 8;
-			j = 0;
-			tmp = res[1] + i + 1;
-			// printf("%s\n", tmp);
+			if (proc_color(res, d, &c) == 1)
+				break ;
 		}
-		else if (!res[1][i])
-		{
-			tmp[j] = '\0';
-			rgb = ft_atoi(tmp);
-			// printf("%d\n", rgb);
-			color += rgb << (2 - i) * 8;
-			j = 0;
-			break;
-		}
-		i++;
-		j++;
+		(c.tmp)++;
 	}
-	// char	**tmp;
-	// int		color;
-	// int		rgb;
-	// int		i;
-
-	// tmp = ft_split(res[1], ',');
-	// color = 0;
-	// i = 0;
-	// while (tmp[i])
-	// {
-	// 	rgb = ft_atoi(tmp[i]);
-	// 	if (rgb < 0 || rgb > 255)
-	// 		error_message("color range", d);
-	// 	color += rgb << ((2 - i) * 8);
-	// 	i++;
-	// }
+	if (c.cnt != 3)
+		error_message("color argument", d);
 	d->chk_parse[n]++;
-	// free_split(tmp);
-	// if (i != 3)
-	// 	error_message("color argument", d);
-	return (color);
+	return (c.color);
 }
 
 int		get_split_size(char **res)

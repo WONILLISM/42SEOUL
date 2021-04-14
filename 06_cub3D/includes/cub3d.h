@@ -129,6 +129,14 @@ typedef struct		s_bfs
 	int				is_empty_player;
 }					t_bfs;
 
+typedef struct	s_color
+{
+	int		color;
+	int		rgb;
+	int		cnt;
+	char	*tmp;
+}				t_color;
+
 typedef struct	s_gamedata
 {
 	t_screen	scrn;
@@ -179,7 +187,7 @@ int		*parse_texture(t_gamedata *d, char **res, int n);
 ** ------------------ parse_gamedata_1.c -----------------------
 */
 int		parse_info(t_gamedata *d, char *line, char **res);
-int		parse_gamedata(t_gamedata *d, char *path);
+void	parse_gamedata(t_gamedata *d, char *path);
 
 /*
 ** ------------------ parse_util.c -----------------------
@@ -238,5 +246,6 @@ void	save_bitmap(t_gamedata *d);
 int		chk_save_cmd(char **argv, t_gamedata *d);
 
 int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
+void	chk_cubfile(t_gamedata *d, char *s);
 
 #endif

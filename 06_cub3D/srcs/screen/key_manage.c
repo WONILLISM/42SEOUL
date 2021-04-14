@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:33:33 by wopark            #+#    #+#             */
-/*   Updated: 2021/04/13 16:34:36 by wopark           ###   ########.fr       */
+/*   Updated: 2021/04/14 12:29:02 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ void	manage_player(t_gamedata *d)
 
 	if (d->key.w || d->key.up)
 		move_player(d, d->scrn.p.dir, 1);
-	else if (d->key.s || d->key.down)
+	if (d->key.s || d->key.down)
 		move_player(d, d->scrn.p.dir, 0);
-	else if (d->key.left)
+	if (d->key.left)
 		rotate_player(d, -1);
-	else if (d->key.right)
+	if (d->key.right)
 		rotate_player(d, 1);
-	else if (d->key.a)
+	if (d->key.a)
 		move_player(d, rot_vector(d->scrn.p.dir, M_PI / 2), 0);
-	else if (d->key.d)
+	if (d->key.d)
 		move_player(d, rot_vector(d->scrn.p.dir, M_PI / 2), 1);
 }

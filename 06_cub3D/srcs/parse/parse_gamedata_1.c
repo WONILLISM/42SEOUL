@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 15:46:40 by wopark            #+#    #+#             */
-/*   Updated: 2021/04/13 17:36:42 by wopark           ###   ########.fr       */
+/*   Updated: 2021/04/14 12:41:10 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,13 @@ int		parse_info(t_gamedata *d, char *line, char **res)
 	return (0);
 }
 
-int		parse_gamedata(t_gamedata *d, char *path)
+void	parse_gamedata(t_gamedata *d, char *path)
 {
 	d->line = 0;
 	d->map_lst = 0;
 	d->chk_map_parse = 0;
 	d->fd = open(path, O_RDONLY);
+	chk_cubfile(d, path);
 	if (d->fd < 0)
 		error_message("GNL", d);
 	while (1)
@@ -118,5 +119,4 @@ int		parse_gamedata(t_gamedata *d, char *path)
 	}
 	d->scrn.map_arr = lst2arr(d, d->map_lst);
 	close(d->fd);
-	return (0);
 }
