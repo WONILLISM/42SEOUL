@@ -59,7 +59,7 @@ library : $(LIBFT) $(OPENGL) $(MMS) $(GNL)
 
 $(NAME) :	library $(OBJS)
 			$(CC) -Werror -Wextra -Wall -o $(NAME) $(OBJS) $(LIBFT) $(GNL) $(OPENGL) $(MMS)\
-			-framework OpenGL -framework Appkit
+			-framework OpenGL -framework Appkit -fsanitize=address
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)

@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:22:38 by wopark            #+#    #+#             */
-/*   Updated: 2021/04/13 16:32:46 by wopark           ###   ########.fr       */
+/*   Updated: 2021/04/14 12:55:09 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	chk_player_pos(t_gamedata *d, t_bfs *a, int i, int j)
 	char	tmp;
 
 	k = 0;
+	tmp = 0;
 	if (i == 0 || j == 0 || i == a->row - 1 || i == a->col - 1)
 		error_message("player pos", d);
 	while (k < 4)
