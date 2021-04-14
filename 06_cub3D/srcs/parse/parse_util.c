@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:21:48 by wopark            #+#    #+#             */
-/*   Updated: 2021/04/13 16:22:21 by wopark           ###   ########.fr       */
+/*   Updated: 2021/04/14 13:57:10 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	free_gamedata(t_gamedata *d)
 		free(d->sprite_img);
 	if (d->scrn.sprite)
 		free(d->scrn.sprite);
-	if (d->scrn.ZBuffer)
-		free(d->scrn.ZBuffer);
+	if (d->scrn.buffer)
+		free(d->scrn.buffer);
 	if (d->scrn.map_arr)
 		free_split(d->scrn.map_arr);
 }

@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 14:41:38 by wopark            #+#    #+#             */
-/*   Updated: 2021/04/13 17:11:30 by wopark           ###   ########.fr       */
+/*   Updated: 2021/04/14 13:56:49 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	init_gamedata(t_gamedata *d)
 	while (++i < 8)
 		d->chk_parse[i] = 0;
 	d->scrn.sprite = 0;
-	d->scrn.ZBuffer = 0;
+	d->scrn.buffer = 0;
 	d->scrn.numofsprt = 0;
 	d->scrn.height = 0;
 	d->scrn.width = 0;

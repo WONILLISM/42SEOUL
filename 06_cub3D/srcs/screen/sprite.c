@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:44:54 by wopark            #+#    #+#             */
-/*   Updated: 2021/04/13 16:46:27 by wopark           ###   ########.fr       */
+/*   Updated: 2021/04/14 13:54:14 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,22 @@ void	cal_sprite(t_screen *s, t_sprites *sp, int i)
 	- s->p.dir.x * sp->sprt_pos.y);
 	sp->transform.y = sp->inv_det * (-s->plane.y * sp->sprt_pos.x
 	+ s->plane.x * sp->sprt_pos.y);
-	sp->scrnX = (int)((s->width / 2) * (1 + sp->transform.x / sp->transform.y));
+	sp->scrn_x =
+	(int)((s->width / 2) * (1 + sp->transform.x / sp->transform.y));
 	sp->sprt_h = abs((int)(s->height / (sp->transform.y)));
-	sp->drawStartY = -sp->sprt_h / 2 + s->height / 2;
-	if (sp->drawStartY < 0)
-		sp->drawStartY = 0;
-	sp->drawEndY = sp->sprt_h / 2 + s->height / 2;
-	if (sp->drawEndY >= s->height)
-		sp->drawEndY = s->height - 1;
+	sp->draw_start_y = -sp->sprt_h / 2 + s->height / 2;
+	if (sp->draw_start_y < 0)
+		sp->draw_start_y = 0;
+	sp->draw_end_y = sp->sprt_h / 2 + s->height / 2;
+	if (sp->draw_end_y >= s->height)
+		sp->draw_end_y = s->height - 1;
 	sp->sprt_w = abs((int)(s->height / (sp->transform.y)));
-	sp->drawStartX = -sp->sprt_w / 2 + sp->scrnX;
-	if (sp->drawStartX < 0)
-		sp->drawStartX = 0;
-	sp->drawEndX = sp->sprt_w / 2 + sp->scrnX;
-	if (sp->drawEndX >= s->width)
-		sp->drawEndX = s->width - 1;
+	sp->draw_start_x = -sp->sprt_w / 2 + sp->scrn_x;
+	if (sp->draw_start_x < 0)
+		sp->draw_start_x = 0;
+	sp->draw_end_x = sp->sprt_w / 2 + sp->scrn_x;
+	if (sp->draw_end_x >= s->width)
+		sp->draw_end_x = s->width - 1;
 }
 
 void	put_sprites(t_screen *s, t_sprites *sp, int *img)
@@ -43,20 +44,20 @@ void	put_sprites(t_screen *s, t_sprites *sp, int *img)
 	int		j;
 	int		k;
 
-	j = sp->drawStartX;
-	while (j < sp->drawEndX)
+	j = sp->draw_start_x;
+	while (j < sp->draw_end_x)
 	{
-		sp->texX = (int)(256 * (j - (-sp->sprt_w / 2 + sp->scrnX))
+		sp->tex_x = (int)(256 * (j - (-sp->sprt_w / 2 + sp->scrn_x))
 		* 64 / sp->sprt_w) / 256;
 		if (sp->transform.y > 0 && j > 0 && j < s->width
-		&& sp->transform.y < s->ZBuffer[j])
+		&& sp->transform.y < s->buffer[j])
 		{
-			k = sp->drawStartY;
-			while (k < sp->drawEndY)
+			k = sp->draw_start_y;
+			while (k < sp->draw_end_y)
 			{
 				sp->dist = k * 256 - s->height * 128 + sp->sprt_h * 128;
-				sp->texY = ((sp->dist * 64) / sp->sprt_h) / 256;
-				sp->color = img[64 * sp->texY + sp->texX];
+				sp->tex_y = ((sp->dist * 64) / sp->sprt_h) / 256;
+				sp->color = img[64 * sp->tex_y + sp->tex_x];
 				if ((sp->color & 0x00FFFFFF) != 0)
 					s->view.addr[k * s->width + j] = sp->color;
 				k++;

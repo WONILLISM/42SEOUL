@@ -6,7 +6,7 @@
 /*   By: wopark <wopark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:33:09 by wopark            #+#    #+#             */
-/*   Updated: 2021/04/14 12:44:03 by wopark           ###   ########.fr       */
+/*   Updated: 2021/04/14 13:57:56 by wopark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,21 @@ void	init_keys(t_key *key)
 
 void	init_screen(t_screen *s)
 {
-	s->ZBuffer = (double *)malloc(sizeof(double) * s->width);
-	s->screenX = 0;
-	s->distWall = 0;
+	s->buffer = (double *)malloc(sizeof(double) * s->width);
+	s->scrn_x = 0;
+	s->dist_wall = 0;
 	s->ray.x = 0.0f;
 	s->ray.y = 0.0f;
 	s->side.x = 0.0f;
 	s->side.y = 0.0f;
 	s->delta.x = 0.0f;
 	s->delta.y = 0.0f;
-	s->gridX = 0;
-	s->gridY = 0;
-	s->cellX = 0;
-	s->cellY = 0;
-	s->isHitSide = 0;
-	s->isHitWall = 0;
+	s->grid_x = 0;
+	s->grid_y = 0;
+	s->cell_x = 0;
+	s->cell_y = 0;
+	s->is_hit_side = 0;
+	s->is_hit_wall = 0;
 }
 
 void	chk_cubfile(t_gamedata *d, char *s)
