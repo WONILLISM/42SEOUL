@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 int		ft_strlen(char *s);
 char	*ft_strcpy(char *dst, char *src);
 int		ft_strcmp(const char *s1, const char *s2);
+ssize_t	ft_write(int fd, const void *buf, size_t nbyte);
 
-int		main()
+int		main(int argc, char **argv)
 {
 	char	*src;
 	char	*src2;
@@ -16,7 +18,7 @@ int		main()
 	printf("\n***** ft_strlen *****\n");
 	printf("[Length of \"Hello\"]: %d\n", ft_strlen(src));
 	printf("\n***** strlen *****\n");
-	printf("[Length of \"Hello\"]: %d\n", strlen(src));
+	printf("[Length of \"Hello\"]: %lu\n", strlen(src));
 
 	/*    ft_strcpy    */
 	src = "World";
@@ -55,6 +57,19 @@ int		main()
 		printf("not equal\n");
 	else
 		printf("equal\n");
+
+	if (argc == 2)
+	{
+		printf("\n***** ft_write *****\n");
+		printf("[argv[1]: %s ft_write res:]\n", argv[1]);
+		ft_write(1, argv[1], ft_strlen(argv[1]));
+		ft_write(1, "\n", 1);
+
+		printf("\n***** write *****\n");
+		printf("[argv[1]: %s ft_write res:]\n", argv[1]);
+		write(1, argv[1], ft_strlen(argv[1]));
+		write(1, "\n", 1);
+	}
 
 	return (0);
 }

@@ -11,7 +11,8 @@ RM	=	rm -f
 # source files
 SRCS	=	ft_strlen.s \
 			ft_strcpy.s \
-			ft_strcmp.s
+			ft_strcmp.s \
+			ft_write.s
 
 # object files
 OBJS	=	$(SRCS:.s=.o)
