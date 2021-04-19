@@ -11,7 +11,7 @@ _ft_write:
 _err:
 	push	rax			; syscall 함수를 호출한 결과의 에러코드인 rax 값을 스택에 push
 	call	___error	; __error 함수 호출
-	pop		rdx			;
-	mov		[rax], rdx
-	mov		rax, -1
-	ret
+	pop		rdx			; 스택에 담겨있던 값을 rdx에 저장
+	mov		[rax], rdx	; ___error 함수에서 반환된 주소값이 가리키는 곳에 rdx 대입
+	mov		rax, -1		; rax에 -1 대입
+	ret					; 반환
