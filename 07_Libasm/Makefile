@@ -1,26 +1,43 @@
+# output
 NAME	=	libasm.a
 
+# compile option
+CC	=	gcc
+CFLAGS	=	-Wall -Werror -Wextra
+AR	=	ar rcs
+
+RM	=	rm -f
+
+# source files
 SRCS	=	ft_strlen.s
 
+# object files
 OBJS	=	$(SRCS:.s=.o)
 
+# assemble
 NASM	=	nasm
-NASM_FLAGS = -f macho64
+NFLAGS = -f macho64
 
-FLAGS	=	-Wall -Werror -Wextra
+# test
+TEST	=	test
 
+# rules
 %.o		:	%.s
-			$(NASM) $(NASM_FLAGS) $<
+			$(NASM) $(NFLAGS) $<
 
 
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
-clean	:	rm -rf $(OBJS)
+clean	:
+	$(RM) $(OBJS)
 
-fclean	:	clean
-			rm -rf $(NAME)
+fclean	: clean
+	$(RM) $(NAME) $(TEST)
 
-re		:	fclean $(NAME)
+re		:	fclean all
+
+test	:	re
+		$(CC) main.c -o test -L. -lasm
