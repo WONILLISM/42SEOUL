@@ -1,5 +1,7 @@
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
+
 
 int		ft_strlen(char *s)
 {
@@ -10,33 +12,31 @@ int		ft_strlen(char *s)
 		ret++;
 	return (ret);
 }
+
 char	*make_line(char *line, char buf)
 {
 	char	*ret;
 	int		i;
 
-	i = 0;
 	if (!(ret = (char *)malloc(ft_strlen(line) + 2)))
 		return (0);
-	while (line[i])
-	{
+	for (i = 0; line[i]; i++)
 		ret[i] = line[i];
-		i++;
-	}
+	free(line);
 	ret[i] = buf;
 	ret[i + 1] = 0;
 	return (ret);
 }
 
-int		get_next_line(char **line)
+int	get_next_line(char **line)
 {
-	char	buf;
 	int		n;
+	char	buf;
 
 	if (!(*line = malloc(1)))
 		return (-1);
 	*line[0] = 0;
-	while ((n = read(0, &buf,1)) > 0)
+	while ((n = read(0, &buf, 1)) > 0)
 	{
 		if (buf == '\n')
 			return (1);
@@ -46,5 +46,20 @@ int		get_next_line(char **line)
 	}
 	if (n == -1)
 		return (-1);
+	return (0);
+}
+
+int	main(void)
+{
+	char	*line;
+	int		r;
+
+	while ((r = get_next_line(&line)) > -1)
+	{
+		printf("GNL res : %d\n", r);
+		printf("line : %s\n", line);
+		if (r == 0)
+			break;
+	}
 	return (0);
 }
