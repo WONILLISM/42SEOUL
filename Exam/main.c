@@ -1,11 +1,13 @@
 #include <stdio.h>
 
+int	get_next_line(char **line);
+
 int main(void)
 {
 	int		r;
 	char	*line;
 
-	while ((r = get_next_line(&line) > -1))
+	while ((r = get_next_line(&line)) > -1)
 	{
 		printf("gnl res : %d\n", r);
 		printf("line : %s\n", line);

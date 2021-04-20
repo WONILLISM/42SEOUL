@@ -7,22 +7,24 @@ int		ft_strlen(char *s)
 
 	ret = 0;
 	while (s[ret])
-		ret++;
+		ret++;	
 	return (ret);
 }
+
 char	*make_line(char *line, char buf)
 {
 	char	*ret;
 	int		i;
 
-	i = 0;
-	if (!(ret = (char *)malloc(ft_strlen(line) + 2)))
+	if (!(ret = (char *)malloc(ft_strlen(line))))
 		return (0);
+	i = 0;
 	while (line[i])
 	{
 		ret[i] = line[i];
 		i++;
 	}
+	free(line);
 	ret[i] = buf;
 	ret[i + 1] = 0;
 	return (ret);
@@ -36,7 +38,7 @@ int		get_next_line(char **line)
 	if (!(*line = malloc(1)))
 		return (-1);
 	*line[0] = 0;
-	while ((n = read(0, &buf,1)) > 0)
+	while ((n = read(0, &buf, 1)) > 0)
 	{
 		if (buf == '\n')
 			return (1);
