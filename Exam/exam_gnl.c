@@ -1,61 +1,68 @@
 #include <stdlib.h>
-#include <unistd.h>
 #include <stdio.h>
-int ft_strlen(char *str)
+#include <unistd.h>
+​
+int		ft_strlen(char *str)
 {
-	int cnt = 0;
-
-	while (str[cnt])
-		cnt++;
-	return (cnt);
+	int	idx;
+​
+	idx = 0;
+	while (str[idx])
+		idx++;
+	return (idx);
 }
-char *ft_charappend(char *line, char buff)
+​
+char	*ft_make_line(char *line, char buff)
 {
-	int idx = 0;
-	char *rst;
-	if (!(rst = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1))))
+	char	*result;
+	int		idx;
+​
+	idx = 0;
+	if (!(result = (char *)malloc(ft_strlen(line) + 2));
 		return (NULL);
 	while (line[idx])
 	{
-		rst[idx] = line[idx];
-		++idx;
+		result[idx] = line[idx];
+		idx++;
 	}
-	rst[idx] = buff;
-	++idx;
-	rst[idx] = 0;
 	free(line);
-	return (rst);
+	result[idx] = buff;
+	result[idx + 1] = '\0';
+	return (result);
 }
-int get_next_line(char **line)
+​
+int		get_next_line(char **line)
 {
-	int rb;
-	char buff;
-	if (!line)
-		return (0);
-	*line = (char *)malloc(sizeof(char));
-	line = 0;
-	while ((rb = read(0, &buff, 1) > 0))
+	int		read_nbr;
+	char	buff;
+​
+	if (!(*line = malloc(1)))
+		return (-1);
+	*line[0] = '\0';
+	while ((read_nbr = read(0, &buff, 1)) > 0)
 	{
-		printf("%c\n",buff);
 		if (buff == '\n')
 			return (1);
-		*line = ft_charappend(*line, buff);
+		*line = ft_make_line(*line, buff);
 		if (!*line)
 			return (0);
 	}
-	if (rb == -1)
+	if (read_nbr == -1)
 		return (-1);
- return (0);
+	return (0);
 }
-#include <fcntl.h>
-int	main(void)
+​
+int		main(void)
 {
-	int fd;
-	char *line;
-	fd = 0;
-	while (get_next_line(&line) > 0)
+	char	*line;
+	int		a;
+​
+	while ((a = get_next_line(&line)) > -1)
 	{
-		printf("here?\n");
-		printf("%s\n",line);
+		printf("Get_next_line Result : %d\n", a);
+		printf("in the line : %s\n\n", line);
+		if (a == 0)
+			break ;
 	}
+	return (0);
 }
