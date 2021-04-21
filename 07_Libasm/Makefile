@@ -16,8 +16,11 @@ SRCS	=	ft_strlen.s \
 			ft_read.s \
 			ft_strdup.s
 
+SRCS_BONUS	=	ft_atoi_base.s
+
 # object files
 OBJS	=	$(SRCS:.s=.o)
+OBJS_BONUS	= $(SRCS:.s=.o)
 
 # assemble
 NASM	=	nasm
@@ -46,3 +49,11 @@ re		:	fclean all
 
 test	:	re
 		$(CC) main.c -o test -L. -lasm
+
+bonus	:	$(OBJS) $(OBJS_BONUS)
+		$(AR) $(NAME) $(OBJS) $(OBJS_BONUS)
+
+test_bonus	:	bonus
+			$(CC) main.c -o test_bonus -L. -lasm
+
+.PHONY	:	clean fclean test bonus test_bonus
