@@ -44,4 +44,7 @@ fclean	: clean
 
 re		:	fclean all
 
-:.PHONY	:	clean fclean test
+test	:	re
+		$(CC) main.c -o test -L. -lasm
+
+.PHONY	:	clean fclean test
