@@ -25,6 +25,7 @@ cub3d_destroyer/
 mlx_mms/
 opengl/
 
+.vscod
 tests/
 .DS_Store
 */.DS_Store
