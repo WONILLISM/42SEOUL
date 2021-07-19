@@ -49,16 +49,13 @@ Mandatory part
 * 철학자는 잠을 다 자면 생각하기 시작할 것이다.
 * 한 명의 철학자가 죽으면 시뮬레이션은 멈춘다.
 
-* 각 프로그램에는 동일한 옵션이 있어야 한다: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
-  * number_of_philosophers: 철학자의 수와 포크의 수이다.
-  * time_to_die: 밀리 초 단위이며, 만약 철학자가 마지막 식사를 시작하거나 시뮬레이션을 시작한 후  'time_to_die' miliseconds를 먹기 시작하지 않는다면 죽는다.
-  * time_to_eat: 밀리 초 단위이며, 철학자가 식사하는 데 걸리는 시간이다. 그 시간 동안 그는 포크 두 개를 유지해야 할 것이다.
-
-# PAGE 4
-
-*
-  * time_to_sleep: 밀리 초 단위이며, 철학자가 잠을 자는 데 쓰는 시간이다.
-  * number_of_times_each_philosopher_must_eat: 전달인자는 선택사항이며, 만약 모든 철학자들이 적어도 'number_of_times_each_philosopher_must_eat'을 먹는다면, 시뮬레이션은 중단될 것이다. 구체적으로 명시하지 않으면, 시뮬레이션은 철학자가 사망 할 때만 중단될 것입니다.
+* 각 프로그램에는 동일한 옵션이 있어야 한다:
+  * number_of_philosophers : 철학자의 수와 포크의 수이다.
+  * time_to_die : 밀리 초 단위이며, 만약 철학자가 마지막 식사를 시작하거나
+  시뮬레이션을 시작한 후 'time_to_die' miliseconds를 먹기 시작하지 않는다면 죽는다.
+  * time_to_eat : 밀리 초 단위이며, 철학자가 식사하는 데 걸리는  시간이다. 그 시간 동안 그는 포크 두 개를 유지해야 할 것이다.
+  * time_to_sleep : 밀리 초 단위이며, 철학자가 잠을 자는 데 쓰는 시간이다.
+  * number_of_times_each_philosopher_must_eat : 전달인자는 선택사항이며, 만약 모든 철학자들이 적어도 'number_of_times_each_philosopher_must_eat'을 먹는다면, 시뮬레이션은 중단될 것이다. 구체적으로 명시하지 않으면, 시뮬레이션은 철학자가 사망 할 때만 중단될 것입니다.
 * 각 철학자에게는 1부터 'number_of_philosophers'까지의 숫자를 부여해야 한다.
 * 철학자 숫자 1은 철학자 숫자 'number_of_philosophers' 옆에 있다. 숫자 N을 가진 다른 철학자는 철학자 N - 1과 철학자 N + 1 사이에 앉는다.
 * 철학자의 상태 변화는 다음과 같이 기록되어야 한다. (X를 철학자 숫자로 timestamp_in_ms를 현재 타임스탬프로 대체. 단위는 밀리초)
@@ -69,7 +66,6 @@ Mandatory part
   * timestamp_in_ms X 죽었다.
 * 출력된 상태는 다른 철학자의 상태와 뒤섞이거나 얽혀서는 안된다.
 * 철학자의 죽음과 그 죽음을 출력할 때의 사이에 시간 10 ms를 초과할 수 없다.
-
 * 다시 말하지만, 철학자들은 죽는 것을 피해야 한다!
 
 ```
