@@ -8,21 +8,24 @@
 
 typedef struct	s_data
 {
-	int		n;
-	int		die;
-	int		eat;
-	int		sleep;
-	int		must_eat;
-	int		*forks;
+	long			start_time;
+	long			cur_time;
+	int				nimofphilo;
+	int				timetodie;
+	int				timetoeat;
+	int				timetosleep;
+	int				timemust_eat;
+	int				*forks;
+	pthread_t		*tid;
+	pthread_mutex_t	*mid;
 }				t_data;
 
-typedef struct s_philos
+typedef struct s_philo
 {
-	pthread_t	pthrd;
 	t_data		*data;
 	int			status;
 	int			idx;
-}				t_philos;
+}				t_philo;
 
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
