@@ -11,6 +11,7 @@ long	microtomilli()
 void	ft_sleep(long t, long cur)
 {
 	long	res;
+	long	tmp;
 
 	res = cur + t;
 	while (microtomilli() < res)

@@ -15,7 +15,6 @@ typedef struct	s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_must_eat;
-	int				*forks;
 	pthread_t		*tid;
 	pthread_mutex_t	*mid;
 }				t_data;
@@ -25,6 +24,8 @@ typedef struct s_philo
 	t_data		*data;
 	int			status;
 	int			idx;
+	int			left_fork_idx;
+	int			right_fork_idx;
 	long		last_eat_time;
 }				t_philo;
 
@@ -37,4 +38,9 @@ int		init_philo(t_data *data, t_philo **philo);
 
 long	microtomilli();
 void	ft_sleep(long t, long cur);
+
+void	pick_fork(t_philo *philo);
+void	meal_time(t_philo *philo);
+void	sleep_time(t_philo *philo);
+void	think_time(t_philo *philo);
 #endif

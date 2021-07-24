@@ -7,13 +7,13 @@ void	*philo_process(void *param)
 
 	philo = param;
 	data = philo->data;
-	while (1)
-	{
+	//while (1)
+	//{
 		pick_fork(philo);
-		meal_time(philo);
-		sleep_time(philo);
-		think_time(philo);
-	}
+		//meal_time(philo);
+		//sleep_time(philo);
+		//think_time(philo);
+	//}
 	return (NULL);
 }
 
@@ -27,7 +27,7 @@ int		philoshopers(t_data *data, t_philo *philo)
 		pthread_create(
 			&data->tid[i], NULL, philo_process, &philo[i]);
 	}
-
+	return (0);
 }
 
 int		main(int argc, char **argv)
@@ -50,8 +50,9 @@ int		main(int argc, char **argv)
 		printf("init thread error\n");
 		exit(0);
 	}
+	data.start_time = microtomilli();
 	philoshopers(&data, philo);
-	//for(int i = 0; i < data.nop; i++)
-	//	pthread_join(philo[i].pthrd, 0);
+	for (int i = 0; i < data.num_of_philos; i++)
+		pthread_join(data.tid[i], NULL);
 	return (0);
 }
