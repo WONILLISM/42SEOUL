@@ -15,6 +15,7 @@ int		init_thread(t_data *data)
 		pthread_mutex_init(&data->mid[i], NULL);
 	data->tid = (pthread_t *)
 		malloc(sizeof(pthread_t) * data->num_of_philos);
+	pthread_mutex_init(&data->print, NULL);
 	data->start_time = microtomilli();
 	if (data->tid == NULL)
 		return (-1);
