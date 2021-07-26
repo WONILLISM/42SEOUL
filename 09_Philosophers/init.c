@@ -55,7 +55,10 @@ int		init_philo(t_data *data, t_philo **philo)
 	{
 		(*philo)[i].idx = i + 1;
 		(*philo)[i].left_fork_idx = (data->num_of_philos + i - 1) % data->num_of_philos + 1;
-		(*philo)[i].right_fork_idx = (data->num_of_philos + i + 1) % data->num_of_philos;
+		if ((*philo)[i].idx == data->num_of_philos)
+			(*philo)[i].right_fork_idx = data->num_of_philos;
+		else
+			(*philo)[i].right_fork_idx = (data->num_of_philos + i + 1) % data->num_of_philos;
 		(*philo)[i].status = 0;
 		(*philo)[i].last_eat_time = microtomilli();
 		(*philo)[i].data = data;
