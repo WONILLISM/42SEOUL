@@ -10,6 +10,7 @@ typedef struct	s_data
 {
 	long			start_time;
 	long			cur_time;
+	int				die_flag;
 	int				num_of_philos;
 	int				time_to_die;
 	int				time_to_eat;
@@ -17,6 +18,7 @@ typedef struct	s_data
 	int				time_must_eat;
 	pthread_t		*tid;
 	pthread_mutex_t	*mid;
+	pthread_mutex_t	print;
 }				t_data;
 
 typedef struct s_philo
