@@ -11,7 +11,6 @@ void	*die_check(void *param)
 		{
 			pthread_mutex_lock(&philo->data->print);
 			printf("%ldms philo%d가 죽었다.\n", microtomilli() - philo->data->start_time, philo->idx);
-			//pthread_mutex_unlock(&philo->data->print);
 			philo->data->die_flag = 1;
 			break;
 		}
@@ -63,10 +62,10 @@ int		philoshopers(t_data *data, t_philo *philo)
 	i = -1;
 	while (++i < data->num_of_philos)
 		pthread_detach(data->tid[i]);
-	while (data->die_flag == 0)
+	while (1)
 	{
-		//printf("안죽음\n");
-		;
+		if (data->die_flag == 1|| data->must_flag == data->num_of_philos)
+			break;
 	}
 	return (0);
 }

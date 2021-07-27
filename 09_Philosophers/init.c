@@ -7,6 +7,7 @@ int		init_thread(t_data *data)
 	i = -1;
 	data->cur_time = 0;
 	data->die_flag = 0;
+	data->must_flag = 0;
 	data->mid = (pthread_mutex_t *)
 		malloc(sizeof(pthread_mutex_t) * data->num_of_philos);
 	if (data->mid == NULL)
@@ -33,10 +34,9 @@ int		init_data(t_data *data, int argc, char **argv)
 		data->time_to_die = ft_atoi(argv[2]);
 		data->time_to_eat = ft_atoi(argv[3]);
 		data->time_to_sleep = ft_atoi(argv[4]);
+		data->time_must_eat = 0;
 		if (argc == 6)
 			data->time_must_eat =  ft_atoi(argv[5]);
-		else
-			data->time_must_eat = 0;
 	}
 	else
 		return (-1);
@@ -54,6 +54,7 @@ int		init_philo(t_data *data, t_philo **philo)
 	while (i < data->num_of_philos)
 	{
 		(*philo)[i].idx = i + 1;
+		(*philo)[i].eat_cnt = 0;
 		(*philo)[i].left_fork_idx = (data->num_of_philos + i - 1) % data->num_of_philos + 1;
 		if ((*philo)[i].idx == data->num_of_philos)
 			(*philo)[i].right_fork_idx = data->num_of_philos;

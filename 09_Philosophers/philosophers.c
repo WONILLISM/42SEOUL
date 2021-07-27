@@ -1,11 +1,5 @@
 #include "philosophers.h"
 
-//void	print_status(t_philo *philo)
-//{
-//	pthread_mutex_lock(&philo->data->print);
-//	printf("%ldms philo%d가 먹는 중이다.\n", microtomilli() - philo->data->start_time, philo->idx);
-//	pthread_mutex_unlock(&philo->data->print);
-//}
 void	think_time(t_philo *philo)
 {
 	philo->status = 3;
@@ -34,13 +28,15 @@ void	meal_time(t_philo *philo)
 	philo->status = 1;
 	if (philo->data->die_flag == 0)
 	{
-		//print_status(philo);
 		pthread_mutex_lock(&philo->data->print);
 		printf("%ldms philo%d가 먹는 중이다.\n", microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 	ft_sleep(philo->data->time_to_eat, microtomilli());
 	philo->last_eat_time = microtomilli();
+	philo->eat_cnt += 1;
+	if (philo->eat_cnt == philo->data->time_must_eat)
+		philo->data->must_flag += 1;
 	pthread_mutex_unlock(&philo->data->mid[philo->left_fork_idx - 1]);
 	pthread_mutex_unlock(&philo->data->mid[philo->right_fork_idx - 1]);
 }
@@ -48,7 +44,6 @@ void	meal_time(t_philo *philo)
 void	pick_fork(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->mid[philo->left_fork_idx - 1]);
-	//printf("%ldms philo%d가 포크를 잡았다.\n", microtomilli() - philo->data->start_time, philo->idx);
 	pthread_mutex_lock(&philo->data->mid[philo->right_fork_idx - 1]);
 	if (philo->data->die_flag == 0)
 	{

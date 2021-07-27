@@ -11,6 +11,7 @@ typedef struct	s_data
 	long			start_time;
 	long			cur_time;
 	int				die_flag;
+	int				must_flag;
 	int				num_of_philos;
 	int				time_to_die;
 	int				time_to_eat;
@@ -28,6 +29,7 @@ typedef struct s_philo
 	int			idx;
 	int			left_fork_idx;
 	int			right_fork_idx;
+	int			eat_cnt;
 	long		last_eat_time;
 }				t_philo;
 
