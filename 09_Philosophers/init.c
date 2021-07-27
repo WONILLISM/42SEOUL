@@ -1,6 +1,6 @@
 #include "philosophers.h"
 
-int		init_thread(t_data *data)
+int	init_thread(t_data *data)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ int		init_thread(t_data *data)
 	return (0);
 }
 
-int		init_data(t_data *data, int argc, char **argv)
+int	init_data(t_data *data, int argc, char **argv)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ int		init_data(t_data *data, int argc, char **argv)
 	return (0);
 }
 
-int		init_philo(t_data *data, t_philo **philo)
+int	init_philo(t_data *data, t_philo **philo)
 {
 	int	i;
 
