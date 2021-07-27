@@ -14,5 +14,5 @@ void	ft_sleep(long t, long cur)
 
 	res = cur + t;
 	while (microtomilli() < res)
-		usleep((long)((res - microtomilli()) / 2) * 1000L);
+		usleep((long)(((res - microtomilli()) / 2) * 1000L));
 }
