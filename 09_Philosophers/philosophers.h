@@ -6,7 +6,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 
-typedef struct	s_data
+typedef struct		s_data
 {
 	long			start_time;
 	long			cur_time;
@@ -20,29 +20,26 @@ typedef struct	s_data
 	pthread_t		*tid;
 	pthread_mutex_t	*mid;
 	pthread_mutex_t	print;
-}				t_data;
+}					t_data;
 
-typedef struct s_philo
+typedef struct		s_philo
 {
-	t_data		*data;
-	int			status;
-	int			idx;
-	int			left_fork_idx;
-	int			right_fork_idx;
-	int			eat_cnt;
-	long		last_eat_time;
-}				t_philo;
+	t_data			*data;
+	int				status;
+	int				idx;
+	int				left_fork_idx;
+	int				right_fork_idx;
+	int				eat_cnt;
+	long			last_eat_time;
+}					t_philo;
 
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
-
-int		init_thread(t_data *data);
-int		init_data(t_data *data, int argc, char **argv);
-int		init_philo(t_data *data, t_philo **philo);
-
+int	init_thread(t_data *data);
+int	init_data(t_data *data, int argc, char **argv);
+int	init_philo(t_data *data, t_philo **philo);
 long	microtomilli(void);
 void	ft_sleep(long t, long cur);
-
 void	pick_fork(t_philo *philo);
 void	meal_time(t_philo *philo);
 void	sleep_time(t_philo *philo);
