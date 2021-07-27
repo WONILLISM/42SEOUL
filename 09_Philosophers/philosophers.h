@@ -6,7 +6,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 
-typedef struct		s_data
+typedef struct s_data
 {
 	long			start_time;
 	long			cur_time;
@@ -22,7 +22,7 @@ typedef struct		s_data
 	pthread_mutex_t	print;
 }					t_data;
 
-typedef struct		s_philo
+typedef struct s_philo
 {
 	t_data			*data;
 	int				status;
