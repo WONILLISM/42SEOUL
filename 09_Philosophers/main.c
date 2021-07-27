@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wopark <wopark@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/27 18:42:23 by wopark            #+#    #+#             */
+/*   Updated: 2021/07/27 18:42:25 by wopark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 void	*die_check(void *param)
@@ -48,7 +60,7 @@ void	*philo_process(void *param)
 	return (NULL);
 }
 
-int		philoshopers(t_data *data, t_philo *philo)
+int	philoshopers(t_data *data, t_philo *philo)
 {
 	int	i;
 
@@ -69,7 +81,7 @@ int		philoshopers(t_data *data, t_philo *philo)
 	return (0);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data		data;
 	t_philo		*philo;
