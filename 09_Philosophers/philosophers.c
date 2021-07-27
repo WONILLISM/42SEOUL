@@ -48,7 +48,7 @@ void	pick_fork(t_philo *philo)
 	if (philo->data->die_flag == 0)
 	{
 		pthread_mutex_lock(&philo->data->print);
-		printf("%ldms philo%d가 포크를 잡았다.\n", microtomilli() - philo->data->start_time, philo->idx);
+		printf("%ldms philo%d has taken fork.\n", microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 }
