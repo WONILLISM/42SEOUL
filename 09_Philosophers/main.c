@@ -13,7 +13,7 @@ void	*die_check(void *param)
 			printf("%ldms philo%d died.\n",
 				microtomilli() - philo->data->start_time, philo->idx);
 			philo->data->die_flag = 1;
-			break;
+			break ;
 		}
 		usleep(100);
 	}
@@ -63,8 +63,8 @@ int		philoshopers(t_data *data, t_philo *philo)
 		pthread_detach(data->tid[i]);
 	while (1)
 	{
-		if (data->die_flag == 1|| data->must_flag == data->num_of_philos)
-			break;
+		if (data->die_flag == 1 || data->must_flag == data->num_of_philos)
+			break ;
 	}
 	return (0);
 }
