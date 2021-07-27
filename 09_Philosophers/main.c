@@ -90,12 +90,6 @@ int		main(int argc, char **argv)
 		printf("init thread error\n");
 		return (0);
 	}
-	//for (int i = 0; i<data.num_of_philos; i++)
-	//{
-	//	printf("left %d idx %d right %d\n", philo[i].left_fork_idx, philo[i].idx, philo[i].right_fork_idx);
-	//}
 	philoshopers(&data, philo);
-	//for (int i = 0; i < data.num_of_philos; i++)
-	//	pthread_join(data.tid[i], NULL);
 	return (0);
 }
