@@ -6,7 +6,8 @@ void	think_time(t_philo *philo)
 	if (philo->data->die_flag == 0)
 	{
 		pthread_mutex_lock(&philo->data->print);
-		printf("%ldms philo%d is thinking.\n", microtomilli() - philo->data->start_time, philo->idx);
+		printf("%ldms philo%d is thinking.\n", \
+			microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 }
@@ -17,7 +18,8 @@ void	sleep_time(t_philo *philo)
 	if (philo->data->die_flag == 0)
 	{
 		pthread_mutex_lock(&philo->data->print);
-		printf("%ldms philo%d is sleepings.\n", microtomilli() - philo->data->start_time, philo->idx);
+		printf("%ldms philo%d is sleepings.\n", \
+			microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 	ft_sleep(philo->data->time_to_sleep, microtomilli());
@@ -29,7 +31,8 @@ void	meal_time(t_philo *philo)
 	if (philo->data->die_flag == 0)
 	{
 		pthread_mutex_lock(&philo->data->print);
-		printf("%ldms philo%d is eatings.\n", microtomilli() - philo->data->start_time, philo->idx);
+		printf("%ldms philo%d is eatings.\n", \
+			microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 	ft_sleep(philo->data->time_to_eat, microtomilli());
@@ -48,7 +51,8 @@ void	pick_fork(t_philo *philo)
 	if (philo->data->die_flag == 0)
 	{
 		pthread_mutex_lock(&philo->data->print);
-		printf("%ldms philo%d has taken fork.\n", microtomilli() - philo->data->start_time, philo->idx);
+		printf("%ldms philo%d has taken fork.\n", \
+			microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 }
