@@ -40,7 +40,7 @@ int		init_thread(t_data *data);
 int		init_data(t_data *data, int argc, char **argv);
 int		init_philo(t_data *data, t_philo **philo);
 
-long	microtomilli();
+long	microtomilli(void);
 void	ft_sleep(long t, long cur);
 
 void	pick_fork(t_philo *philo);
