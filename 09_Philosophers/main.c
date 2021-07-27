@@ -2,7 +2,7 @@
 
 void	*die_check(void *param)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = param;
 	while (1)
@@ -10,7 +10,8 @@ void	*die_check(void *param)
 		if (microtomilli() - philo->last_eat_time >= philo->data->time_to_die)
 		{
 			pthread_mutex_lock(&philo->data->print);
-			printf("%ldms philo%d died.\n", microtomilli() - philo->data->start_time, philo->idx);
+			printf("%ldms philo%d died.\n",
+				microtomilli() - philo->data->start_time, philo->idx);
 			philo->data->die_flag = 1;
 			break;
 		}
@@ -21,28 +22,26 @@ void	*die_check(void *param)
 
 void	*philo_process(void *param)
 {
-	t_data	*data;
-	t_philo	*philo;
+	t_philo		*philo;
 	pthread_t	pid;
 
 	philo = param;
-	data = philo->data;
 	pthread_create(&pid, NULL, die_check, philo);
 	if (philo->idx % 2 == 1)
-		ft_sleep(data->time_to_eat, microtomilli());
-	while (data->die_flag == 0)
+		ft_sleep(philo->data->time_to_eat, microtomilli());
+	while (philo->data->die_flag == 0)
 	{
-		if (data->die_flag == 1)
-			break;
+		if (philo->data->die_flag == 1)
+			break ;
 		pick_fork(philo);
-		if (data->die_flag == 1)
-			break;
+		if (philo->data->die_flag == 1)
+			break ;
 		meal_time(philo);
-		if (data->die_flag == 1)
-			break;
+		if (philo->data->die_flag == 1)
+			break ;
 		sleep_time(philo);
-		if (data->die_flag == 1)
-			break;
+		if (philo->data->die_flag == 1)
+			break ;
 		think_time(philo);
 		usleep(100);
 	}
