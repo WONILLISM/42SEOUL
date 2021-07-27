@@ -6,7 +6,7 @@ void	think_time(t_philo *philo)
 	if (philo->data->die_flag == 0)
 	{
 		pthread_mutex_lock(&philo->data->print);
-		printf("%ldms philo%d가 생각하는 중이다.\n", microtomilli() - philo->data->start_time, philo->idx);
+		printf("%ldms philo%d is thinking.\n", microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 }
@@ -17,7 +17,7 @@ void	sleep_time(t_philo *philo)
 	if (philo->data->die_flag == 0)
 	{
 		pthread_mutex_lock(&philo->data->print);
-		printf("%ldms philo%d가 자는 중이다.\n", microtomilli() - philo->data->start_time, philo->idx);
+		printf("%ldms philo%d is sleepings.\n", microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 	ft_sleep(philo->data->time_to_sleep, microtomilli());
@@ -29,7 +29,7 @@ void	meal_time(t_philo *philo)
 	if (philo->data->die_flag == 0)
 	{
 		pthread_mutex_lock(&philo->data->print);
-		printf("%ldms philo%d가 먹는 중이다.\n", microtomilli() - philo->data->start_time, philo->idx);
+		printf("%ldms philo%d is eatings.\n", microtomilli() - philo->data->start_time, philo->idx);
 		pthread_mutex_unlock(&philo->data->print);
 	}
 	ft_sleep(philo->data->time_to_eat, microtomilli());

@@ -10,7 +10,7 @@ void	*die_check(void *param)
 		if (microtomilli() - philo->last_eat_time >= philo->data->time_to_die)
 		{
 			pthread_mutex_lock(&philo->data->print);
-			printf("%ldms philo%d가 죽었다.\n", microtomilli() - philo->data->start_time, philo->idx);
+			printf("%ldms philo%d died.\n", microtomilli() - philo->data->start_time, philo->idx);
 			philo->data->die_flag = 1;
 			break;
 		}
