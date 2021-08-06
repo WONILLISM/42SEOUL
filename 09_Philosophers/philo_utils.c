@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wopark <wopark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wonilpark <wonilpark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 18:52:06 by wopark            #+#    #+#             */
-/*   Updated: 2021/08/05 23:03:38 by wopark           ###   ########.fr       */
+/*   Updated: 2021/08/06 19:36:13 by wonilpark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long microtomilli(void)
+long	microtomilli(void)
 {
-	struct timeval tmp;
+	struct timeval	tmp;
 
 	gettimeofday(&tmp, NULL);
 	return (tmp.tv_sec * 1000L + tmp.tv_usec / 1000L);
 }
 
-void ft_sleep(long t, long cur)
+void	ft_sleep(long t, long cur)
 {
-	long res;
+	long	res;
 
 	res = cur + t;
 	while (microtomilli() < res)
