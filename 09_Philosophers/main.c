@@ -88,7 +88,7 @@ int	main(int argc, char **argv)
 
 	if (init_data(&data, argc, argv) == -1)
 	{
-		printf("wrong number of arguments.\n");
+		printf("wrong argument.\n");
 		return (0);
 	}
 	if (init_philo(&data, &philo))

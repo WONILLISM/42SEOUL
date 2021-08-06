@@ -35,6 +35,20 @@ int	init_thread(t_data *data)
 	return (0);
 }
 
+int	check_arg(char *s)
+{
+	int	i;
+	
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	init_data(t_data *data, int argc, char **argv)
 {
 	int	i;
@@ -42,6 +56,11 @@ int	init_data(t_data *data, int argc, char **argv)
 	i = 0;
 	if (argc == 5 || argc == 6)
 	{
+		while (++i < argc)
+		{
+			if (!check_arg(argv[i]))
+				return (-1);
+		}
 		data->num_of_philos = ft_atoi(argv[1]);
 		data->time_to_die = ft_atoi(argv[2]);
 		data->time_to_eat = ft_atoi(argv[3]);
