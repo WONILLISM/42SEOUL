@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wopark <wopark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wonilpark <wonilpark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 18:43:21 by wopark            #+#    #+#             */
-/*   Updated: 2021/07/27 18:43:23 by wopark           ###   ########.fr       */
+/*   Updated: 2021/08/06 19:33:33 by wonilpark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	init_thread(t_data *data)
 int	check_arg(char *s)
 {
 	int	i;
-	
+
 	i = 0;
 	while (s[i])
 	{
