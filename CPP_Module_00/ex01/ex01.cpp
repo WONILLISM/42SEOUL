@@ -1,13 +1,10 @@
-#include "phonebook.hpp"
+#include "includes/ex01.hpp"
 
 int	main(void)
 {
-	Phonebook	phonebook[MAX_SIZE];
+	PB_queue	pb_queue;
 	std::string	cmd;
-	int			l;
-	int			r;
 
-	l = r = 0;
 	while (!std::cin.eof())
 	{
 		std::cout << "Input Command (EXIT, ADD, SEARCH):" << std::endl;
@@ -16,11 +13,7 @@ int	main(void)
 			break;
 		else if (cmd.compare("ADD") == 0)
 		{
-			std::cout<<l<<" "<<r<<std::endl;
-			if (r >= MAX_SIZE)
-				l++;
-			phonebook[r % MAX_SIZE].push_contact();
-			r++;
+			pb_queue.push_contact();
 		}
 		// else if (cmd.compare("SEARCH") == 0)
 		// {

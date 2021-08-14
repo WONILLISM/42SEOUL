@@ -13,9 +13,9 @@ RM = rm -f
 # source files
 SRCS_DIR = ./
 SRCS = \
-		ex01.cpp \
-		add.cpp \
-		#phonebook.cpp
+		includes/phonebook.cpp \
+		includes/pbqueue.cpp \
+		ex01.cpp 
 
 EX01 = $(addprefix $(SRCS_DIR), $(SRCS))
 
