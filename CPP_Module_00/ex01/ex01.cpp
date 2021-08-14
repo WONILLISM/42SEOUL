@@ -2,11 +2,12 @@
 
 int	main(void)
 {
-	Phonebook	phonebook[8];
+	Phonebook	phonebook[MAX_SIZE];
 	std::string	cmd;
-	int	book_idx;
+	int			l;
+	int			r;
 
-	book_idx = 0;
+	l = r = 0;
 	while (!std::cin.eof())
 	{
 		std::cout << "Input Command (EXIT, ADD, SEARCH):" << std::endl;
@@ -15,15 +16,16 @@ int	main(void)
 			break;
 		else if (cmd.compare("ADD") == 0)
 		{
-			if (book_idx < 8)
-			{
-				book_idx++;
-			}
+			std::cout<<l<<" "<<r<<std::endl;
+			if (r >= MAX_SIZE)
+				l++;
+			phonebook[r % MAX_SIZE].push_contact();
+			r++;
 		}
-		else if (cmd.compare("SEARCH") == 0)
-		{
+		// else if (cmd.compare("SEARCH") == 0)
+		// {
 
-		}
+		// }
 	}
 	return (0);
 }

@@ -14,6 +14,7 @@ RM = rm -f
 SRCS_DIR = ./
 SRCS = \
 		ex01.cpp \
+		add.cpp \
 		#phonebook.cpp
 
 EX01 = $(addprefix $(SRCS_DIR), $(SRCS))
