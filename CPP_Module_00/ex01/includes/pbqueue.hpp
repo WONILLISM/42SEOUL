@@ -18,6 +18,8 @@ public:
 	}
 	void	push_contact(void);
 	void	pop_contact(void);
+	void	search_contact(void);
+	void	show_contacts(void);
 };
 
 #endif

@@ -33,3 +33,28 @@ void	Phonebook::set_darkestsecret(std::string darkest_secret)
 {
 	this->darkest_secret = darkest_secret;
 }
+
+std::string	Phonebook::get_firstname()
+{
+	return this->first_name;
+}
+
+std::string	Phonebook::get_lastname()
+{
+	return this->last_name;
+}
+
+std::string	Phonebook::get_nickname()
+{
+	return this->nick_name;
+}
+
+std::string	Phonebook::get_phonenumber()
+{
+	return this->phone_number;
+}
+
+std::string	Phonebook::get_darkestsecret()
+{
+	return this->darkest_secret;
+}
