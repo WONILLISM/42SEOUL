@@ -9,16 +9,14 @@ int	main(void)
 	{
 		std::cout << "Input Command (EXIT, ADD, SEARCH): ";
 		std::cin >> cmd;
-		if (cmd.compare("EXIT") == 0)
-			break;
+		if (std::cin.eof())
+			break ;
+		else if (cmd.compare("EXIT") == 0)
+			break ;
 		else if (cmd.compare("ADD") == 0)
-		{
 			pb_queue.push_contact();
-		}
 		else if (cmd.compare("SEARCH") == 0)
-		{
 			pb_queue.search_contact();
-		}
 		else
 			std::cout << "Wrong Command\n";
 	}
