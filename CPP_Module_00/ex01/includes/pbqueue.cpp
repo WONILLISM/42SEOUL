@@ -79,44 +79,26 @@ void	PB_queue::push_contact(void)
 
 	if (this->r >= MAX_SIZE)
 		this->pop_contact();
-	for (int i = 0; i < 5 && !std::cin.eof(); i++)
-	{
-		if (i == 0)
-		{
-			std::cout << "first name : ";
-			if (check_eof(&contact_item))
-				return ;
-			this->pb[this->r].set_firstname(contact_item);
-		}
-		else if (i == 1)
-		{
-			std::cout << "last name : ";
-			if (check_eof(&contact_item))
-				return ;
-			this->pb[this->r].set_lastname(contact_item);
-		}
-		else if (i == 2)
-		{
-			std::cout << "nick name : ";
-			if (check_eof(&contact_item))
-				return ;
-			this->pb[this->r].set_nickname(contact_item);
-			
-		}
-		else if (i == 3)
-		{
-			std::cout << "phone number : ";
-			if (check_eof(&contact_item))
-				return ;
-			this->pb[this->r].set_phonenumber(contact_item);
-		}
-		else if (i == 4)
-		{
-			std::cout << "darkest secret : ";
-			if (check_eof(&contact_item))
-				return ;
-			this->pb[this->r].set_darkestsecret(contact_item);
-		}
-	}
+	std::cout << "first name : ";
+	if (check_eof(&contact_item))
+		return ;
+	this->pb[this->r].set_firstname(contact_item);
+	std::cout << "last name : ";
+	if (check_eof(&contact_item))
+		return ;
+	this->pb[this->r].set_lastname(contact_item);
+	std::cout << "nick name : ";
+	if (check_eof(&contact_item))
+		return ;
+	this->pb[this->r].set_nickname(contact_item);
+	
+	std::cout << "phone number : ";
+	if (check_eof(&contact_item))
+		return ;
+	this->pb[this->r].set_phonenumber(contact_item);
+	std::cout << "darkest secret : ";
+	if (check_eof(&contact_item))
+		return ;
+	this->pb[this->r].set_darkestsecret(contact_item);
 	this->r++;
 }
