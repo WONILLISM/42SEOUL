@@ -91,7 +91,6 @@ void	PB_queue::push_contact(void)
 	if (check_eof(&contact_item))
 		return ;
 	this->pb[this->r].set_nickname(contact_item);
-	
 	std::cout << "phone number : ";
 	if (check_eof(&contact_item))
 		return ;
