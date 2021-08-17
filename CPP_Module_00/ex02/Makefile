@@ -13,7 +13,8 @@ RM = rm -f
 # source files
 SRCS_DIR = ./
 SRCS = \
-		test.cpp
+		tests.cpp \
+		Account.cpp
 
 EX01 = $(addprefix $(SRCS_DIR), $(SRCS))
 
