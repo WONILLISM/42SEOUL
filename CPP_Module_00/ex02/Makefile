@@ -16,10 +16,10 @@ SRCS = \
 		tests.cpp \
 		Account.cpp
 
-EX01 = $(addprefix $(SRCS_DIR), $(SRCS))
+EX02 = $(addprefix $(SRCS_DIR), $(SRCS))
 
 # object files
-OBJS = $(EX01:.cpp=.o)
+OBJS = $(EX02:.cpp=.o)
 
 # roles
 all : $(NAME)
