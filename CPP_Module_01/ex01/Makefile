@@ -1,5 +1,5 @@
 # output
-NAME = ex00
+NAME = ex01
 
 # compiler
 CPP	= clang++
@@ -14,14 +14,13 @@ RM = rm -f
 SRCS_DIR = ./
 SRCS = \
 		main.cpp \
-		newZombie.cpp \
-		randomChump.cpp \
+		ZombieHorde.cpp \
 		Zombie.cpp
 
-EX00 = $(addprefix $(SRCS_DIR), $(SRCS))
+EX01 = $(addprefix $(SRCS_DIR), $(SRCS))
 
 # object files
-OBJS = $(EX00:.cpp=.o)
+OBJS = $(EX01:.cpp=.o)
 
 # roles
 all : $(NAME)
