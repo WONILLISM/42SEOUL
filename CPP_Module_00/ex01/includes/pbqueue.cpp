@@ -41,6 +41,11 @@ void	PB_queue::search_contact(void)
 		while (1)
 		{
 			std::cout << "\nInput Index : ";
+			if (std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore(INT_MAX, '\n');
+			}
 			std::cin >> idx;
 			if (std::cin.eof())
 				return ;
