@@ -1,5 +1,5 @@
 # output
-NAME = ex01
+NAME = ex00
 
 # compiler
 CPP	= clang++
@@ -16,10 +16,10 @@ SRCS = \
 		main.cpp \
 		Fixed.cpp
 
-EX01 = $(addprefix $(SRCS_DIR), $(SRCS))
+EX00 = $(addprefix $(SRCS_DIR), $(SRCS))
 
 # object files
-OBJS = $(EX01:.cpp=.o)
+OBJS = $(EX00:.cpp=.o)
 
 # roles
 all : $(NAME)
