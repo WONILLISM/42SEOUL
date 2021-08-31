@@ -2,10 +2,10 @@
 NAME = ex00
 
 # compiler
-CPP	= clang++
+CXX	= clang++
 
 # cpp flags
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 
 AR = ar rcs
 RM = rm -f
@@ -13,7 +13,8 @@ RM = rm -f
 # source files
 SRCS_DIR = ./
 SRCS = \
-		
+		ClapTrap.cpp \
+		main.cpp \
 
 EX00 = $(addprefix $(SRCS_DIR), $(SRCS))
 
@@ -24,7 +25,7 @@ OBJS = $(EX00:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-		$(CPP) $(CPPFLAGS) $^ -o $@
+		@$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean :
 		$(RM) $(OBJS)
