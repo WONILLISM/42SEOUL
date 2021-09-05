@@ -15,6 +15,7 @@ SRCS_DIR = ./
 SRCS = \
 		ClapTrap.cpp \
 		ScavTrap.cpp \
+		FragTrap.cpp \
 		main.cpp \
 
 EX02 = $(addprefix $(SRCS_DIR), $(SRCS))
