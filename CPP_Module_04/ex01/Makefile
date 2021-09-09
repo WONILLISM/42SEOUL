@@ -19,6 +19,7 @@ SRCS = \
 		Dog.cpp \
 		WrongAnimal.cpp \
 		WrongCat.cpp \
+		Brain.cpp \
 
 EX01 = $(addprefix $(SRCS_DIR), $(SRCS))
 

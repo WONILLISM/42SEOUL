@@ -2,8 +2,8 @@
 
 Animal::Animal()
 {
-	this->_type = "...";
-	std::cout << this->_type << " is born\n";
+	this->_type = "Animal";
+	std::cout << this->_type << " is born.\n";
 }
 
 Animal::Animal(const Animal& copy)

@@ -1,26 +1,52 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
+#include <string>
+#define ANIAMLNUM	4
 
 int	main(void)
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	std::cout << "=======================================\n\n";
+	std::cout << "                CPP04 TEST             \n\n";
+	std::cout << "=======================================\n";
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
+	std::cout << "CREATE TEST:\n\n";
+	Animal *Animals[ANIAMLNUM];
+	for (int i = 0; i < ANIAMLNUM; i++){
+		if (i % 2 == 0)
+			Animals[i] = new Cat();
+		else
+			Animals[i] = new Dog();
+	}
 
-	const WrongAnimal* wrongCat = new WrongCat();
+	for (int i = 0;  i < ANIAMLNUM; i++)
+		Animals[i]->makeSound();
 
-	wrongCat->makeSound();
+	std::cout << "----------------------------------------\n\n";
 
-	delete meta;
-	delete i;
-	delete j;
-	delete wrongCat;
+	for (int i = 0; i < ANIAMLNUM; i++)
+		delete Animals[i];
+
+	std::cout << "----------------------------------------\n\n";
+	std::cout << "CAT/DOG DEEP COPY TEST:\n\n";
+
+	Dog dog;
+	for (int i = 0; i < 100; i++)
+		dog.getBrain()->setIdea(i, std::to_string(i));
+	Dog tmp_dog = dog;
+
+	for (int i = 0; i < 100; i++)
+	{
+		std::cout << dog.getBrain()->getIdea(i) << "	";
+		std::cout << tmp_dog.getBrain()->getIdea(i) << "\n";
+	}
+	std::cout << "\n";
+	for (int i = 0; i < 100; i++)
+	{
+		tmp_dog.getBrain()->setIdea(i, std::to_string(i + 100));
+		std::cout << dog.getBrain()->getIdea(i) << "	";
+		std::cout << tmp_dog.getBrain()->getIdea(i) << "\n";
+	}
+	// system("leaks ex01");
+
 	return (0);
 }
