@@ -46,7 +46,7 @@ int	main(void)
 		std::cout << dog.getBrain()->getIdea(i) << "	";
 		std::cout << tmp_dog.getBrain()->getIdea(i) << "\n";
 	}
-	// system("leaks ex01");
+	system("leaks ex01");
 
 	return (0);
 }
