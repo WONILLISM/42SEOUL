@@ -5,7 +5,7 @@
 class Animal
 {
 protected:
-	std::string	_type;
+	std::string	_type;  // type 문자열
 public:
 	Animal();
 	Animal(const Animal& copy);

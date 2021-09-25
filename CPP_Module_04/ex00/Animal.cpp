@@ -2,7 +2,7 @@
 
 Animal::Animal()
 {
-	this->_type = "...";
+	this->_type = "Unknown animal";
 	std::cout << this->_type << " is born\n";
 }
 

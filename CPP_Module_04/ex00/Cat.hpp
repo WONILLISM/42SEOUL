@@ -2,7 +2,7 @@
 # define CAT_HPP
 # include "Animal.hpp"
 
-class Cat: public Animal
+class Cat: public Animal    // inherit Animal class
 {
 public:
 	Cat();
