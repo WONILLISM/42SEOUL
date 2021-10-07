@@ -13,6 +13,7 @@ RM = rm -f
 # source files
 SRCS_DIR = ./
 SRCS = \
+		Bureaucrat.cpp \
 		main.cpp \
 
 EX00 = $(addprefix $(SRCS_DIR), $(SRCS))
