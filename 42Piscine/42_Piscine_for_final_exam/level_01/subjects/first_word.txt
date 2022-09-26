@@ -1,0 +1,29 @@
+Assignment name  : first_word
+Expected files   : first_word.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes a string and displays its first word, followed by a newline.
+
+A word is a section of string delimited by spaces/tabs or by the start/end of the string.
+
+If the number of parameters is not 1, or if there are no words, simply display a newline.
+
+문자열을 받아서 첫 번째 단어를 표시 한 다음 개행 문자를 표시하는 프로그램을 작성하십시오.
+
+단어는 공백 / 탭 또는 문자열의 시작 / 끝으로 구분 된 문자열 섹션입니다.
+
+매개 변수 수가 1이 아니거나 단어가없는 경우 개행을 표시하십시오.
+Examples:
+
+$> ./first_word "FOR PONY" | cat -e
+FOR$
+$> ./first_word "this        ...       is sparta, then again, maybe    not" | cat -e
+this$
+$> ./first_word "   " | cat -e
+$
+$> ./first_word "a" "b" | cat -e
+$
+$> ./first_word "  lorem,ipsum  " | cat -e
+lorem,ipsum$
+$>

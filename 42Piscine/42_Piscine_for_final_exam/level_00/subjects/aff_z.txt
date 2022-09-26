@@ -1,0 +1,26 @@
+Assignment name  : aff_z
+Expected files   : aff_z.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes a string, and displays the first 'z'
+character it encounters in it, followed by a newline. If there are no
+'z' characters in the string, the program writes 'z' followed
+by a newline. If the number of parameters is not 1, the program displays
+'z' followed by a newline.
+
+문자열을 받아서 그 안에서 만나는 첫 번째 'z'문자와 개행 문자를 표시하는 
+프로그램을 작성하십시오. 
+문자열에 'z'문자가 없으면 프로그램은 'z'뒤에 개행 문자를 씁니다. 
+매개 변수 수가 1이 아닌 경우 프로그램은 'z'와 개행 문자를 표시합니다.
+
+Example:
+
+$> ./aff_z "abc" | cat -e
+z$
+$> ./aff_z "dubO a POIL" | cat -e
+$
+$> ./aff_z "zaz sent le poney" | cat -e
+z$
+$> ./aff_z | cat -e
+z$
