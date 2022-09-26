@@ -1,0 +1,94 @@
+./minish
+./junghwki/test.c
+
+### testers
+libft-unit-test/
+
+gnlkiller/
+GNL_lover/
+42testers-gnl/
+gnl-war-machine-v2019/
+
+netwhat42-train/
+netwhat_cal/
+
+pft/
+printf_lover_v2/
+42TESTERS-PRINTF/
+
+cub3D_map_tester/
+cub3d_destroyer/
+
+### main , library
+./03_Printf/main.c
+mlx_mms/
+opengl/
+
+tests/
+.DS_Store
+*/.DS_Store
+### VisualStudioCode ###
+.vscode/*
+./*/.vscode
+#!.vscode/settings.json
+#!.vscode/tasks.json
+#!.vscode/launch.json
+#!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+### C ###
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
