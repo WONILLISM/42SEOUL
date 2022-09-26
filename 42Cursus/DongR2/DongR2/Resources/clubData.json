@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1001,
+        "name": "냠냠 crew 1",
+        "bgName": "yamyamBg",
+        "markName": "yamyamMark",
+        "description": "안녕하세요. 냠냠크루1 입니다.",
+        "category": "친목",
+    },
+    {
+        "id": 1002,
+        "name": "냠냠 crew 2",
+        "bgName": "yamyamBg",
+        "markName": "yamyamMark",
+        "description": "안녕하세요. 냠냠크루2 입니다.",
+        "category": "취미",
+    },
+    {
+        "id": 1003,
+        "name": "냠냠 crew 3",
+        "bgName": "yamyamBg",
+        "markName": "yamyamMark",
+        "description": "안녕하세요. 냠냠크루3 입니다.",
+        "category": "공부",
+    },
+]
